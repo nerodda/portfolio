@@ -1,0 +1,101 @@
+---
+import FlowStrip from './FlowStrip.astro';
+import { isOutcomePending } from '../lib/systems';
+import type { System } from '../lib/systems';
+
+interface Props {
+  system: System;
+  index: number;
+}
+
+const { system, index } = Astro.props;
+const { name, status, summary, outcome, flow, feedback, tier } = system.data;
+const pending = isOutcomePending(outcome);
+
+const isLinked = tier === 'featured';
+const Tag = isLinked ? 'a' : 'div';
+const linkProps = isLinked ? { href: `/systems/${system.id}/` } : {};
+---
+
+<Tag class:list={['row', { linked: isLinked, retired: status === 'retired' }]} style={`--i: ${index}`} {...linkProps}>
+  <span class="name">{name}</span>
+  <div class="meta">
+    <FlowStrip flow={flow} feedback={feedback} status={status} />
+    <p class="copy">
+      <span class="summary">{summary}</span>{' '}
+      <span class:list={['outcome', { pending }]}>{pending ? '→' : outcome}</span>
+    </p>
+  </div>
+</Tag>
+
+<style>
+  .row {
+    display: grid;
+    grid-template-columns: minmax(140px, 0.7fr) minmax(360px, 3fr);
+    align-items: center;
+    gap: 24px;
+    padding: 18px 12px;
+    margin: 0 -12px;
+    border-radius: 2px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .row.retired {
+    opacity: 0.55;
+  }
+
+  a.row.linked {
+    transition: background-color 0.2s var(--easing);
+  }
+
+  a.row.linked:hover,
+  a.row.linked:focus-visible {
+    background: var(--card);
+  }
+
+  .name {
+    font-weight: 500;
+    font-size: 1.0625rem;
+    letter-spacing: -0.01em;
+  }
+
+  .meta {
+    display: grid;
+    grid-template-columns: 110px minmax(0, 1fr);
+    align-items: center;
+    gap: 24px;
+  }
+
+  .copy {
+    margin: 0;
+  }
+
+  .summary {
+    font-size: 0.9375rem;
+    color: var(--muted);
+  }
+
+  .outcome {
+    font-size: 0.9375rem;
+    color: var(--text);
+    margin-left: 0.35em;
+  }
+
+  .outcome.pending {
+    font-size: 0.9375rem;
+    color: var(--number);
+  }
+
+  @media (max-width: 640px) {
+    .row {
+      grid-template-columns: 1fr;
+      row-gap: 10px;
+    }
+
+    .meta {
+      grid-template-columns: 90px minmax(0, 1fr);
+      gap: 14px;
+    }
+  }
+</style>

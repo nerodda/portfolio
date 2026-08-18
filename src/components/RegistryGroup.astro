@@ -1,0 +1,43 @@
+---
+import RegistryRow from './RegistryRow.astro';
+import type { System } from '../lib/systems';
+
+interface Props {
+  label: string;
+  systems: System[];
+  startIndex: number;
+}
+
+const { label, systems, startIndex } = Astro.props;
+---
+
+<div class="group">
+  <p class="group-label">{label} · {systems.length}</p>
+  <div class="rows">
+    {systems.map((system, i) => (
+      <RegistryRow system={system} index={startIndex + i} />
+    ))}
+  </div>
+</div>
+
+<style>
+  .group + .group {
+    margin-top: 64px;
+  }
+
+  .group-label {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .rows {
+    border-top: 1px solid var(--line);
+  }
+
+  .rows > :global(.row) {
+    border-bottom: 1px solid var(--line);
+  }
+</style>

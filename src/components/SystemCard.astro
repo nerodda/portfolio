@@ -1,0 +1,63 @@
+---
+import { isOutcomePending } from '../lib/systems';
+import type { System } from '../lib/systems';
+
+interface Props {
+  system: System;
+}
+
+const { system } = Astro.props;
+const { name, year, outcome, summary } = system.data;
+const pending = isOutcomePending(outcome);
+---
+
+<a class="card" href={`/systems/${system.id}/`}>
+  <p class="meta">{year}</p>
+  <h3>{name}</h3>
+  <p class:list={['outcome', { pending }]}>{pending ? '→' : outcome}</p>
+  <p class="excerpt">{summary}</p>
+</a>
+
+<style>
+  .card {
+    display: block;
+    background: var(--bg);
+    padding: 32px;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s var(--easing);
+  }
+
+  .card:hover,
+  .card:focus-visible {
+    background: var(--card);
+  }
+
+  .meta {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  h3 {
+    margin-bottom: 10px;
+  }
+
+  .outcome {
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  .outcome.pending {
+    font-weight: 400;
+    color: var(--number);
+  }
+
+  .excerpt {
+    color: var(--muted);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+</style>

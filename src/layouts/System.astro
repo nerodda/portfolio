@@ -1,0 +1,70 @@
+---
+import Base from './Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import type { System } from '../lib/systems';
+
+interface Props {
+  system: System;
+  prev: System | null;
+  next: System | null;
+  // Astro rendered-content component, returned by `render(entry)`.
+  Content: any;
+}
+
+const { system, prev, next, Content } = Astro.props;
+const { name, context, status, year, summary, outcome } = system.data;
+---
+
+<Base title={`${name} — Olga Neroda`} description={outcome} ogType="article">
+  <SiteHeader />
+
+  <main>
+    <div class="wrap hero">
+      <div class="eyebrow">
+        <span>{context === 'production' ? 'Recent project' : 'Personal project'}</span>
+        <span>{status}</span>
+        <span>{year}</span>
+      </div>
+      <h1>{name}</h1>
+      <div class="lede">
+        <p>{summary}</p>
+      </div>
+    </div>
+
+    <Content />
+
+    <section class="prev-next-section">
+      <div class="wrap">
+        <nav class="prev-next">
+          {prev ? <a href={`/systems/${prev.id}/`}>← {prev.data.name}</a> : <span />}
+          {next ? <a href={`/systems/${next.id}/`}>{next.data.name} →</a> : <span />}
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .prev-next-section {
+    padding: 32px 0;
+  }
+
+  .prev-next {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9375rem;
+  }
+
+  .prev-next a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s var(--easing);
+  }
+
+  .prev-next a:hover {
+    color: var(--text);
+  }
+</style>

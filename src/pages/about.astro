@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const credentials = ['TODO'];
+const languages = ['TODO'];
+---
+
+<Base title="About — Olga Neroda" description="TODO">
+  <SiteHeader />
+
+  <main>
+    <div class="wrap hero">
+      <h1>About</h1>
+    </div>
+
+    <section>
+      <div class="wrap grid">
+        <div class="sec-head">
+          <h2>Bio</h2>
+        </div>
+        <div class="body">
+          <div class="bio-layout">
+            <img class="photo" src="/about-photo.svg" alt="Olga Neroda" width="400" height="500" />
+            <div class="bio-text">
+              <p>TODO</p>
+              <p>TODO</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap grid">
+        <div class="sec-head">
+          <h2>Credentials &amp; languages</h2>
+        </div>
+        <div class="body">
+          <dl class="facts">
+            <div>
+              <dt>Credentials</dt>
+              <dd>{credentials.join(', ')}</dd>
+            </div>
+            <div>
+              <dt>Languages</dt>
+              <dd>{languages.join(', ')}</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .bio-layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .photo {
+    width: 100%;
+    height: auto;
+  }
+
+  .bio-text p {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+
+  .bio-text p + p {
+    margin-top: 1.15em;
+  }
+
+  @media (max-width: 640px) {
+    .bio-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .photo {
+      max-width: 220px;
+    }
+  }
+</style>

@@ -1,0 +1,132 @@
+---
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const talks = [
+  {
+    title: 'TODO',
+    abstract: 'TODO',
+    draws_on: ['TODO'],
+  },
+];
+
+const topics = ['TODO'];
+
+const pastSessions = [{ title: 'TODO', venue: 'TODO', year: 'TODO' }];
+---
+
+<Base title="Speaking — Olga Neroda" description="Talk abstracts, topics, and past sessions on AI systems for B2B revenue teams.">
+  <SiteHeader />
+
+  <main>
+    <div class="wrap hero">
+      <h1>Speaking</h1>
+      <div class="lede">
+        <p>
+          Open to CFPs and speaking invitations on AI systems for revenue teams. Reach out at{' '}
+          <a href="mailto:nerokim3@gmail.com">nerokim3@gmail.com</a>.
+        </p>
+      </div>
+    </div>
+
+    <section>
+      <div class="wrap grid">
+        <div class="sec-head"><h2>Talks</h2></div>
+        <div class="body">
+          <div class="talks">
+            {talks.map((talk) => (
+              <article class="talk">
+                <h3>{talk.title}</h3>
+                <p class="abstract">{talk.abstract}</p>
+                <p class="draws-on">Draws on: {talk.draws_on.join(', ')}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap grid">
+        <div class="sec-head"><h2>Topics</h2></div>
+        <div class="body">
+          <ul class="topics">
+            {topics.map((topic) => <li>{topic}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap grid">
+        <div class="sec-head"><h2>Past sessions</h2></div>
+        <div class="body">
+          <ul class="time">
+            {pastSessions.map((s) => (
+              <li>
+                <span class="when">{s.venue} · {s.year}</span>
+                <span class="what">{s.title}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .lede a {
+    border-bottom: 1px solid var(--line-strong);
+    text-decoration: none;
+  }
+
+  .lede a:hover {
+    border-color: var(--text);
+  }
+
+  .talks {
+    display: grid;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+
+  .talk {
+    padding: 28px 24px;
+    background: var(--bg);
+  }
+
+  .talk h3 {
+    margin-bottom: 12px;
+  }
+
+  .abstract {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+  .draws-on {
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+
+  .topics {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .topics li {
+    border: 1px solid var(--line-strong);
+    padding: 6px 12px;
+    border-radius: 2px;
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+</style>

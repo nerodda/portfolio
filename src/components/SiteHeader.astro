@@ -1,0 +1,36 @@
+---
+---
+
+<header class="site-header">
+  <div class="wrap head">
+    <a class="mark" href="/" aria-label="Olga Neroda — home">
+      <span>OLGA</span>
+      <span>NERODA</span>
+    </a>
+    <nav class="head-nav">
+      <a href="https://github.com/TODO">GitHub</a>
+      <a href="https://www.linkedin.com/in/olga-neroda/">LinkedIn</a>
+      <button class="toggle" id="theme-toggle" type="button" aria-live="polite">Dark mode</button>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const root = document.documentElement;
+  const btn = document.getElementById('theme-toggle');
+
+  function label(theme: string | null) {
+    if (btn) btn.textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';
+  }
+
+  label(root.getAttribute('data-theme'));
+
+  btn?.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    label(next);
+    try {
+      localStorage.setItem('theme', next);
+    } catch {}
+  });
+</script>

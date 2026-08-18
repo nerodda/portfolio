@@ -1,0 +1,23 @@
+---
+import System from '../../layouts/System.astro';
+import { getFeaturedSystems } from '../../lib/systems';
+import { render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const featured = await getFeaturedSystems();
+
+  return featured.map((entry, i) => ({
+    params: { slug: entry.id },
+    props: {
+      entry,
+      prev: i > 0 ? featured[i - 1] : null,
+      next: i < featured.length - 1 ? featured[i + 1] : null,
+    },
+  }));
+}
+
+const { entry, prev, next } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<System system={entry} prev={prev} next={next} Content={Content} />
