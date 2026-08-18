@@ -6,7 +6,7 @@ export const GET: APIRoute = async ({ site }) => {
   const base = site?.toString().replace(/\/$/, '') ?? 'https://olganeroda.com';
 
   const lines = [
-    'Olga Neroda is a marketing technologist who builds AI systems for B2B revenue teams.',
+    'Olga Neroda is a marketing technologist who builds AI systems for revenue and marketing teams.',
     'She builds production pipelines and independent tools, not slide decks — this site is a working registry of what she has shipped.',
     '',
     'Featured systems:',
