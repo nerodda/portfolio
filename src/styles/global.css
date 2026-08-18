@@ -127,8 +127,14 @@ img {
 
 /* ---------- site header ---------- */
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
   background: var(--bg);
-  transition: background 0.4s var(--easing);
+  border-bottom: 1px solid var(--line);
+  transition:
+    background 0.4s var(--easing),
+    border-color 0.4s var(--easing);
 }
 
 /* ---------- hero ---------- */
