@@ -2,52 +2,131 @@
 ---
 
 <header class="site-header">
-  <div class="wrap head">
+  <a class="wrap initials" href="/" aria-label="Olga Neroda — home">
+    <span class="initial">OLGA</span>
+    <span class="initial">NERODA</span>
+  </a>
+
+  <div class="wrap info-row">
     <div class="identity">
-      <a class="mark" href="/" aria-label="Olga Neroda — home">
-        <span>OLGA</span>
-        <span>NERODA</span>
-      </a>
-      <p class="subtitle">Marketing Technologist<br />AI Systems</p>
+      <p class="role-line">Marketing Technologist</p>
+      <p class="role-line">AI Systems</p>
     </div>
-    <nav class="head-nav">
+
+    <nav class="site-nav">
+      <a href="/">Systems</a>
+      <a href="/about">About</a>
+      <a href="/speaking">Speaking</a>
+    </nav>
+
+    <div class="utility">
       <a href="https://github.com/nerodda">GitHub</a>
       <a href="https://www.linkedin.com/in/olga-neroda/">LinkedIn</a>
       <button class="toggle" id="theme-toggle" type="button" aria-live="polite">Dark mode</button>
-    </nav>
+    </div>
   </div>
 </header>
 
 <style>
-  .head {
-    align-items: flex-start;
-    height: auto;
-    padding: 16px 0;
+  .initials {
+    display: flex;
     flex-wrap: wrap;
-    row-gap: 12px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0 clamp(10px, 2.5vw, 28px);
+    padding-top: 16px;
+    text-decoration: none;
+    color: var(--text);
   }
 
-  @media (max-width: 480px) {
-    .head-nav {
-      width: 100%;
-      justify-content: space-between;
-    }
+  .initial {
+    font-size: clamp(1.75rem, 6vw, 4rem);
+    line-height: 0.9;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .info-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 32px;
+    align-items: flex-start;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid var(--line);
   }
 
   .identity {
-    display: flex;
-    flex-direction: column;
+    flex: 1 1 200px;
   }
 
-  .subtitle {
-    margin-top: 6px;
-    font-size: 12px;
+  .role-line {
+    font-size: 0.9375rem;
+    color: var(--muted);
     line-height: 1.5;
+  }
+
+  .site-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1 1 140px;
+  }
+
+  .site-nav a {
+    font-size: 0.9375rem;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .site-nav a:hover {
     color: var(--muted);
   }
 
-  .head-nav {
-    padding-top: 2px;
+  .utility {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    flex: 1 1 140px;
+  }
+
+  .utility a {
+    font-size: 0.9375rem;
+    text-decoration: none;
+    color: var(--muted);
+  }
+
+  .utility a:hover {
+    color: var(--text);
+  }
+
+  .toggle {
+    appearance: none;
+    background: none;
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    font: inherit;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border-radius: 2px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+      background 0.25s var(--easing),
+      border-color 0.25s var(--easing);
+  }
+
+  .toggle:hover {
+    background: var(--card);
+  }
+
+  @media (max-width: 640px) {
+    .utility {
+      align-items: flex-start;
+    }
   }
 </style>
 

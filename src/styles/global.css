@@ -127,74 +127,8 @@ img {
 
 /* ---------- site header ---------- */
 .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
   background: var(--bg);
-  border-bottom: 1px solid var(--line);
-  transition:
-    background 0.4s var(--easing),
-    border-color 0.4s var(--easing);
-}
-
-.head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  height: 64px;
-}
-
-.mark {
-  display: flex;
-  gap: 0.6em;
-  font-size: 13px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  text-decoration: none;
-  color: var(--text);
-}
-
-.head-nav {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.head-nav a {
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--muted);
-  transition: color 0.2s var(--easing);
-}
-
-.head-nav a:hover {
-  color: var(--text);
-}
-
-.toggle {
-  appearance: none;
-  background: none;
-  border: 1px solid var(--line-strong);
-  color: var(--text);
-  font: inherit;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 8px 14px;
-  border-radius: 2px;
-  cursor: pointer;
-  white-space: nowrap;
-  transition:
-    background 0.25s var(--easing),
-    border-color 0.25s var(--easing);
-}
-
-.toggle:hover {
-  background: var(--card);
+  transition: background 0.4s var(--easing);
 }
 
 /* ---------- hero ---------- */
