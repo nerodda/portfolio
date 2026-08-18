@@ -11,6 +11,13 @@
         <li><a href="mailto:nerokim3@gmail.com">Email</a></li>
       </ul>
       <p class="speaking-line">Open to speaking on AI systems for revenue and marketing teams — see <a href="/speaking">speaking</a>.</p>
+      <button class="toggle" id="theme-toggle" type="button" aria-live="polite">
+        <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"></circle>
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+        </svg>
+        <span class="toggle-label">Dark mode</span>
+      </button>
     </div>
   </div>
 </footer>
@@ -21,4 +28,54 @@
     color: var(--muted);
     font-size: 0.9375rem;
   }
+
+  .toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 20px;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    color: var(--muted);
+    font: inherit;
+    font-size: 0.8125rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.2s var(--easing);
+  }
+
+  .toggle .icon {
+    flex-shrink: 0;
+  }
+
+  .toggle:hover {
+    color: var(--text);
+  }
 </style>
+
+<script>
+  const root = document.documentElement;
+  const btn = document.getElementById('theme-toggle');
+  const label = btn?.querySelector('.toggle-label');
+
+  function render(theme: string | null) {
+    if (label) label.textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';
+  }
+
+  render(root.getAttribute('data-theme'));
+
+  btn?.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    render(next);
+    try {
+      localStorage.setItem('theme', next);
+    } catch {}
+  });
+</script>
