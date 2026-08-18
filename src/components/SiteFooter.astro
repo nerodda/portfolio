@@ -4,13 +4,16 @@
 <footer class="site-footer">
   <div class="wrap foot">
     <p class="label">Contact</p>
-    <div>
-      <ul>
-        <li><a href="https://github.com/nerodda">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/olga-neroda/">LinkedIn</a></li>
-        <li><a href="mailto:nerokim3@gmail.com">Email</a></li>
-      </ul>
-      <p class="speaking-line">Open to speaking on AI systems for revenue and marketing teams — see <a href="/speaking">speaking</a>.</p>
+    <div class="foot-content">
+      <div class="foot-links">
+        <ul>
+          <li><a href="https://github.com/nerodda">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/olga-neroda/">LinkedIn</a></li>
+          <li><a href="mailto:nerokim3@gmail.com">Email</a></li>
+        </ul>
+        <p class="speaking-line">Open to speaking on AI systems for revenue and marketing teams — see <a href="/speaking">speaking</a>.</p>
+      </div>
+
       <button class="toggle" id="theme-toggle" type="button" aria-live="polite">
         <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="5"></circle>
@@ -23,6 +26,14 @@
 </footer>
 
 <style>
+  .foot-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px 32px;
+  }
+
   .speaking-line {
     margin-top: 20px;
     color: var(--muted);
@@ -33,7 +44,6 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    margin-top: 20px;
     -webkit-appearance: none;
     appearance: none;
     background-color: transparent;
