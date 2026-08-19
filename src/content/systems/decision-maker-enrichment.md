@@ -1,5 +1,5 @@
 ---
-name: Buying-committee enrichment
+name: Decision Maker Enrichment
 context: production
 status: TODO
 year: TODO
