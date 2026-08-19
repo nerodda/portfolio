@@ -5,44 +5,76 @@ collection, the schema guardrails, the flow-strip generation, and the design
 system are all doing real work. What is missing is almost entirely **content**,
 plus a short list of shipping gaps.
 
-Build status: `astro build` passes, `astro check` reports 0 errors / 0 warnings.
+Build status: `astro build` passes, `astro check` reports 0 errors / 0 warnings
+(26 hints, see item 13).
+
+_Last refreshed after the buying-committee case study landed._
+
+---
+
+## Done since the first pass
+
+- **Buying-committee enrichment is written.** Ported from a standalone HTML
+  page into the site's own markup, matching the `second-brain` structure —
+  ten numbered sections, a pipeline diagram, two interface mockups, and a
+  sample-answer card. Frontmatter fully populated.
+- **`global.css` gained the interface-mockup and sample-output vocabulary**
+  (`.shot` / `.win`, `.sample`), plus `--panel-a`, `--panel-b`, `--shadow`
+  tokens across all three theme states. The `.diagram` vocabulary already
+  existed and was reused unchanged.
+- **Optional `lede` frontmatter** (1–3 paragraphs) added to the systems schema
+  and rendered by `System.astro`, falling back to `summary`. The 90-character
+  `summary` cap was too tight to serve as a hero lede.
 
 ---
 
 ## P0 — blocks a public launch
 
-Everything here is currently visible to a visitor as the literal string `TODO`.
+### 1. Fill in the placeholder frontmatter (10 of 11 systems)
 
-### 1. Fill in the placeholder frontmatter (11 systems)
+| Field | Entries still `TODO` | Count |
+| --- | --- | --- |
+| `outcome` | ai-resume-builder, aires-style, blog-pipeline, client-reporting, contentops, murmur, pay-rate-intelligence, programmatic-formats, second-brain, where-and-when | 10 |
+| `status` | blog-pipeline, client-reporting, contentops, pay-rate-intelligence, programmatic-formats | 5 |
+| `stack` | contentops, programmatic-formats, where-and-when | 3 |
+| `year` | contentops, programmatic-formats | 2 |
+| `summary` | programmatic-formats | 1 |
 
-| Field | Entries still `TODO` |
-| --- | --- |
-| `outcome` | **all 11** |
-| `status` | blog-pipeline, buying-committee, client-reporting, contentops, programmatic-formats |
-| `year` | buying-committee, contentops, programmatic-formats |
-| `summary` | buying-committee, programmatic-formats |
-| `stack` | buying-committee, contentops, programmatic-formats, where-and-when |
+`outcome` is still the highest-value field on the site. It is what the registry
+rows, the Selected-work cards, and `llms.txt` all lead with — and see item 2,
+because it does more damage than it looks.
 
-`outcome` is the single highest-value field on the site — it is what the
-registry rows, the Selected-work cards, and `llms.txt` all lead with. Right now
-every one of them falls back to a bare `→`.
+### 2. `outcome` is also the meta description
 
-### 2. Write the three empty case studies
+`System.astro` passes `description={outcome}` into `Base.astro`, which uses it
+for both `<meta name="description">` and `og:description`. So every case study
+whose outcome is unwritten currently ships:
+
+```html
+<meta name="description" content="TODO">
+<meta property="og:description" content="TODO">
+```
+
+That affects **second-brain, blog-pipeline, and where-and-when** — including
+`second-brain`, which is otherwise the most finished page on the site. This is
+what Google and every link preview will read. Fixing item 1's `outcome` column
+fixes this too.
+
+### 3. Write the two remaining empty case studies
 
 `src/pages/systems/[slug].astro` only builds pages for `tier: featured`. Four
-entries are featured; three of them are empty section skeletons:
+entries are featured; two are now written (`second-brain`, `buying-committee`)
+and two are still five headings over the word "TODO":
 
-- `blog-pipeline.md` — The problem / What I built / What broke / Result / What's reusable, all `TODO`
-- `buying-committee.md` — same, plus every frontmatter field is `TODO`
-- `where-and-when.md` — same
+- `blog-pipeline.md` — 5 markdown headings, 5 `TODO` bodies
+- `where-and-when.md` — same, plus `stack: [TODO]`
 
-Each of these builds a live, linked, publicly reachable page that reads as five
-headings over the word "TODO". Either write them or drop them to
-`tier: registry` until they are ready.
+Both build live, linked, publicly reachable pages. Either write them or drop
+them to `tier: registry` until they are ready.
 
-### 3. Finish `second-brain.md`
+### 4. Finish `second-brain.md`
 
-The only real case study, and it is close. Remaining placeholders:
+Remaining placeholders:
 
 - L20 — `[Your role title]`
 - L21 — `[Start date]`
@@ -52,20 +84,20 @@ The only real case study, and it is close. Remaining placeholders:
 
 The page's own "On the placeholders" note explains the missing metrics honestly
 and is worth keeping — but the role, start date, and timeline dates are not
-measurement gaps, they are just unfilled.
+measurement gaps, they are just unfilled. `buying-committee.md` carries the same
+`[Your role title]` placeholder in its Role fact.
 
-### 4. Write the About page
+### 5. Write the About page
 
 `src/pages/about.astro` is a shell: `credentials = ['TODO']`,
 `languages = ['TODO']`, two `<p>TODO</p>` bio paragraphs, and
-`description="TODO"` — which ships into the `<meta name="description">` and
-`og:description` tags.
+`description="TODO"` — which ships into the meta description and `og:description`.
 
 Also: `public/about-photo.svg` is a grey placeholder reading "TODO: PHOTO".
 Needs a real portrait (and once it is a raster image, move it into `src/` so
 Astro's image pipeline can optimise it).
 
-### 5. Write the Speaking page
+### 6. Write the Speaking page
 
 `src/pages/speaking.astro` has one `TODO` talk, one `TODO` topic, and one
 `TODO` past session. The lede and the CFP invitation are written and fine.
@@ -78,62 +110,64 @@ three empty containers.
 
 ## P1 — shipping gaps
 
-### 6. `stack` and `links` are collected but never rendered
+### 7. `stack` and `links` are collected but never rendered
 
-Both fields are defined in the schema, validated (there is even a `superRefine`
-rule preventing production entries from carrying a repo link), and populated for
-most entries — but **nothing in `src/` reads them**. Confirmed: no `.astro` or
+Both are defined in the schema, validated (there is even a `superRefine` rule
+preventing production entries from carrying a repo link), and populated for most
+entries — but **nothing in `src/` reads them**. Re-confirmed: no `.astro` or
 `.ts` file references `system.data.stack` or `system.data.links`.
 
-That means Aires.style, MurMur, and Where&When each have a working live URL and
-a public repo in frontmatter that a visitor has no way to reach. The registry
-rows for those entries are not even clickable, because linking is gated on
+Aires.style, MurMur, and Where&When each have a working live URL and a public
+repo in frontmatter that a visitor has no way to reach. The registry rows for
+those entries are not even clickable, because linking is gated on
 `tier === 'featured'`.
 
-Decide: surface `links` on the registry row (a small "live / repo" pair), or
-on the case-study pages, or both. Same call for `stack`.
+Decide: surface `links` on the registry row (a small "live / repo" pair), or on
+the case-study pages, or both. Same call for `stack`.
 
-### 7. Markdown case studies render unstyled and full-bleed
+### 8. The two case-study formats have not converged
 
 `System.astro` renders `<Content />` as a direct child of `<main>` with no
-container. `second-brain.md` works around this by hand-authoring
-`<section><div class="wrap grid">…` around every block. The three
-markdown-authored case studies do not — so their `<h2>` and `<p>` sit flush
-against the viewport edge with none of the `.sec-head` / `.body` / `.num`
-treatment.
+container. There are now **two** case studies that hand-author
+`<section><div class="wrap grid">…` around every block (`second-brain`,
+`buying-committee`) and **two** that use bare markdown `##` headings
+(`blog-pipeline`, `where-and-when`) — so those two will render flush against the
+viewport edge with none of the `.sec-head` / `.body` / `.num` treatment.
 
-`global.css` already carries a full case-study vocabulary — `.facts`,
-`.stack`, `.metrics`, `.big`, `.time`, `.note`, `.num`, `mark.todo` — used by
-exactly one file. Either wrap `<Content />` in `.wrap` and style bare markdown
-elements, or commit to the hand-authored HTML structure for every case study.
-The current split means the pages will not look like each other.
+The hand-authored structure is now the de facto standard and looks right. Either
+commit to it for the remaining two, or wrap `<Content />` in `.wrap` and style
+bare markdown elements as a fallback. Writing item 3 in the established
+structure resolves this without any layout change.
 
-### 8. Missing `404.astro`
+### 9. Missing `404.astro`
 
 No 404 page. GitHub Pages will serve its own default, which breaks out of the
 design entirely.
 
-### 9. No `robots.txt`, no sitemap
+### 10. No `robots.txt`, no sitemap
 
 Neither is in `dist/`. Add `public/robots.txt` and the `@astrojs/sitemap`
 integration — `site` is already configured in `astro.config.mjs`, so the
 integration is a two-line change.
 
-### 10. No social preview image
+### 11. No social preview image
 
 `Base.astro` sets `og:type`, `og:title`, `og:description`, and `og:url`, but no
-`og:image` and no `twitter:card`. Every link shared to LinkedIn or Slack will
-render as a bare text card. Given the site is aimed at speaking invitations and
-hiring conversations, this is worth more than it looks.
+`og:image` and no `twitter:card` — 0 occurrences of either in the built output.
+Every link shared to LinkedIn or Slack renders as a bare text card. Given the
+site is aimed at speaking invitations and hiring conversations, this is worth
+more than it looks.
 
-### 11. Placeholder-handling is inconsistent
+### 12. Placeholder-handling is inconsistent
 
-`isOutcomePending()` gives `outcome` a graceful `→` fallback. `summary`,
-`year`, and `status` have no equivalent, so they print the raw string:
+`isOutcomePending()` gives `outcome` a graceful `→` fallback. `summary`, `year`,
+and `status` have no equivalent, so they print the raw string. Currently live:
 
-- `SystemCard` renders `TODO` where the year should be (buying-committee)
-- `RegistryRow` renders `TODO` as the summary (buying-committee, programmatic-formats)
-- `System.astro`'s eyebrow renders `TODO` as the status (blog-pipeline)
+- `RegistryRow` renders `TODO` as the summary — **programmatic-formats**
+- `System.astro`'s eyebrow renders `TODO` as the status — **blog-pipeline**
+- `SystemCard`'s year is clean right now, but only because no featured entry has
+  a `TODO` year. Promoting contentops or programmatic-formats to featured would
+  reintroduce it.
 - `FlowStrip` already handles this correctly with its `status-unknown` class
 
 Worth generalising the pending-value handling — or better, making the schema
@@ -143,34 +177,43 @@ reject `TODO` once the content is written, so it cannot regress.
 
 ## P2 — polish
 
-### 12. Default Astro assets and README
+### 13. Default Astro assets and README
 
 - `public/favicon.svg` and `public/favicon.ico` are still the stock Astro logo
 - `README.md` is the unmodified "Astro Starter Kit: Minimal" template
 
-### 13. `z` import is deprecated
+### 14. `z` import is deprecated
 
 `src/content.config.ts:1` imports `z` from `astro:content`. Astro now exports it
-from `astro:schema`. Currently a hint, not an error — 24 hints total from
+from `astro:schema`. Currently a hint, not an error — 26 hints total from
 `astro check`, most of them this.
 
-### 14. Font preloading
+### 15. Font preloading
 
 `fonts.css` uses `font-display: swap` with two self-hosted subsets, but there is
 no `<link rel="preload">` for the latin woff2 in `Base.astro`. One line, helps
 LCP.
 
-### 15. Verify the Where&When entry
+### 16. Verify the Where&When entry
 
-`summary` calls it "An iOS game", but `links.live` points at a Vercel
-deployment and `links.repo` at `My_first_git_rep`. Worth a second look — either
-the description or the links look wrong.
+`summary` calls it "An iOS game", but `links.live` points at a Vercel deployment
+and `links.repo` at `My_first_git_rep`. Worth a second look — either the
+description or the links look wrong.
 
-### 16. Consider a skip link
+### 17. Consider a skip link
 
 `global.css` defines `.visually-hidden` and `:focus-visible` styles, and the
-header carries a fair amount of navigation before `<main>`. A skip link is
-cheap and the styling hooks already exist.
+header carries a fair amount of navigation before `<main>`. A skip link is cheap
+and the styling hooks already exist.
+
+### 18. Confirm the buying-committee frontmatter
+
+Two values were inferred rather than sourced when the case study was ported:
+
+- `year: 2026` — the source page had this bracketed as unconfirmed
+- `outcome: "20+ sellers researching from one Slack channel"` — drawn from the
+  page's own metrics, where the seller count is described as a floor observed
+  over a four-month window
 
 ---
 
@@ -186,3 +229,6 @@ Noting these so they do not get "fixed" later:
   right call and the comment explaining why is worth keeping.
 - The `prefers-reduced-motion` handling in `FlowStrip` and the three-state theme
   handling in `global.css` are both done correctly.
+- The `mark.todo` dotted placeholders in `second-brain` and `buying-committee`
+  are deliberate and explained in an adjacent note. They are honest gaps in
+  measurement, not unfinished copy — unlike the frontmatter `TODO`s above.
