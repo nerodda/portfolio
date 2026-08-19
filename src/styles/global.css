@@ -33,6 +33,12 @@
   --line-strong: var(--grey-20);
   --card: var(--grey-5);
   --number: var(--grey-30);
+  --panel-a: hsl(0 0% 91%);
+  --panel-b: hsl(0 0% 98%);
+  --shadow:
+    0 1px 2px hsl(0 0% 0% / 0.05),
+    0 10px 22px -8px hsl(0 0% 0% / 0.13),
+    0 28px 46px -26px hsl(0 0% 0% / 0.22);
 }
 
 :root:not([data-theme='light']) {
@@ -44,6 +50,12 @@
     --line-strong: var(--grey-60);
     --card: var(--grey-80);
     --number: var(--grey-50);
+    --panel-a: hsl(0 0% 17%);
+    --panel-b: hsl(0 0% 8%);
+    --shadow:
+      0 1px 2px hsl(0 0% 0% / 0.5),
+      0 12px 26px -8px hsl(0 0% 0% / 0.6),
+      0 30px 50px -26px hsl(0 0% 0% / 0.7);
   }
 }
 
@@ -55,6 +67,12 @@
   --line-strong: var(--grey-60);
   --card: var(--grey-80);
   --number: var(--grey-50);
+  --panel-a: hsl(0 0% 17%);
+  --panel-b: hsl(0 0% 8%);
+  --shadow:
+    0 1px 2px hsl(0 0% 0% / 0.5),
+    0 12px 26px -8px hsl(0 0% 0% / 0.6),
+    0 30px 50px -26px hsl(0 0% 0% / 0.7);
 }
 
 *,
@@ -566,6 +584,423 @@ figcaption {
   color: var(--muted);
   line-height: 1.55;
   max-width: var(--measure);
+}
+
+/* ---------- sample output card ---------- */
+.sample {
+  border: 1px solid var(--line);
+  background: var(--card);
+  padding: 24px;
+}
+
+.sample-co {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.sample-co .co {
+  font-size: 1.125rem;
+  letter-spacing: -0.01em;
+}
+
+.sample-co .seg {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--line-strong);
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+
+.sample-co .firmo {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-left: auto;
+}
+
+.sample .dept {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 22px 0 10px;
+}
+
+.sample .person {
+  border-top: 1px solid var(--line);
+  padding: 14px 0;
+}
+
+.sample .who {
+  font-size: 1rem;
+  letter-spacing: -0.008em;
+  margin-bottom: 8px;
+}
+
+.sample .who em {
+  font-style: normal;
+  color: var(--muted);
+}
+
+.sample .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.sample .tag {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--line-strong);
+  padding: 3px 8px;
+  border-radius: 2px;
+  color: var(--muted);
+}
+
+.sample .tag.on {
+  border-color: var(--text);
+  color: var(--text);
+}
+
+.sample .why {
+  font-size: 0.9375rem;
+  color: var(--muted);
+  line-height: 1.55;
+  max-width: 46em;
+}
+
+.sample .why b {
+  font-weight: 400;
+  color: var(--text);
+}
+
+/* ---------- interface shots ---------- */
+.shot {
+  border: 1px solid var(--line);
+  background: linear-gradient(155deg, var(--panel-a), var(--panel-b));
+  padding: 24px 18px;
+  overflow-x: auto;
+}
+
+@media (min-width: 900px) {
+  .shot {
+    padding: 48px 44px;
+  }
+}
+
+.win {
+  min-width: 700px;
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.win p {
+  font-size: 13px;
+  line-height: 1.55;
+  letter-spacing: 0;
+}
+
+.win .win-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 36px;
+  padding: 0 12px;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+
+.win .dots {
+  display: flex;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+
+.win .dots i {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--line-strong);
+}
+
+.win .win-name {
+  margin: 0 auto;
+  padding-right: 48px;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.win .win-cols {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+
+.win .pane-side {
+  border-right: 1px solid var(--line);
+  background: var(--card);
+  padding: 12px 0;
+}
+
+.win .side-top {
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 0 14px 11px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 8px;
+}
+
+.win .side-lbl {
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 10px 14px 5px;
+}
+
+.win .side-it {
+  font-size: 12.5px;
+  color: var(--muted);
+  padding: 5px 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.win .side-it.on {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.win .side-it.pin {
+  color: var(--text);
+}
+
+.win .ch-head {
+  padding: 11px 18px;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.win .ch-head span {
+  margin-left: 10px;
+  font-weight: 400;
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.win .msg {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 12px;
+  padding: 14px 18px;
+}
+
+.win .msg + .msg {
+  border-top: 1px solid var(--line);
+}
+
+.win .av {
+  width: 32px;
+  height: 32px;
+  border-radius: 5px;
+  background: var(--card);
+  border: 1px solid var(--line-strong);
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+}
+
+.win .av.bot {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+.win .msg-h {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.win .msg-h b {
+  font-size: 12.5px;
+  font-weight: 500;
+}
+
+.win .msg-h .app {
+  font-size: 8.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  padding: 1px 5px;
+}
+
+.win .msg-h .t {
+  font-size: 10.5px;
+  color: var(--muted);
+}
+
+.win .msg p + p {
+  margin-top: 0.45em;
+}
+
+.win .saved-line {
+  margin-top: 13px;
+}
+
+.win .co-line {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.win .co-sub {
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-top: 1px;
+}
+
+.win .grp {
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 13px 0 2px;
+}
+
+.win .row {
+  padding: 7px 0;
+  border-top: 1px solid var(--line);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.win .row .nm {
+  font-weight: 500;
+}
+
+.win .row .ti {
+  color: var(--muted);
+}
+
+.win .row .cd {
+  display: block;
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.win .mini {
+  display: inline-block;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  padding: 1px 5px;
+  margin-left: 5px;
+  vertical-align: 1px;
+  white-space: nowrap;
+}
+
+.win .mini.on {
+  color: var(--text);
+  border-color: var(--text);
+}
+
+.win .composer {
+  margin: 0 18px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  padding: 9px 12px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.win .pane-main {
+  padding: 16px 18px;
+}
+
+.win .b-lbl {
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 9px;
+}
+
+.win .code + .b-lbl {
+  margin-top: 20px;
+}
+
+.win .code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11.5px;
+  line-height: 1.7;
+  color: var(--muted);
+  white-space: pre-wrap;
+}
+
+.win .code b {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.win .chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.win .chip {
+  font-size: 10.5px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  background: var(--bg);
+  border-radius: 3px;
+  padding: 4px 8px;
+}
+
+.win .chip.on {
+  color: var(--text);
+  border-color: var(--line-strong);
+}
+
+.win .win-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 9px 18px;
+  border-top: 1px solid var(--line);
+  background: var(--card);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.win .win-foot b {
+  color: var(--text);
+  font-weight: 500;
 }
 
 /* ---------- footer ---------- */

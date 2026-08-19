@@ -11,6 +11,8 @@ const systems = defineCollection({
       year: z.union([z.number(), z.literal('TODO')]),
       tier: z.enum(['featured', 'registry']),
       summary: z.string().max(90),
+      /** Optional richer hero lede. Falls back to `summary` when absent. */
+      lede: z.array(z.string()).min(1).max(3).optional(),
       outcome: z.string().max(90),
       stack: z.array(z.string()),
       flow: z.array(z.string()).min(3).max(6),

@@ -13,7 +13,8 @@ interface Props {
 }
 
 const { system, prev, next, Content } = Astro.props;
-const { name, context, status, year, summary, outcome } = system.data;
+const { name, context, status, year, summary, outcome, lede } = system.data;
+const ledeParagraphs = lede ?? [summary];
 ---
 
 <Base title={`${name} — Olga Neroda`} description={outcome} ogType="article">
@@ -28,7 +29,7 @@ const { name, context, status, year, summary, outcome } = system.data;
       </div>
       <h1>{name}</h1>
       <div class="lede">
-        <p>{summary}</p>
+        {ledeParagraphs.map((p) => <p>{p}</p>)}
       </div>
     </div>
 
