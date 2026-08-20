@@ -34,11 +34,10 @@ _Last refreshed after the buying-committee case study landed._
 
 | Field | Entries still `TODO` | Count |
 | --- | --- | --- |
-| `outcome` | ai-resume-builder, aires-style, blog-pipeline, client-reporting, contentops, murmur, pay-rate-intelligence, programmatic-formats, second-brain, where-and-when | 10 |
-| `status` | blog-pipeline, client-reporting, contentops, pay-rate-intelligence, programmatic-formats | 5 |
-| `stack` | contentops, programmatic-formats, where-and-when | 3 |
-| `year` | contentops, programmatic-formats | 2 |
-| `summary` | programmatic-formats | 1 |
+| `outcome` | ai-resume-builder, aires-style, blog-pipeline, client-reporting, contentops, murmur, pay-rate-intelligence, second-brain, where-and-when | 9 |
+| `status` | blog-pipeline, client-reporting, contentops, pay-rate-intelligence | 4 |
+| `stack` | contentops, where-and-when | 2 |
+| `year` | contentops | 1 |
 
 `outcome` is still the highest-value field on the site. It is what the registry
 rows, the Selected-work cards, and `llms.txt` all lead with — and see item 2,
@@ -163,11 +162,9 @@ more than it looks.
 `isOutcomePending()` gives `outcome` a graceful `→` fallback. `summary`, `year`,
 and `status` have no equivalent, so they print the raw string. Currently live:
 
-- `RegistryRow` renders `TODO` as the summary — **programmatic-formats**
 - `System.astro`'s eyebrow renders `TODO` as the status — **blog-pipeline**
 - `SystemCard`'s year is clean right now, but only because no featured entry has
-  a `TODO` year. Promoting contentops or programmatic-formats to featured would
-  reintroduce it.
+  a `TODO` year. Promoting contentops to featured would reintroduce it.
 - `FlowStrip` already handles this correctly with its `status-unknown` class
 
 Worth generalising the pending-value handling — or better, making the schema
