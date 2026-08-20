@@ -2,17 +2,16 @@
 name: Buying-committee enrichment
 context: production
 status: live
-year: 2026
+year: April 2025
 tier: featured
 summary: A Slack request returns a scored, sourced buying committee, pushed to CRM.
-outcome: 20+ sellers researching from one Slack channel
-stack: [Relevance AI, Slack, Zapier, Apollo, Apify, Salesforce, Google Sheets]
+outcome: 30+ sellers researching from one Slack channel
+stack: [Relevance AI, OpenAI, Slack, Zapier, Make, Apollo, Apify, Salesforce, Google Sheets]
 flow: [Slack request, Route, Research ladder, Rank & score, Shared sheet, Salesforce]
 feedback: false
 order: 5
 lede:
-  - Finding the right people inside a target company is the slowest part of outbound. A seller would spend an hour on LinkedIn to end up with three names and no phone numbers.
-  - So the research moved into a Slack channel. A seller types the request the way they would ask a colleague, and gets back a scored, sourced buying committee that can be pushed into the CRM in one reply.
+  - Finding the right people inside a target company is the slowest part of outbound. We bring research into a Slack channel. A seller types the request in plain English, and gets back a scored, sourced buying committee that can be pushed into the CRM in one reply.
 ---
 
 <section>
@@ -20,10 +19,10 @@ lede:
 <div class="sec-head"><span class="num">01</span><h2>At a glance</h2></div>
 <div class="body">
 <dl class="facts">
-<div><dt>Role</dt><dd><mark class="todo">[Your role title]</mark>. I built it end to end with engineering support: I designed the workflows, wrote the agent instructions and the scoring rules, and an engineer built the tools underneath them.</dd></div>
+<div><dt>Role</dt><dd>With engineering support, we designed the workflows, wrote the agent instructions and the scoring rules, and built the tools underneath them.</dd></div>
 <div><dt>Surface</dt><dd>A single Slack channel. No application, no login, no training.</dd></div>
-<div><dt>Users</dt><dd>The US sales team. Account executives, account managers, and business development across Texas, Illinois, Georgia and the wider US.</dd></div>
-<div><dt>Built on</dt><dd>A Relevance AI agent with 17 tools and four workflows, running on a small model at temperature zero.</dd></div>
+<div><dt>Users</dt><dd>The US and UK sales teams. Account executives, account managers, and business development across Texas, Illinois, Georgia and the wider US.</dd></div>
+<div><dt>Built on</dt><dd>A Relevance AI agent with 17 tools and four workflows, running on a ChatGPT 5.6 Luna.</dd></div>
 <div><dt>Sources</dt><dd>Apollo and Apify for discovery, web search to fill gaps, Salesforce for account context.</dd></div>
 <div><dt>Writes to</dt><dd>A shared Google Sheet on every run, and Salesforce on an explicit reply.</dd></div>
 </dl>
@@ -38,7 +37,7 @@ lede:
 <p class="big">Prospecting research is expensive, repetitive, and the output evaporates.</p>
 <ol class="stack">
 <li><div>
-<h3>An hour of research for three names</h3>
+<h3>Hours for research</h3>
 <p>To open a conversation with a warehouse or a retail chain, a seller needs the operations lead, the HR lead, and whoever controls the contingent labor budget. Finding those three people means cross referencing LinkedIn, a data provider, and the company site, then guessing at an email format.</p>
 </div></li>
 <li><div>
@@ -56,9 +55,26 @@ lede:
 
 <section>
 <div class="wrap grid">
-<div class="sec-head"><span class="num">03</span><h2>What it does</h2></div>
+<div class="sec-head"><span class="num">03</span><h2>Where it stands</h2></div>
 <div class="body">
-<p class="big">Two requests, typed in plain English, in a channel the team already had open.</p>
+<div class="metrics">
+<div class="metric"><span class="fig">30+</span><span class="cap">sellers using it directly, across the US and UK teams</span></div>
+<div class="metric"><span class="fig">4</span><span class="cap">workflows behind a single plain-English request, selected without asking the seller anything</span></div>
+<div class="metric"><span class="fig">17</span><span class="cap">tools available to the agent, from search and enrichment to CRM writes</span></div>
+<div class="metric"><span class="fig">20</span><span class="cap">test cases in the eval suite the agent is checked against</span></div>
+<div class="metric"><span class="fig">10,000+</span><span class="cap">contacts generated to date</span></div>
+<div class="metric"><span class="fig">6,300+</span><span class="cap">contacts pushed into Salesforce</span></div>
+<div class="metric"><span class="fig">400+</span><span class="cap">meetings sourced</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap grid">
+<div class="sec-head"><span class="num">04</span><h2>What it does</h2></div>
+<div class="body">
+<p class="big">Two requests, typed in plain language, in a channel the team already had open.</p>
 <p><strong>Find the buying committee.</strong> &ldquo;Find the decision makers at Acme&rdquo; returns contacts grouped by Operations, HR, and Procurement, each with a title, location, email, phone, LinkedIn, a persona, and a score with a written reason.</p>
 <p><strong>Enrich one person.</strong> &ldquo;Enrich Jane Doe at Acme&rdquo; or a bare LinkedIn URL returns the missing email and direct phone for a contact the seller already has.</p>
 <p>Both write to the same shared sheet. Replying in the thread pushes the contacts into Salesforce under the requester&rsquo;s ownership.</p>
@@ -68,25 +84,19 @@ lede:
 <div class="win">
 <div class="win-bar">
 <div class="dots"><i></i><i></i><i></i></div>
-<span class="win-name">Slack</span>
+<span class="win-name"><img class="win-logo" src="/logos/slack.png" alt="Slack" /></span>
 </div>
 <div class="win-cols">
 <div class="pane-side">
-<p class="side-top">Indeed Flex</p>
 <p class="side-lbl">Channels</p>
-<p class="side-it">sales-us</p>
-<p class="side-it on">the-ai-sales-assistant-usa</p>
-<p class="side-it">enterprise-deals</p>
-<p class="side-it">rfp-support</p>
-<p class="side-lbl">Apps</p>
-<p class="side-it pin">Decision Makers Researcher</p>
+<p class="side-it on">Decision Makers Researcher</p>
 </div>
 <div>
-<p class="ch-head">the-ai-sales-assistant-usa <span>24 members</span></p>
+<p class="ch-head">Decision Makers Researcher</p>
 <div class="msg">
-<div class="av">JA</div>
+<div class="av">AH</div>
 <div>
-<div class="msg-h"><b>James A.</b><span class="t">9:14 AM</span></div>
+<div class="msg-h"><b>Anthony H.</b><span class="t">9:14 AM</span></div>
 <p>Find the decision makers at Acme Logistics in Fort Worth, TX</p>
 </div>
 </div>
@@ -100,13 +110,13 @@ lede:
 <div class="row">
 <span class="nm">B. Okafor</span> <span class="ti">SVP, Store Experience and Business Operations</span>
 <span class="mini on">Decision maker</span><span class="mini">Score 4</span><span class="mini">Apollo</span>
-<span class="cd">San Francisco, CA &nbsp;|&nbsp; b.okafor@acmelogistics.com &nbsp;|&nbsp; +1 415 555 0186</span>
+<span class="cd">Houston, TX &nbsp;|&nbsp; b.okafor@acmelogistics.com &nbsp;|&nbsp; +1 415 555 0186</span>
 </div>
 <p class="grp">Human resources</p>
 <div class="row">
 <span class="nm">A. Rivera</span> <span class="ti">VP, Human Resources and Talent Acquisition</span>
 <span class="mini on">Decision maker</span><span class="mini on">Score 5</span><span class="mini">Apollo</span>
-<span class="cd">Nashville, TN &nbsp;|&nbsp; a.rivera@acmelogistics.com &nbsp;|&nbsp; +1 615 555 0142</span>
+<span class="cd">Austin, TX &nbsp;|&nbsp; a.rivera@acmelogistics.com &nbsp;|&nbsp; +1 615 555 0142</span>
 </div>
 <div class="row">
 <span class="nm">C. Lindqvist</span> <span class="ti">Regional Human Resources Manager</span>
@@ -117,15 +127,14 @@ lede:
 <div class="row">
 <span class="nm">D. Mensah</span> <span class="ti">Director, Strategic Sourcing</span>
 <span class="mini on">Budget holder</span><span class="mini">Score 4</span><span class="mini">Apollo</span>
-<span class="cd">United States &nbsp;|&nbsp; d.mensah@acmelogistics.com &nbsp;|&nbsp; +1 469 555 0113</span>
+<span class="cd">Dallas, TX &nbsp;|&nbsp; d.mensah@acmelogistics.com &nbsp;|&nbsp; +1 469 555 0113</span>
 </div>
-<p class="saved-line">Saved to the shared sheet. Reply here to push any of these to Salesforce.</p>
 </div>
 </div>
 <div class="msg">
-<div class="av">JA</div>
+<div class="av">AH</div>
 <div>
-<div class="msg-h"><b>James A.</b><span class="t">9:18 AM</span></div>
+<div class="msg-h"><b>Anthony H.</b><span class="t">9:18 AM</span></div>
 <p>push the ops and procurement contacts to salesforce</p>
 </div>
 </div>
@@ -133,11 +142,11 @@ lede:
 <div class="av bot">AI</div>
 <div>
 <div class="msg-h"><b>Decision Makers Researcher</b><span class="app">App</span><span class="t">9:18 AM</span></div>
-<p>Created 2 net-new contacts on the Acme Logistics account, owner james.a@indeedflex.com.</p>
-<p>Skipped 1: C. Lindqvist has no email, so there is nothing to deduplicate against. Add an email and ask again.</p>
+<p>Created 2 net-new contacts on the Acme Logistics account, owner Anthony H.</p>
+<p>Skipped 1: C. Lindqvist has no email.</p>
 </div>
 </div>
-<p class="composer">Message #the-ai-sales-assistant-usa</p>
+<p class="composer">Message #decision-makers-researcher</p>
 </div>
 </div>
 </div>
@@ -150,11 +159,11 @@ lede:
 
 <section>
 <div class="wrap grid">
-<div class="sec-head"><span class="num">04</span><h2>How it works</h2></div>
+<div class="sec-head"><span class="num">05</span><h2>How it works</h2></div>
 <div class="body">
 <figure>
 <p class="scroll-hint">Scroll to see the full diagram</p>
-<div class="diagram">
+<div class="diagram pastel-c">
 <svg viewBox="0 0 1000 852" role="img" aria-label="Pipeline: a Slack request is carried to a Relevance AI agent, which sets flags, routes to one of four workflows, runs an escalating research ladder, applies identity and ranking rules, then answers in the thread and appends to a shared sheet. Salesforce is written only on an explicit reply.">
 <defs>
 <marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -162,11 +171,15 @@ lede:
 </marker>
 </defs>
 <rect class="box" x="100" y="8" width="800" height="64" rx="2"/>
-<text class="t-tiny" x="124" y="32">Interface</text>
-<text class="t-title" x="124" y="56">A seller types a request in one Slack channel</text>
+<rect class="pill" x="124" y="26" width="28" height="28" rx="2"/>
+<image href="/logos/slack.png" x="127" y="29" width="22" height="22"><title>Slack</title></image>
+<text class="t-tiny" x="168" y="32">Interface</text>
+<text class="t-title" x="168" y="56">A seller types a request in one Slack channel</text>
 <path class="flow" d="M500,72 L500,100" marker-end="url(#ah2)"/>
 <rect class="box" x="100" y="102" width="800" height="44" rx="2"/>
-<text class="t-sub" x="124" y="130">Zapier carries the message to the agent, and the answer back into the thread.</text>
+<rect class="pill" x="124" y="110" width="28" height="28" rx="2"/>
+<image href="/logos/zapier.png" x="127" y="113" width="22" height="22"><title>Zapier</title></image>
+<text class="t-sub" x="168" y="130">Zapier carries the message to the agent, and the answer back into the thread.</text>
 <path class="flow" d="M500,146 L500,174" marker-end="url(#ah2)"/>
 <rect class="box" x="100" y="176" width="800" height="92" rx="2"/>
 <text class="t-tiny" x="124" y="200">Relevance AI agent, step one</text>
@@ -192,10 +205,10 @@ lede:
 <text class="t-tiny" x="124" y="438">Step three</text>
 <text class="t-title" x="124" y="458">An escalating ladder. Each rung runs only if the quota is still short</text>
 <g class="t-pill" text-anchor="middle">
-<rect class="pill" x="124" y="468" width="180" height="26" rx="2"/><text x="214" y="485">Apollo, 1 call</text>
-<rect class="pill" x="314" y="468" width="180" height="26" rx="2"/><text x="404" y="485">Apify, 1 call</text>
-<rect class="pill" x="504" y="468" width="180" height="26" rx="2"/><text x="594" y="485">Web search, max 5</text>
-<rect class="pill" x="694" y="468" width="180" height="26" rx="2"/><text x="784" y="485">Salesforce context</text>
+<rect class="pill" x="124" y="468" width="180" height="26" rx="2"/><image href="/logos/apollo.png" x="132" y="473" width="16" height="16"><title>Apollo</title></image><text x="154" y="485" text-anchor="start">Apollo, 1 call</text>
+<rect class="pill" x="314" y="468" width="180" height="26" rx="2"/><image href="/logos/apify.svg" x="322" y="473" width="16" height="16"><title>Apify</title></image><text x="344" y="485" text-anchor="start">Apify, 1 call</text>
+<rect class="pill" x="504" y="468" width="180" height="26" rx="2"/><image href="/logos/google.svg" x="512" y="473" width="16" height="16"><title>Google</title></image><text x="534" y="485" text-anchor="start">Web search, max 5</text>
+<rect class="pill" x="694" y="468" width="180" height="26" rx="2"/><image href="/logos/salesforce.png" x="702" y="473" width="16" height="16"><title>Salesforce</title></image><text x="724" y="485" text-anchor="start">Salesforce context</text>
 </g>
 <path class="flow" d="M500,506 L500,534" marker-end="url(#ah2)"/>
 <rect class="box" x="100" y="536" width="800" height="92" rx="2"/>
@@ -212,18 +225,24 @@ lede:
 <path class="flow" d="M285,652 L285,682" marker-end="url(#ah2)"/>
 <path class="flow" d="M715,652 L715,682" marker-end="url(#ah2)"/>
 <rect class="box" x="100" y="684" width="370" height="72" rx="2"/>
-<text class="t-tiny" x="124" y="708">Output 1</text>
-<text class="t-title" x="124" y="730">Answer in the Slack thread</text>
-<text class="t-sub" x="124" y="748">Formatted for Slack, not Markdown.</text>
+<rect class="pill" x="124" y="706" width="28" height="28" rx="2"/>
+<image href="/logos/slack.png" x="127" y="709" width="22" height="22"><title>Slack</title></image>
+<text class="t-tiny" x="168" y="708">Output 1</text>
+<text class="t-title" x="168" y="730">Answer in the Slack thread</text>
+<text class="t-sub" x="168" y="748">Formatted for Slack, not Markdown.</text>
 <rect class="box" x="530" y="684" width="370" height="72" rx="2"/>
-<text class="t-tiny" x="554" y="708">Output 2</text>
-<text class="t-title" x="554" y="730">One shared Google Sheet</text>
-<text class="t-sub" x="554" y="748">Every run, same sheet. No one-off files.</text>
+<rect class="pill" x="554" y="706" width="28" height="28" rx="2"/>
+<image href="/logos/googlesheets.png" x="557" y="709" width="22" height="22"><title>Google Sheets</title></image>
+<text class="t-tiny" x="598" y="708">Output 2</text>
+<text class="t-title" x="598" y="730">One shared Google Sheet</text>
+<text class="t-sub" x="598" y="748">Every run, same sheet. No one-off files.</text>
 <path class="flow dash" d="M285,756 L285,790" marker-end="url(#ah2)"/>
 <text class="t-tiny" x="298" y="778">only on an explicit reply</text>
 <rect class="box" x="100" y="792" width="800" height="52" rx="2"/>
-<text class="t-title" x="124" y="816">Salesforce</text>
-<text class="t-sub" x="124" y="834">Net-new records only, owned by the requester. Reports what it skipped and why.</text>
+<rect class="pill" x="124" y="804" width="28" height="28" rx="2"/>
+<image href="/logos/salesforce.png" x="127" y="807" width="22" height="22"><title>Salesforce</title></image>
+<text class="t-title" x="168" y="816">Salesforce</text>
+<text class="t-sub" x="168" y="834">Net-new records only, owned by the requester. Reports what it skipped and why.</text>
 </svg>
 </div>
 <figcaption>Two things in this diagram are load bearing. The flags are set by a tool before the model is allowed to reason, so routing is deterministic rather than a judgment call. And the gate at the bottom is deliberate: research is free to run and costs nothing if it is wrong, but writing to the CRM is a decision, so it takes a human sentence.</figcaption>
@@ -234,17 +253,17 @@ lede:
 
 <section>
 <div class="wrap grid">
-<div class="sec-head"><span class="num">05</span><h2>Inside the agent</h2></div>
+<div class="sec-head"><span class="num">06</span><h2>Inside the agent</h2></div>
 <div class="body">
 <p class="big">The interesting work is not the model. It is the constraints written around it.</p>
-<p>The agent runs on a small, cheap model at temperature zero, with memory off and extended thinking off. That is a deliberate choice rather than a budget one: almost none of the difficulty in this problem is reasoning difficulty. It is knowing which of four procedures to run, which sources to try in what order, and when to throw a result away. All of that is better expressed as an explicit rule than left to a model&rsquo;s discretion, and once it is explicit, a cheap model executes it as well as an expensive one and does it the same way twice.</p>
+<p>The agent runs on ChatGPT 5.6 Luna, a cheap model, with memory off and extended thinking off. That is a deliberate choice rather than a budget one: almost none of the difficulty in this problem is reasoning difficulty. It is knowing which of four procedures to run, which sources to try in what order, and when to throw a result away. All of that is better expressed as an explicit rule than left to a model&rsquo;s discretion, and once it is explicit, a cheap model executes it as well as an expensive one and does it the same way twice.</p>
 <figure>
 <p class="scroll-hint">Scroll to see the full interface</p>
-<div class="shot">
+<div class="shot pastel-b">
 <div class="win">
 <div class="win-bar">
 <div class="dots"><i></i><i></i><i></i></div>
-<span class="win-name">Relevance AI</span>
+<span class="win-name"><img class="win-logo" src="/logos/relevanceai.png" alt="Relevance AI" /></span>
 </div>
 <div class="win-cols">
 <div class="pane-side">
@@ -326,7 +345,7 @@ Never enrich, rank, or output a candidate who fails.</p>
 </div></li>
 <li><div>
 <h3>Quotas, and a blacklist</h3>
-<p>The target is a small, balanced committee rather than the longest list available: a handful of Operations, a handful of HR, and up to two in Procurement. The quota governs when to stop searching, who gets enriched, and what appears in the answer. A short blacklist strips out the titles that keyword matching reliably gets wrong. Training directors and benefits administrators look like HR to a search index and are not people who buy contingent labor.</p>
+<p>The target is a small, balanced committee rather than the longest list available: a handful of Operations, a handful of HR, and up to two in Procurement. The quota governs when to stop searching, who gets enriched, and what appears in the answer. A short blacklist strips out the titles that keyword matching reliably gets wrong.</p>
 </div></li>
 <li><div>
 <h3>Segment decides how much structure is worth it</h3>
@@ -338,7 +357,7 @@ Never enrich, rank, or output a candidate who fails.</p>
 </div></li>
 <li><div>
 <h3>Grounded in what actually closed</h3>
-<p>The agent carries a small set of reference material, including closed-won revenue and deal counts by industry from the company&rsquo;s own pipeline. Scoring leans on evidence about which industries have historically bought, rather than on a generic idea of a good prospect.</p>
+<p>The agent carries reference material, including closed-won revenue and deal counts by industry from the company&rsquo;s own pipeline. Scoring leans on evidence about which industries have historically bought, rather than on a generic idea of a good prospect.</p>
 </div></li>
 <li><div>
 <h3>Say what you did not find</h3>
@@ -351,7 +370,7 @@ Never enrich, rank, or output a candidate who fails.</p>
 
 <section>
 <div class="wrap grid">
-<div class="sec-head"><span class="num">06</span><h2>Anatomy of an answer</h2></div>
+<div class="sec-head"><span class="num">07</span><h2>Anatomy of an answer</h2></div>
 <div class="body">
 <p>The format is the product. A list of contacts is data. A list of contacts that says who to call first, and why, is a decision a seller can act on or argue with.</p>
 <div class="sample">
@@ -413,7 +432,7 @@ Never enrich, rank, or output a candidate who fails.</p>
 
 <section>
 <div class="wrap grid">
-<div class="sec-head"><span class="num">07</span><h2>Design decisions</h2></div>
+<div class="sec-head"><span class="num">08</span><h2>Design decisions</h2></div>
 <div class="body">
 <p class="big">Most of these are about restraint rather than capability.</p>
 <ol class="stack">
@@ -447,10 +466,10 @@ Never enrich, rank, or output a candidate who fails.</p>
 
 <section>
 <div class="wrap grid">
-<div class="sec-head"><span class="num">08</span><h2>What I did</h2></div>
+<div class="sec-head"><span class="num">09</span><h2>What I did</h2></div>
 <div class="body">
 <p class="big">I created this end to end, with engineering support.</p>
-<p>I owned the product: the workflows, the agent instructions, the scoring and persona rules, the quotas and the blacklist, the identity guard, the output format, and the decision about where a human has to intervene. An engineer built the tools those instructions call and wired up the connections to Slack, Salesforce, and the data providers. The domain judgment that makes the answers useful, and the constraints that keep them honest, are mine.</p>
+<p>I owned the product: the workflows, the agent instructions, the scoring and persona rules, the quotas and the blacklist, the identity guard, the output format, and the decision about where a human has to intervene. An engineer built the tools those instructions call and wired up the connections to Slack, Salesforce, and the data providers.</p>
 <ol class="stack">
 <li><div>
 <h3>Turned a vague ask into four procedures</h3>
@@ -458,7 +477,7 @@ Never enrich, rank, or output a candidate who fails.</p>
 </div></li>
 <li><div>
 <h3>Wrote the rules that decide what counts as a good contact</h3>
-<p>The departmental quotas, the title blacklist, the mid market and enterprise thresholds, the persona set, and the score with a written reason. These encode how Indeed Flex actually sells into warehousing and retail, which is the part no general-purpose prospecting tool knows.</p>
+<p>The departmental quotas, the title blacklist, the mid market and enterprise thresholds, the persona set, and the score with a written reason. These encode how the company actually sells into warehousing and retail, which is the part no general-purpose prospecting tool knows.</p>
 </div></li>
 <li><div>
 <h3>Specified the failure modes before the features</h3>
@@ -475,33 +494,8 @@ Never enrich, rank, or output a candidate who fails.</p>
 <li><div>
 <h3>Added the human verification layer</h3>
 <p>Agent output is a starting point, not a finished list. On a large retail target I turned a raw run into a prioritized import: contacts ranked by relevance to the actual play, grouped into field, procurement, and HR, each with a note on why they matter, and every unverified email explicitly flagged as unverified before any bulk send.</p>
-<p>Two contacts were kept in the list with no contact details at all rather than guessed at, and one was flagged because the returned email did not match the company&rsquo;s address pattern.</p>
-</div></li>
-<li><div>
-<h3>Handed it over cleanly</h3>
-<p>Removed the external development partner from the channel once the agent was stable, so a production tool used daily by the sales team was no longer sitting in a vendor&rsquo;s workspace.</p>
 </div></li>
 </ol>
-</div>
-</div>
-</section>
-
-<section>
-<div class="wrap grid">
-<div class="sec-head"><span class="num">09</span><h2>Where it stands</h2></div>
-<div class="body">
-<div class="metrics">
-<div class="metric"><span class="fig">20+</span><span class="cap">sellers using it directly, across the US team</span></div>
-<div class="metric"><span class="fig">4</span><span class="cap">workflows behind a single plain-English request, selected without asking the seller anything</span></div>
-<div class="metric"><span class="fig">17</span><span class="cap">tools available to the agent, from search and enrichment to CRM writes</span></div>
-<div class="metric"><span class="fig">20</span><span class="cap">test cases in the eval suite the agent is checked against</span></div>
-<div class="metric"><span class="fig"><mark class="todo">[X]</mark></span><span class="cap">contacts generated to date <mark class="todo">[row count from the shared sheet]</mark></span></div>
-<div class="metric"><span class="fig"><mark class="todo">[X]</mark></span><span class="cap">contacts pushed into Salesforce</span></div>
-<div class="metric"><span class="fig"><mark class="todo">[X]</mark></span><span class="cap"><mark class="todo">[meetings or pipeline sourced, if attributable]</mark></span></div>
-</div>
-<div class="note">
-<p><strong>On the numbers.</strong> The seller count is people observed making requests in a four-month window, so it is a floor rather than a total. The dotted figures need the shared sheet and Salesforce to fill in, and I would rather leave them visible than estimate them.</p>
-</div>
 </div>
 </div>
 </section>
@@ -512,20 +506,12 @@ Never enrich, rank, or output a candidate who fails.</p>
 <div class="body">
 <ol class="stack">
 <li><div>
-<h3>Score the live runs, not just the test set</h3>
-<p>There is an eval suite the agent is checked against before changes ship, which catches regressions. Nothing yet grades the real traffic, so a slow drift in answer quality would go unnoticed between releases. Continuous scoring on live conversations is the gap.</p>
-</div></li>
-<li><div>
-<h3>Verify the emails before they are sent, not after</h3>
-<p>Most returned emails are pattern matched rather than confirmed. That is fine for a single call and risky for a bulk send. A verification step belongs in the pipeline rather than in a caveat a seller has to remember to read.</p>
-</div></li>
-<li><div>
 <h3>Measure what converts</h3>
 <p>The agent scores every contact from one to five, but nothing yet compares those scores against which contacts actually replied or booked. That feedback loop is the difference between a scoring model and a guess with a number on it.</p>
 </div></li>
 <li><div>
 <h3>Let the research file itself away</h3>
-<p>This agent is now one of two allowlisted behind the governed enrichment connector in the <a href="/systems/second-brain/">sales knowledge system</a>, so the same research the Slack channel produces can be reached from inside the assistant rather than only from a spreadsheet. The remaining gap is durability: a run should leave a cited account page behind it, so the second person to ask about a company reads the answer instead of paying to generate it again.</p>
+<p>This agent is now one of the allowlisted behind the governed enrichment connector in the <a href="/systems/second-brain/">sales knowledge system</a>, so the same research the Slack channel produces can be reached from inside the assistant rather than only from a spreadsheet. The remaining gap is durability: a run should leave a cited account page behind it, so the second person to ask about a company reads the answer instead of paying to generate it again.</p>
 </div></li>
 </ol>
 </div>

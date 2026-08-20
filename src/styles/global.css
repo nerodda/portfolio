@@ -35,6 +35,15 @@
   --number: var(--grey-30);
   --panel-a: hsl(0 0% 91%);
   --panel-b: hsl(0 0% 98%);
+  --blob-1: hsl(340 90% 88% / 0.55);
+  --blob-2: hsl(260 85% 88% / 0.5);
+  --blob-3: hsl(160 65% 85% / 0.45);
+  --blob-4: hsl(35 90% 87% / 0.45);
+  --blobs:
+    radial-gradient(circle at 12% 18%, var(--blob-1) 0%, transparent 42%),
+    radial-gradient(circle at 88% 12%, var(--blob-2) 0%, transparent 48%),
+    radial-gradient(circle at 78% 90%, var(--blob-3) 0%, transparent 45%),
+    radial-gradient(circle at 15% 92%, var(--blob-4) 0%, transparent 48%);
   --shadow:
     0 1px 2px hsl(0 0% 0% / 0.05),
     0 10px 22px -8px hsl(0 0% 0% / 0.13),
@@ -52,6 +61,10 @@
     --number: var(--grey-50);
     --panel-a: hsl(0 0% 17%);
     --panel-b: hsl(0 0% 8%);
+    --blob-1: hsl(340 65% 32% / 0.35);
+    --blob-2: hsl(260 60% 34% / 0.3);
+    --blob-3: hsl(160 50% 28% / 0.28);
+    --blob-4: hsl(35 65% 32% / 0.28);
     --shadow:
       0 1px 2px hsl(0 0% 0% / 0.5),
       0 12px 26px -8px hsl(0 0% 0% / 0.6),
@@ -69,6 +82,10 @@
   --number: var(--grey-50);
   --panel-a: hsl(0 0% 17%);
   --panel-b: hsl(0 0% 8%);
+  --blob-1: hsl(340 65% 32% / 0.35);
+  --blob-2: hsl(260 60% 34% / 0.3);
+  --blob-3: hsl(160 50% 28% / 0.28);
+  --blob-4: hsl(35 65% 32% / 0.28);
   --shadow:
     0 1px 2px hsl(0 0% 0% / 0.5),
     0 12px 26px -8px hsl(0 0% 0% / 0.6),
@@ -491,6 +508,11 @@ mark.todo {
   font-weight: 500;
 }
 
+.sample + .note p {
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
 /* ---------- diagram ---------- */
 figure {
   margin: 0;
@@ -503,7 +525,7 @@ figure {
 
 .diagram {
   border: 1px solid var(--line);
-  background: var(--card);
+  background: var(--blobs), var(--card);
   padding: 20px;
   overflow-x: auto;
 }
@@ -523,7 +545,9 @@ figure {
   }
 }
 
-.diagram svg {
+.diagram svg,
+.diagram img,
+.diagram video {
   display: block;
   width: 100%;
   min-width: 660px;
@@ -684,9 +708,27 @@ figcaption {
 /* ---------- interface shots ---------- */
 .shot {
   border: 1px solid var(--line);
-  background: linear-gradient(155deg, var(--panel-a), var(--panel-b));
+  background: var(--blobs), linear-gradient(155deg, var(--panel-a), var(--panel-b));
   padding: 24px 18px;
   overflow-x: auto;
+}
+
+/* Same four blob colors, different arrangements — so repeated .shot/.diagram
+   figures on one page don't all wear the identical pattern. */
+.pastel-b {
+  --blobs:
+    radial-gradient(circle at 20% 20%, var(--blob-2) 0%, transparent 55%),
+    radial-gradient(circle at 65% 40%, var(--blob-1) 0%, transparent 50%),
+    radial-gradient(circle at 90% 85%, var(--blob-4) 0%, transparent 45%),
+    radial-gradient(circle at 35% 95%, var(--blob-3) 0%, transparent 40%);
+}
+
+.pastel-c {
+  --blobs:
+    radial-gradient(circle at 75% 8%, var(--blob-3) 0%, transparent 38%),
+    radial-gradient(circle at 5% 40%, var(--blob-1) 0%, transparent 46%),
+    radial-gradient(circle at 60% 92%, var(--blob-2) 0%, transparent 50%),
+    radial-gradient(circle at 95% 55%, var(--blob-4) 0%, transparent 42%);
 }
 
 @media (min-width: 900px) {
@@ -741,6 +783,14 @@ figcaption {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
+  display: flex;
+  align-items: center;
+}
+
+.win .win-logo {
+  display: block;
+  height: 16px;
+  width: auto;
 }
 
 .win .win-cols {
