@@ -1,6 +1,6 @@
 ---
-import FlowStrip from './FlowStrip.astro';
 import { isOutcomePending } from '../lib/systems';
+import { TOOL_LOGOS } from '../lib/toolLogos';
 import type { System } from '../lib/systems';
 
 interface Props {
@@ -9,23 +9,55 @@ interface Props {
 }
 
 const { system, index } = Astro.props;
-const { name, status, summary, outcome, flow, feedback, tier } = system.data;
+const { name, status, summary, outcome, stack, tier, context, links } = system.data;
 const pending = isOutcomePending(outcome);
+const stackLogos = stack.filter((tool) => tool in TOOL_LOGOS);
 
-const isLinked = tier === 'featured';
+const isPersonal = context === 'independent';
+const isLinked = isPersonal || tier === 'featured';
 const Tag = isLinked ? 'a' : 'div';
-const linkProps = isLinked ? { href: `/systems/${system.id}/` } : {};
+const linkProps = isLinked
+  ? isPersonal
+    ? { href: links!.live, target: '_blank', rel: 'noopener noreferrer' }
+    : { href: `/systems/${system.id}/` }
+  : {};
 ---
 
-<Tag class:list={['row', { linked: isLinked, retired: status === 'retired' }]} style={`--i: ${index}`} {...linkProps}>
+<Tag
+  class:list={['row', { linked: isLinked, retired: status === 'retired', card: isPersonal }]}
+  style={`--i: ${index}`}
+  {...linkProps}
+>
   <span class="name">{name}</span>
   <div class="meta">
-    <FlowStrip flow={flow} feedback={feedback} status={status} />
+    <div class="row-logos">
+      {stackLogos.map((tool) => (
+        <div class="row-logo" title={tool}>
+          <img src={TOOL_LOGOS[tool]} alt={tool} loading="lazy" />
+        </div>
+      ))}
+    </div>
     <p class="copy">
       <span class="summary">{summary}</span>{' '}
-      <span class:list={['outcome', { pending }]}>{pending ? '→' : outcome}</span>
+      {!(isPersonal && pending) && (
+        <span class:list={['outcome', { pending }]}>{pending ? '→' : outcome}</span>
+      )}
     </p>
   </div>
+  {isPersonal && (
+    <div class="preview" aria-hidden="true">
+      <div class="preview-frame-wrap">
+        <iframe
+          class="preview-frame"
+          src={links!.live}
+          title={`${name} — live preview`}
+          loading="lazy"
+          tabindex="-1"
+          referrerpolicy="no-referrer"
+        ></iframe>
+      </div>
+    </div>
+  )}
 </Tag>
 
 <style>
@@ -54,6 +86,27 @@ const linkProps = isLinked ? { href: `/systems/${system.id}/` } : {};
     background: var(--card);
   }
 
+  .row.card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    background: var(--card);
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 0;
+    transition:
+      border-color 0.2s var(--easing),
+      box-shadow 0.2s var(--easing);
+  }
+
+  a.row.card:hover,
+  a.row.card:focus-visible {
+    border-color: var(--text);
+    box-shadow: var(--shadow);
+  }
+
   .name {
     font-weight: 500;
     font-size: 1.0625rem;
@@ -62,9 +115,39 @@ const linkProps = isLinked ? { href: `/systems/${system.id}/` } : {};
 
   .meta {
     display: grid;
-    grid-template-columns: 110px minmax(0, 1fr);
+    grid-template-columns: 200px minmax(0, 1fr);
     align-items: center;
     gap: 24px;
+  }
+
+  .row.card .meta {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .row-logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .row-logo {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    border: 1px solid var(--line-strong);
+    border-radius: 2px;
+    background: var(--card);
+  }
+
+  .row-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
   }
 
   .copy {
@@ -87,6 +170,59 @@ const linkProps = isLinked ? { href: `/systems/${system.id}/` } : {};
     color: var(--number);
   }
 
+  .preview {
+    grid-column: 1 / -1;
+    max-height: 0;
+    margin-top: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition:
+      max-height 0.35s var(--easing),
+      margin-top 0.35s var(--easing),
+      opacity 0.25s var(--easing);
+  }
+
+  a.row.linked:hover .preview,
+  a.row.linked:focus-visible .preview {
+    max-height: 220px;
+    margin-top: 16px;
+    opacity: 1;
+  }
+
+  a.row.card:hover .preview,
+  a.row.card:focus-visible .preview {
+    max-height: 400px;
+  }
+
+  .preview-frame-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2 / 1;
+    overflow: hidden;
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    background: var(--card);
+    box-shadow: var(--shadow);
+  }
+
+  .preview-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400%;
+    height: 400%;
+    border: 0;
+    transform: scale(0.25);
+    transform-origin: top left;
+    pointer-events: none;
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    .preview {
+      display: none;
+    }
+  }
+
   @media (max-width: 640px) {
     .row {
       grid-template-columns: 1fr;
@@ -94,8 +230,8 @@ const linkProps = isLinked ? { href: `/systems/${system.id}/` } : {};
     }
 
     .meta {
-      grid-template-columns: 90px minmax(0, 1fr);
-      gap: 14px;
+      grid-template-columns: 1fr;
+      gap: 8px;
     }
   }
 </style>

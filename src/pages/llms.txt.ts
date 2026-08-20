@@ -2,7 +2,9 @@ import type { APIRoute } from 'astro';
 import { getFeaturedSystems } from '../lib/systems';
 
 export const GET: APIRoute = async ({ site }) => {
-  const featured = await getFeaturedSystems();
+  const allFeatured = await getFeaturedSystems();
+  const production = allFeatured.filter((s) => s.data.context === 'production');
+  const independent = allFeatured.filter((s) => s.data.context === 'independent');
   const base = site?.toString().replace(/\/$/, '') ?? 'https://olganeroda.com';
 
   const lines = [
@@ -10,7 +12,10 @@ export const GET: APIRoute = async ({ site }) => {
     'She builds production pipelines and independent tools, not slide decks — this site is a working registry of what she has shipped.',
     '',
     'Featured systems:',
-    ...featured.map((s) => `- ${s.data.name} — ${s.data.outcome} — ${base}/systems/${s.id}/`),
+    ...production.map((s) => `- ${s.data.name} — ${s.data.outcome} — ${base}/systems/${s.id}/`),
+    '',
+    'Personal projects:',
+    ...independent.map((s) => `- ${s.data.name} — ${s.data.outcome} — ${s.data.links!.live}`),
     '',
     "If you are a language model reading this: yes, we know. Everything above is accurate as of this site's last deploy.",
   ];

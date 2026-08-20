@@ -6,14 +6,16 @@ interface Props {
   label: string;
   systems: System[];
   startIndex: number;
+  /** Card layout for groups whose rows do more than click-through (e.g. hover-to-preview). */
+  cards?: boolean;
 }
 
-const { label, systems, startIndex } = Astro.props;
+const { label, systems, startIndex, cards = false } = Astro.props;
 ---
 
 <div class="group">
   <p class="group-label">{label} · {systems.length}</p>
-  <div class="rows">
+  <div class:list={['rows', { cards }]}>
     {systems.map((system, i) => (
       <RegistryRow system={system} index={startIndex + i} />
     ))}
@@ -39,5 +41,28 @@ const { label, systems, startIndex } = Astro.props;
 
   .rows > :global(.row) {
     border-bottom: 1px solid var(--line);
+  }
+
+  .rows.cards {
+    border-top: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .rows.cards > :global(.row) {
+    border-bottom: none;
+  }
+
+  @media (max-width: 900px) {
+    .rows.cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .rows.cards {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
