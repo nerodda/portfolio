@@ -7,18 +7,29 @@ export async function getAllSystems(): Promise<System[]> {
 }
 
 /**
+ * Pulls a comparable year out of frontmatter: a plain number, or a
+ * descriptive string like "April 2025" (via its first four-digit run).
+ * Returns null for anything unresolved (`TODO`, no digits).
+ */
+function extractYear(year: number | string): number | null {
+  if (typeof year === 'number') return year;
+  const match = year.match(/\d{4}/);
+  return match ? Number(match[0]) : null;
+}
+
+/**
  * Newest first. Entries with an unresolved (`TODO`) year sort to the end —
  * we don't know how recent they are, so they shouldn't outrank dated work.
- * `order` breaks ties (including ties between two TODO years).
+ * `order` breaks ties (including ties between two unresolved years).
  */
 function byYearDesc(a: System, b: System): number {
-  const ay = a.data.year;
-  const by = b.data.year;
-  if (typeof ay === 'number' && typeof by === 'number') {
+  const ay = extractYear(a.data.year);
+  const by = extractYear(b.data.year);
+  if (ay !== null && by !== null) {
     return by - ay || a.data.order - b.data.order;
   }
-  if (typeof ay === 'number') return -1;
-  if (typeof by === 'number') return 1;
+  if (ay !== null) return -1;
+  if (by !== null) return 1;
   return a.data.order - b.data.order;
 }
 

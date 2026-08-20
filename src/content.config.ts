@@ -8,11 +8,20 @@ const systems = defineCollection({
       name: z.string(),
       context: z.enum(['production', 'independent']),
       status: z.union([z.enum(['live', 'prototype', 'retired']), z.literal('TODO')]),
-      year: z.union([z.number(), z.literal('TODO')]),
+      year: z.union([z.number(), z.string(), z.literal('TODO')]),
       tier: z.enum(['featured', 'registry']),
       summary: z.string().max(90),
       /** Optional richer hero lede. Falls back to `summary` when absent. */
       lede: z.array(z.string()).min(1).max(3).optional(),
+      /** Optional full-bleed background image for the hero, e.g. `/images/foo.jpg`. */
+      heroImage: z.string().optional(),
+      /** Optional looping background video, layered over `heroImage`. Falls back to the still image under prefers-reduced-motion. */
+      heroVideo: z
+        .object({
+          mp4: z.string(),
+          webm: z.string().optional(),
+        })
+        .optional(),
       outcome: z.string().max(90),
       stack: z.array(z.string()),
       flow: z.array(z.string()).min(3).max(6),
@@ -31,6 +40,13 @@ const systems = defineCollection({
           code: z.ZodIssueCode.custom,
           message: `production system "${data.name}" must not carry links.repo — production entries are employer systems and must not link to code`,
           path: ['links', 'repo'],
+        });
+      }
+      if (data.context === 'independent' && !data.links?.live) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: `independent system "${data.name}" must carry links.live — personal projects link out to their live homepage instead of an internal case study page`,
+          path: ['links', 'live'],
         });
       }
     }),
