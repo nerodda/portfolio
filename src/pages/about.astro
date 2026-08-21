@@ -4,7 +4,6 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 
 const credentials = [
-  'AI and Data Analytics Apprenticeship — Cambridge Spark, 2024–2026',
   'Claude Code in Action — Anthropic, 2026',
   'Advanced Google Analytics — Google, 2021',
   'ABM Certification — Demandbase, 2020',
@@ -12,6 +11,7 @@ const credentials = [
   'LinkedIn Marketing Strategy — LinkedIn, 2025–2027',
 ];
 const achievements = ["Indeed Flex Marketing Employee of the Year, 2025"];
+const education = ["AI and Data Analytics Apprenticeship — Cambridge Spark, 2024–2026"];
 ---
 
 <Base
@@ -32,8 +32,8 @@ const achievements = ["Indeed Flex Marketing Employee of the Year, 2025"];
         </div>
         <div class="body">
           <div class="bio-text">
-            <p>I build AI systems that make marketing and sales actually work together — not slide decks about AI, systems a team runs on every day. My approach is the same wherever I land: find the workflow that's slow, manual, or scattered across five tools, then design and ship something that fixes it end to end, the model, the guardrails, and the handoff to the people who use it.</p>
-            <p>I'm a marketing technologist in London. I build the AI systems on this site. I scoped and shipped the CV AI Builder, an LLM-powered resume tool, solo before handing it to a development partner to rebuild for production. I designed a Slack-based buying-committee agent that over 30 sellers now research from directly, scored and pushed straight into Salesforce. And I built the pipeline that drafts and sends a client report deck every Monday with no manual step in the happy path.</p>
+            <p>I build AI systems that make marketing and sales actually work together — systems a team runs on every day. My approach is the same wherever I land: find the workflow that's slow, manual, or scattered across five tools, then design and ship something that fixes it end to end, the model, the guardrails, and the handoff to the people who use it.</p>
+            <p>I'm a marketing technologist in London. I scoped and shipped the CV AI Builder, an LLM-powered resume tool. I designed a Slack-based buying-committee agent that over 30 sellers now research from directly, scored and pushed straight into Salesforce. And other AI-powered tools that improve and automate processes and deliver ROI.</p>
           </div>
         </div>
       </div>
@@ -49,6 +49,10 @@ const achievements = ["Indeed Flex Marketing Employee of the Year, 2025"];
             <div>
               <dt>Achievements</dt>
               <dd>{achievements.join(', ')}</dd>
+            </div>
+            <div>
+              <dt>Education</dt>
+              <dd>{education.join(', ')}</dd>
             </div>
             <div>
               <dt>Credentials</dt>
