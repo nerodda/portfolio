@@ -10,6 +10,7 @@ const credentials = [
   'Make Advanced — Make, 2025',
   'LinkedIn Marketing Strategy — LinkedIn, 2025–2027',
 ];
+const achievements = ["Indeed Flex Marketing Employee of the Year, 2025"];
 ---
 
 <Base
@@ -30,10 +31,8 @@ const credentials = [
         </div>
         <div class="body">
           <div class="bio-text">
-            <p>I'm a marketing technologist in London, currently Senior Manager of Digital Growth &amp; MarTech at Indeed Flex, where I build the AI systems on this site. I scoped and shipped the CV AI Builder, an LLM-powered resume tool, solo before handing it to a development partner to rebuild for production. I designed a Slack-based buying-committee agent that over 30 sellers now research from directly, scored and pushed straight into Salesforce. And I built the pipeline that drafts and sends a client report deck every Monday with no manual step in the happy path.</p>
-            <p class="big">In 2025 I was named Indeed Flex's Marketing Employee of the Year.</p>
-            <p>I've spent five years at Indeed Flex, working up from Performance Marketing Executive to my current role, after leading marketing teams at Teachbase, Waves Tech, DeCenter, and The Live Coffee Company in Moscow and London. I'm currently studying AI and data processing at Cambridge Spark, on top of certifications in Claude Code, Make, Advanced Google Analytics, and ABM.</p>
-          </div>
+            <p>I build AI systems that make marketing and sales actually work together — not slide decks about AI, systems a team runs on every day. My approach is the same wherever I land: find the workflow that's slow, manual, or scattered across five tools, then design and ship something that fixes it end to end, the model, the guardrails, and the handoff to the people who use it.</p>
+            <p>I'm a marketing technologist in London, currently Senior Manager of Digital Growth &amp; MarTech at Indeed Flex, where I build the AI systems on this site. I scoped and shipped the CV AI Builder, an LLM-powered resume tool, solo before handing it to a development partner to rebuild for production. I designed a Slack-based buying-committee agent that over 30 sellers now research from directly, scored and pushed straight into Salesforce. And I built the pipeline that drafts and sends a client report deck every Monday with no manual step in the happy path.</p>          </div>
         </div>
       </div>
     </section>
@@ -41,10 +40,14 @@ const credentials = [
     <section>
       <div class="wrap grid">
         <div class="sec-head">
-          <h2>Credentials</h2>
+          <h2>Credentials &amp; achievements</h2>
         </div>
         <div class="body">
           <dl class="facts">
+            <div>
+              <dt>Achievements</dt>
+              <dd>{achievements.join(', ')}</dd>
+            </div>
             <div>
               <dt>Credentials</dt>
               <dd>{credentials.join(', ')}</dd>
@@ -66,9 +69,5 @@ const credentials = [
 
   .bio-text p + p {
     margin-top: 1.15em;
-  }
-
-  .bio-text p.big {
-    max-width: none;
   }
 </style>
