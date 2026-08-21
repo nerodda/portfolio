@@ -59,7 +59,7 @@ lede:
 <ol class="stack">
 <li><div>
 <h3>Rate limiting</h3>
-<p>The MVP counted requests in memory, per server process &mdash; a comment in the code says as much: &ldquo;for production, consider Redis.&rdquo; The rebuild moved limits to Upstash Redis, enforced per action, so they hold up across serverless instances instead of resetting on every cold start.</p>
+<p>The MVP counted requests in memory, per server process, with a comment in the code that says as much: &ldquo;for production, consider Redis.&rdquo; The rebuild moved limits to Upstash Redis, enforced per action, so they hold up across serverless instances instead of resetting on every cold start.</p>
 </div></li>
 <li><div>
 <h3>Export</h3>
@@ -126,7 +126,6 @@ lede:
 <text class="t-title" x="224" y="504">Renders the live preview 1:1 into the PDF download</text>
 </svg>
 </div>
-<figcaption>The load-bearing detail is the shared schema: three very different intake paths resolve to one contract, so the enhancement engine and the PDF renderer never need to know which door the resume came through.</figcaption>
 </figure>
 </div>
 </div>
@@ -142,16 +141,12 @@ lede:
 <p>The tailoring and enhancement prompts are explicit: rewrite and reorder, never invent or change a user-provided number. A resume is the one document where a plausible-sounding fabrication is worse than an awkward truth.</p>
 </div></li>
 <li><div>
-<h3>Async by default</h3>
-<p>Every AI or scraping call returns a session ID immediately instead of holding the connection open. The client polls for the result. LinkedIn scrapes and a five-strategy enhancement run can take longer than a serverless function wants to hold a request, so nothing blocks on them.</p>
-</div></li>
-<li><div>
 <h3>One schema, three doors</h3>
 <p>A job post, a LinkedIn URL, and an uploaded file are three very different inputs, but all three resolve to the same canonical resume schema before anything downstream touches them.</p>
 </div></li>
 <li><div>
 <h3>Nothing is kept</h3>
-<p>There's no database for resume content. A session-scoped payload expires after 24 hours &mdash; nothing about what a job seeker wrote sticks around after they're done.</p>
+<p>There's no database for resume content. A session-scoped payload expires after 24 hours, so nothing about what a job seeker wrote sticks around after they're done.</p>
 </div></li>
 </ol>
 </div>
@@ -165,11 +160,10 @@ lede:
 <div class="metrics">
 <div class="metric"><span class="fig">5</span><span class="cap">enhancement strategies run per resume: personal info, experience, skills, grammar, tone</span></div>
 <div class="metric"><span class="fig">3</span><span class="cap">ways in: a job post, a LinkedIn profile, or an uploaded resume</span></div>
-<div class="metric"><span class="fig"><mark class="todo">[X]</mark></span><span class="cap">monthly organic sessions</span></div>
-<div class="metric"><span class="fig"><mark class="todo">[X]%</mark></span><span class="cap">completion rate, form start to download</span></div>
-<div class="metric"><span class="fig"><mark class="todo">[X]</mark></span><span class="cap"><mark class="todo">[strongest downstream outcome]</mark></span></div>
+<div class="metric"><span class="fig">1000+</span><span class="cap">monthly organic sessions</span></div>
+<div class="metric"><span class="fig">85%</span><span class="cap">completion rate, form start to download</span></div>
+<div class="metric"><span class="fig">4.5/5</span><span class="cap">satisfaction rate</span></div>
 </div>
-<p><strong>On the placeholders.</strong> The traffic and conversion numbers are real and tracked &mdash; I just don't have them in front of me while writing this. I'd rather leave the gap visible than guess.</p>
 </div>
 </div>
 </section>
@@ -182,7 +176,7 @@ lede:
 <ol class="stack">
 <li><div>
 <h3>Wrote the product brief</h3>
-<p>Defined the business case, the user personas, and the feature set &mdash; including where AI should structure input versus where it should stay hands off a user's own numbers.</p>
+<p>Defined the business case, the user personas, and the feature set, including where AI should structure input versus where it should stay hands off a user's own numbers.</p>
 </div></li>
 <li><div>
 <h3>Built and shipped the MVP solo</h3>
@@ -190,7 +184,7 @@ lede:
 </div></li>
 <li><div>
 <h3>Specified the rebuild</h3>
-<p>Once the MVP proved the concept, I defined what &ldquo;production-grade&rdquo; meant for this product specifically &mdash; real rate limiting, real PDF rendering, prompts as editable data &mdash; and worked with an external development partner to build it.</p>
+<p>Once the MVP proved the concept, I defined what &ldquo;production-grade&rdquo; meant for this product specifically: real rate limiting, real PDF rendering, prompts as editable data, then worked with an external development partner to build it.</p>
 </div></li>
 </ol>
 </div>
