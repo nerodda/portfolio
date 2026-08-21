@@ -1,6 +1,6 @@
 ---
 import { isOutcomePending } from '../lib/systems';
-import { TOOL_LOGOS } from '../lib/toolLogos';
+import { MONO_DARK_LOGOS, TOOL_LOGOS } from '../lib/toolLogos';
 import type { System } from '../lib/systems';
 
 interface Props {
@@ -33,7 +33,12 @@ const linkProps = isLinked
     <div class="row-logos">
       {stackLogos.map((tool) => (
         <div class="row-logo" title={tool}>
-          <img src={TOOL_LOGOS[tool]} alt={tool} loading="lazy" />
+          <img
+            src={TOOL_LOGOS[tool]}
+            alt={tool}
+            loading="lazy"
+            class:list={{ 'logo-mono': MONO_DARK_LOGOS.has(tool) }}
+          />
         </div>
       ))}
     </div>

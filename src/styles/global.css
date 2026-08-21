@@ -92,6 +92,19 @@
     0 30px 50px -26px hsl(0 0% 0% / 0.7);
 }
 
+/* Logos that render as solid black on transparent — invert to white so they stay visible on dark tiles. */
+:root:not([data-theme='light']) {
+  @media (prefers-color-scheme: dark) {
+    .logo-mono {
+      filter: invert(1);
+    }
+  }
+}
+
+:root[data-theme='dark'] .logo-mono {
+  filter: invert(1);
+}
+
 *,
 *::before,
 *::after {

@@ -3,7 +3,7 @@ import Base from './Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import type { System } from '../lib/systems';
-import { TOOL_LOGOS } from '../lib/toolLogos';
+import { MONO_DARK_LOGOS, TOOL_LOGOS } from '../lib/toolLogos';
 
 interface Props {
   system: System;
@@ -53,7 +53,12 @@ const stackLogos = stack.filter((tool) => tool in TOOL_LOGOS);
           <div class="stack-logos">
             {stackLogos.map((tool) => (
               <div class="stack-logo" title={tool}>
-                <img src={TOOL_LOGOS[tool]} alt={tool} loading="lazy" />
+                <img
+                  src={TOOL_LOGOS[tool]}
+                  alt={tool}
+                  loading="lazy"
+                  class:list={{ 'logo-mono': MONO_DARK_LOGOS.has(tool) }}
+                />
               </div>
             ))}
           </div>

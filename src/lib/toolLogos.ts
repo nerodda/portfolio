@@ -28,3 +28,6 @@ export const TOOL_LOGOS: Record<string, string> = {
   ElevenLabs: '/logos/elevenlabs.svg',
   Zod: '/logos/zod.svg',
 };
+
+/** Logos that render as solid black on a transparent background — invisible on dark tiles unless inverted. */
+export const MONO_DARK_LOGOS = new Set(['OpenAI', 'OpenAI API', 'Next.js', 'ElevenLabs']);
