@@ -12,12 +12,39 @@ const credentials = [
 ];
 const achievements = ["Indeed Flex Marketing Employee of the Year, 2025"];
 const education = ["AI and Data Analytics Apprenticeship — Cambridge Spark, 2024–2026"];
+
+const description =
+  'Olga Neroda, a London-based marketing technologist who builds AI systems for marketing and sales teams. Senior Manager of Digital Growth & MarTech at Indeed Flex.';
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Olga Neroda',
+  url: new URL('/about', Astro.site).toString(),
+  description,
+  jobTitle: 'Senior Manager, Digital Growth & MarTech',
+  worksFor: { '@type': 'Organization', name: 'Indeed Flex' },
+  address: { '@type': 'PostalAddress', addressLocality: 'London', addressCountry: 'GB' },
+  alumniOf: { '@type': 'EducationalOrganization', name: 'Cambridge Spark' },
+  award: achievements,
+  knowsAbout: [
+    'AI systems for marketing and sales',
+    'Marketing automation',
+    'Account-based marketing',
+    'HubSpot',
+    'Salesforce',
+    'Claude',
+    'LinkedIn Ads',
+  ],
+  sameAs: ['https://www.linkedin.com/in/olga-neroda/'],
+  hasCredential: credentials.map((name) => ({
+    '@type': 'EducationalOccupationalCredential',
+    name,
+  })),
+};
 ---
 
-<Base
-  title="About — Olga Neroda"
-  description="About Olga Neroda, a marketing technologist who builds AI systems for revenue and marketing teams."
->
+<Base title="About — Olga Neroda" description={description} ogType="profile" jsonLd={personJsonLd}>
   <SiteHeader />
 
   <main>

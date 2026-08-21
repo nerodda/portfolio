@@ -4,7 +4,7 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description: string;
-  ogType?: 'website' | 'article';
+  ogType?: 'website' | 'article' | 'profile';
   image?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
@@ -30,6 +30,8 @@ const jsonLdEntries = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={imageURL} />
+    {ogType === 'profile' && <meta property="profile:first_name" content="Olga" />}
+    {ogType === 'profile' && <meta property="profile:last_name" content="Neroda" />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
