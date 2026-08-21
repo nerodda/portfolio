@@ -6,7 +6,7 @@ year: 2025
 tier: featured
 summary: Generates SEO-optimized blog articles from keywords and drafts them into WordPress.
 outcome: TODO
-stack: [Node.js, TypeScript, Express, OpenAI API, Cheerio, WordPress REST API]
+stack: [Node.js, Express, OpenAI API, Cheerio, WordPress REST API]
 flow: [Topic research, Competitor scan, Draft, Human review, WordPress]
 feedback: false
 order: 2

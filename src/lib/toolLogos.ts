@@ -26,4 +26,5 @@ export const TOOL_LOGOS: Record<string, string> = {
   'Drizzle ORM': '/logos/drizzle.svg',
   Swift: '/logos/swift.svg',
   ElevenLabs: '/logos/elevenlabs.svg',
+  Zod: '/logos/zod.svg',
 };
