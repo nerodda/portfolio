@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://olganeroda.com/sitemap-index.xml
+
+# AI/LLM agent summary: https://olganeroda.com/llms.txt

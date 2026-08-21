@@ -6,6 +6,7 @@ year: June 2026
 tier: featured
 summary: Compiles scattered source docs into a cited wiki that AI coding tools read from directly.
 outcome: TODO
+ogImage: /images/og/second-brain.png
 stack: [Model Context Protocol, Cursor, Claude Code, OpenAI, Relevance AI, Google Drive, Outreach, Salesforce, Slack, Obsidian]
 flow: [Drive corpus, Ingestion, Index, Answer & generate]
 feedback: false

@@ -3,11 +3,19 @@ import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 
-const credentials = ['TODO'];
-const languages = ['TODO'];
+const credentials = [
+  'Claude Code in Action — Anthropic, 2026',
+  'Advanced Google Analytics — Google, 2021',
+  'ABM Certification — Demandbase, 2020',
+  'Make Advanced — Make, 2025',
+  'LinkedIn Marketing Strategy — LinkedIn, 2025–2027',
+];
 ---
 
-<Base title="About — Olga Neroda" description="TODO">
+<Base
+  title="About — Olga Neroda"
+  description="About Olga Neroda, a marketing technologist who builds AI systems for revenue and marketing teams."
+>
   <SiteHeader />
 
   <main>
@@ -21,12 +29,10 @@ const languages = ['TODO'];
           <h2>Bio</h2>
         </div>
         <div class="body">
-          <div class="bio-layout">
-            <img class="photo" src="/about-photo.svg" alt="Olga Neroda" width="400" height="500" />
-            <div class="bio-text">
-              <p>TODO</p>
-              <p>TODO</p>
-            </div>
+          <div class="bio-text">
+            <p>I'm a marketing technologist in London, currently Senior Manager of Digital Growth &amp; MarTech at Indeed Flex, where I build the AI systems on this site. I scoped and shipped the CV AI Builder, an LLM-powered resume tool, solo before handing it to a development partner to rebuild for production. I designed a Slack-based buying-committee agent that over 30 sellers now research from directly, scored and pushed straight into Salesforce. And I built the pipeline that drafts and sends a client report deck every Monday with no manual step in the happy path.</p>
+            <p class="big">In 2025 I was named Indeed Flex's Marketing Employee of the Year.</p>
+            <p>I've spent five years at Indeed Flex, working up from Performance Marketing Executive to my current role, after leading marketing teams at Teachbase, Waves Tech, DeCenter, and The Live Coffee Company in Moscow and London. I'm currently studying AI and data processing at Cambridge Spark, on top of certifications in Claude Code, Make, Advanced Google Analytics, and ABM.</p>
           </div>
         </div>
       </div>
@@ -35,17 +41,13 @@ const languages = ['TODO'];
     <section>
       <div class="wrap grid">
         <div class="sec-head">
-          <h2>Credentials &amp; languages</h2>
+          <h2>Credentials</h2>
         </div>
         <div class="body">
           <dl class="facts">
             <div>
               <dt>Credentials</dt>
               <dd>{credentials.join(', ')}</dd>
-            </div>
-            <div>
-              <dt>Languages</dt>
-              <dd>{languages.join(', ')}</dd>
             </div>
           </dl>
         </div>
@@ -57,18 +59,6 @@ const languages = ['TODO'];
 </Base>
 
 <style>
-  .bio-layout {
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 40px;
-    align-items: start;
-  }
-
-  .photo {
-    width: 100%;
-    height: auto;
-  }
-
   .bio-text p {
     font-size: 1.0625rem;
     line-height: 1.6;
@@ -78,13 +68,7 @@ const languages = ['TODO'];
     margin-top: 1.15em;
   }
 
-  @media (max-width: 640px) {
-    .bio-layout {
-      grid-template-columns: 1fr;
-    }
-
-    .photo {
-      max-width: 220px;
-    }
+  .bio-text p.big {
+    max-width: none;
   }
 </style>

@@ -6,6 +6,7 @@ year: April 2025
 tier: featured
 summary: A Slack request returns a scored, sourced buying committee, pushed to CRM.
 outcome: 30+ sellers researching from one Slack channel
+ogImage: /images/og/buying-committee.png
 stack: [Relevance AI, OpenAI, Slack, Zapier, Make, Apollo, Apify, Salesforce, Google Sheets]
 flow: [Slack request, Route, Research ladder, Rank & score, Shared sheet, Salesforce]
 feedback: false

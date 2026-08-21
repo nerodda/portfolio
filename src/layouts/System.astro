@@ -3,6 +3,7 @@ import Base from './Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import type { System } from '../lib/systems';
+import { isOutcomePending } from '../lib/systems';
 import { MONO_DARK_LOGOS, TOOL_LOGOS } from '../lib/toolLogos';
 
 interface Props {
@@ -14,12 +15,28 @@ interface Props {
 }
 
 const { system, prev, next, Content } = Astro.props;
-const { name, status, year, summary, outcome, lede, stack, heroImage, heroVideo } = system.data;
+const { name, status, year, summary, outcome, lede, stack, heroImage, heroVideo, ogImage } = system.data;
 const ledeParagraphs = lede ?? [summary];
 const stackLogos = stack.filter((tool) => tool in TOOL_LOGOS);
+const metaDescription = isOutcomePending(outcome) ? summary : outcome;
+
+const systemJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name,
+  description: metaDescription,
+  author: { '@type': 'Person', name: 'Olga Neroda' },
+  ...(typeof year === 'number' ? { dateCreated: String(year) } : {}),
+};
 ---
 
-<Base title={`${name} — Olga Neroda`} description={outcome} ogType="article">
+<Base
+  title={`${name} — Olga Neroda`}
+  description={metaDescription}
+  ogType="article"
+  image={ogImage ?? heroImage}
+  jsonLd={systemJsonLd}
+>
   <SiteHeader />
 
   <main>

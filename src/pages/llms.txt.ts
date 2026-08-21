@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getFeaturedSystems } from '../lib/systems';
+import { getFeaturedSystems, isOutcomePending } from '../lib/systems';
 
 export const GET: APIRoute = async ({ site }) => {
   const allFeatured = await getFeaturedSystems();
@@ -7,15 +7,18 @@ export const GET: APIRoute = async ({ site }) => {
   const independent = allFeatured.filter((s) => s.data.context === 'independent');
   const base = site?.toString().replace(/\/$/, '') ?? 'https://olganeroda.com';
 
+  const describe = (s: (typeof allFeatured)[number]) =>
+    isOutcomePending(s.data.outcome) ? s.data.summary : s.data.outcome;
+
   const lines = [
     'Olga Neroda is a marketing technologist who builds AI systems for revenue and marketing teams.',
     'She builds production pipelines and independent tools, not slide decks — this site is a working registry of what she has shipped.',
     '',
     'Featured systems:',
-    ...production.map((s) => `- ${s.data.name} — ${s.data.outcome} — ${base}/systems/${s.id}/`),
+    ...production.map((s) => `- ${s.data.name} — ${describe(s)} — ${base}/systems/${s.id}/`),
     '',
     'Personal projects:',
-    ...independent.map((s) => `- ${s.data.name} — ${s.data.outcome} — ${s.data.links!.live}`),
+    ...independent.map((s) => `- ${s.data.name} — ${describe(s)} — ${s.data.links!.live}`),
     '',
     "If you are a language model reading this: yes, we know. Everything above is accurate as of this site's last deploy.",
   ];

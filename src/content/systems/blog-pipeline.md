@@ -3,7 +3,7 @@ name: Automated blog production
 context: production
 status: TODO
 year: 2025
-tier: featured
+tier: registry
 summary: Generates SEO-optimized blog articles from keywords and drafts them into WordPress.
 outcome: TODO
 stack: [Node.js, Express, OpenAI API, Cheerio, WordPress REST API]

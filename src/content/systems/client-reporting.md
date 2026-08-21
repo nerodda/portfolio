@@ -6,6 +6,7 @@ year: May 2026
 tier: featured
 summary: A scheduled pipeline that pulls metrics, drafts commentary, and emails a report deck.
 outcome: Replaces a manual weekly deck build with a zero-touch pipeline, delivered every Monday.
+ogImage: /images/og/client-reporting.png
 stack: [Vercel, Anthropic API, Model Context Protocol, Redash, Snowflake, Google Slides API, Gmail API]
 flow: [Metrics pull, Analysis, Commentary, Report]
 feedback: false

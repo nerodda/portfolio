@@ -6,6 +6,7 @@ year: March 2026
 tier: featured
 summary: Builds a tailored CV from a job post, a LinkedIn profile, or an existing resume.
 outcome: Live and public, free to any job seeker, no account or login required.
+ogImage: /images/og/ai-resume-builder.png
 stack: [Next.js, OpenAI API, Apify]
 flow: [Job post, LinkedIn, or CV, AI tailoring, ATS-ready draft, Download]
 feedback: false

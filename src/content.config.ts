@@ -15,6 +15,8 @@ const systems = defineCollection({
       lede: z.array(z.string()).min(1).max(3).optional(),
       /** Optional full-bleed background image for the hero, e.g. `/images/foo.jpg`. */
       heroImage: z.string().optional(),
+      /** Optional social-share preview image (1200x630). Falls back to `heroImage`, then the site default. */
+      ogImage: z.string().optional(),
       /** Optional looping background video, layered over `heroImage`. Falls back to the still image under prefers-reduced-motion. */
       heroVideo: z
         .object({

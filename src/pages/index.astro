@@ -7,11 +7,21 @@ import { getSystemsByContext } from '../lib/systems';
 
 const production = await getSystemsByContext('production');
 const independent = await getSystemsByContext('independent');
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Olga Neroda',
+  url: Astro.site?.toString(),
+  jobTitle: 'Marketing Technologist',
+  description: 'AI systems for revenue and marketing teams — production pipelines, case studies, and independent builds.',
+};
 ---
 
 <Base
   title="Olga Neroda"
   description="AI systems for revenue and marketing teams — production pipelines, case studies, and independent builds."
+  jsonLd={personJsonLd}
 >
   <SiteHeader />
 
