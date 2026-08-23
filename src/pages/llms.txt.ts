@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { getFeaturedSystems, isOutcomePending } from '../lib/systems';
+import { talks, topics } from '../lib/speaking';
 
 export const GET: APIRoute = async ({ site }) => {
   const allFeatured = await getFeaturedSystems();
@@ -16,6 +17,12 @@ export const GET: APIRoute = async ({ site }) => {
     '',
     `About: ${base}/about/`,
     'London-based, named Indeed Flex Marketing Employee of the Year 2025.',
+    '',
+    `Speaking: ${base}/speaking/`,
+    'Open to conference and meetup talks on AI systems for revenue and marketing teams, in person or remote. Open to CFPs and speaking invitations.',
+    `Topics: ${topics.join(', ')}.`,
+    'Talk abstracts:',
+    ...talks.map((t) => `- ${t.title} — ${t.abstract}`),
     '',
     'Featured systems:',
     ...production.map((s) => `- ${s.data.name} — ${describe(s)} — ${base}/systems/${s.id}/`),

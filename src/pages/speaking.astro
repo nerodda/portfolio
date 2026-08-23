@@ -2,21 +2,46 @@
 import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import { talks, topics } from '../lib/speaking';
 
-const talks = [
-  {
-    title: 'TODO',
-    abstract: 'TODO',
-    draws_on: ['TODO'],
-  },
-];
+const description =
+  'Olga Neroda is a London-based marketing technologist available for conference and meetup talks on AI systems for revenue and marketing teams — agent architecture, MarTech, and build-vs-no-code tradeoffs. Open to CFPs, in person or remote.';
 
-const topics = ['TODO'];
+const pageURL = new URL('/speaking', Astro.site).toString();
 
-const pastSessions = [{ title: 'TODO', venue: 'TODO', year: 'TODO' }];
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Olga Neroda',
+  url: pageURL,
+  description,
+  jobTitle: 'Marketing Technologist',
+  address: { '@type': 'PostalAddress', addressLocality: 'London', addressCountry: 'GB' },
+  knowsAbout: topics,
+  sameAs: ['https://www.linkedin.com/in/olga-neroda/'],
+};
+
+const talksJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Conference and meetup talks by Olga Neroda',
+  url: pageURL,
+  itemListElement: talks.map((talk, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'CreativeWork',
+      name: talk.title,
+      description: talk.abstract,
+      genre: 'Conference talk',
+      keywords: talk.draws_on.join(', '),
+      author: { '@type': 'Person', name: 'Olga Neroda', url: new URL('/about', Astro.site).toString() },
+    },
+  })),
+};
 ---
 
-<Base title="Speaking — Olga Neroda" description="Talk abstracts, topics, and past sessions on AI systems for revenue and marketing teams.">
+<Base title="Speaking — Olga Neroda" description={description} jsonLd={[personJsonLd, talksJsonLd]}>
   <SiteHeader />
 
   <main>
@@ -24,8 +49,8 @@ const pastSessions = [{ title: 'TODO', venue: 'TODO', year: 'TODO' }];
       <h1>Speaking</h1>
       <div class="lede">
         <p>
-          Open to CFPs and speaking invitations on AI systems for revenue and marketing teams. Reach out at{' '}
-          <a href="mailto:nerokim3@gmail.com">nerokim3@gmail.com</a>.
+          Open to CFPs and speaking invitations on AI systems for revenue and marketing teams. Reach out on{' '}
+          <a href="https://www.linkedin.com/in/olga-neroda/">LinkedIn</a>.
         </p>
       </div>
     </div>
@@ -53,22 +78,6 @@ const pastSessions = [{ title: 'TODO', venue: 'TODO', year: 'TODO' }];
         <div class="body">
           <ul class="topics">
             {topics.map((topic) => <li>{topic}</li>)}
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="wrap grid">
-        <div class="sec-head"><h2>Past sessions</h2></div>
-        <div class="body">
-          <ul class="time">
-            {pastSessions.map((s) => (
-              <li>
-                <span class="when">{s.venue} · {s.year}</span>
-                <span class="what">{s.title}</span>
-              </li>
-            ))}
           </ul>
         </div>
       </div>
