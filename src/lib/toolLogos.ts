@@ -25,6 +25,7 @@ export const TOOL_LOGOS: Record<string, string> = {
   'Next.js': '/logos/nextjs.svg',
   TypeScript: '/logos/typescript.svg',
   Supabase: '/logos/supabase.svg',
+  Payload: '/logos/payload.svg',
   'Drizzle ORM': '/logos/drizzle.svg',
   Swift: '/logos/swift.svg',
   ElevenLabs: '/logos/elevenlabs.svg',
@@ -32,4 +33,4 @@ export const TOOL_LOGOS: Record<string, string> = {
 };
 
 /** Logos that render as solid black on a transparent background — invisible on dark tiles unless inverted. */
-export const MONO_DARK_LOGOS = new Set(['OpenAI', 'OpenAI API', 'Next.js', 'ElevenLabs']);
+export const MONO_DARK_LOGOS = new Set(['OpenAI', 'OpenAI API', 'Next.js', 'ElevenLabs', 'Payload']);

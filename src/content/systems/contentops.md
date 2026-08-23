@@ -5,7 +5,8 @@ status: prototype
 year: May 2026
 tier: featured
 summary: Brand-aware content generation, a channel pipeline, and a feedback loop from performance.
-outcome: 500+ pages shipped, 20+ skills versioned, rebuilt in Cursor after Lovable stopped scaling.
+outcome: AI marketing content platform — 500+ pages shipped, 20+ skills versioned, built in Cursor.
+ogImage: /images/og/contentops.png
 stack: [Cursor, Supabase, TypeScript, Payload, OpenAI, Meta, Google Ads, TikTok, LinkedIn]
 flow: [Brand DNA, Skills, Campaign, Publish, Performance]
 feedback: true
@@ -23,8 +24,7 @@ lede:
 <div><dt>Role</dt><dd>I designed the architecture and own the skills/prompt system, and I build and evolve the app directly, in Cursor, rather than through a no-code builder.</dd></div>
 <div><dt>Built on</dt><dd>React and TypeScript on Supabase (Postgres, Auth, Storage), Payload CMS for owned pages, and functions for generation, evaluation, and publishing.</dd></div>
 <div><dt>Publishes to</dt><dd>Payload-backed website pages, plus Meta, Google Ads, TikTok, and LinkedIn through native publish and discovery functions.</dd></div>
-<div><dt>Quality gate</dt><dd>A new skill version is scored against a frozen set of golden briefs before it can become the version generation actually uses.</dd></div>
-<div><dt>Status</dt><dd>In progress. The generation-to-publish loop is live; team review and a cross-campaign content view are still being built.</dd></div>
+<div><dt>Quality gate</dt><dd>A new skill version is scored against a frozen set of benchmark briefs before it can become the version generation actually uses.</dd></div>
 </dl>
 </div>
 </div>
@@ -38,7 +38,7 @@ lede:
 <ol class="stack">
 <li><div>
 <h3>Every channel needed its own copy, written by hand</h3>
-<p>A Google RSA, a Meta ad, a LinkedIn post, and an email each carry their own character limits and structure. Each one got rewritten from scratch by whoever was free, and consistency depended on how closely that person happened to follow guidelines nobody was checking against.</p>
+<p>A Google ad, a Meta ad, a LinkedIn post, and an email each carry their own character limits and structure. Each one got rewritten from scratch by whoever was free, and consistency depended on how closely that person happened to follow guidelines nobody was checking against.</p>
 </div></li>
 <li><div>
 <h3>Brand voice lived in a document, not in the tool</h3>
@@ -74,7 +74,7 @@ lede:
 <figure>
 <p class="scroll-hint">Scroll to see the full diagram</p>
 <div class="diagram pastel-c">
-<svg viewBox="0 0 1080 620" role="img" aria-label="Loop: a workspace defines Brand DNA once, skills are authored and versioned against a golden-brief quality gate, a campaign generates and reviews drafts against the champion skill version, drafts publish to Payload and four ad platforms, and daily performance data feeds a weekly digest that proposes an improved skill version, gated by golden briefs and a human approval, back into the skills stage.">
+<svg viewBox="0 0 1080 620" role="img" aria-label="Loop: a workspace defines Brand DNA once, skills are authored and versioned against a benchmark-brief quality gate, a campaign generates and reviews drafts against the champion skill version, drafts publish to Payload and four ad platforms, and daily performance data feeds a weekly digest that proposes an improved skill version, gated by benchmark briefs and a human approval, back into the skills stage.">
 <defs>
 <marker id="ahco" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
 <path d="M0,0 L10,5 L0,10 z" fill="var(--line-strong)"/>
@@ -82,7 +82,7 @@ lede:
 </defs>
 <rect class="box" x="100" y="8" width="800" height="64" rx="2"/>
 <text class="t-tiny" x="124" y="30">Input, once per workspace</text>
-<text class="t-title" x="124" y="54">A team defines Brand DNA — voice, audiences, products, competitors, goals</text>
+<text class="t-title" x="124" y="54">A team defines Brand DNA in SKILLS.md — voice, audiences, products, competitors, goals</text>
 <path class="flow" d="M500,72 L500,100" marker-end="url(#ahco)"/>
 <rect class="box" x="100" y="102" width="800" height="108" rx="2"/>
 <text class="t-tiny" x="124" y="124">Configuration</text>
@@ -90,10 +90,10 @@ lede:
 <g class="t-pill" text-anchor="middle">
 <rect class="pill" x="124" y="156" width="180" height="26" rx="2"/><text x="214" y="173">Author or import</text>
 <rect class="pill" x="314" y="156" width="180" height="26" rx="2"/><text x="404" y="173">skill_versions</text>
-<rect class="pill" x="504" y="156" width="180" height="26" rx="2"/><text x="594" y="173">Golden briefs</text>
-<rect class="pill" x="694" y="156" width="180" height="26" rx="2"/><text x="784" y="173">Judge score</text>
+<rect class="pill" x="504" y="156" width="180" height="26" rx="2"/><text x="594" y="173">Benchmark briefs</text>
+<rect class="pill" x="694" y="156" width="180" height="26" rx="2"/><text x="784" y="173">Eval score</text>
 </g>
-<text class="t-sub" x="124" y="200">Every save snapshots a version. A judge scores each candidate against frozen briefs before it can go live.</text>
+<text class="t-sub" x="124" y="200">Every save snapshots a version. Each candidate is scored against frozen briefs before it can go live.</text>
 <path class="flow" d="M500,210 L500,238" marker-end="url(#ahco)"/>
 <rect class="box" x="100" y="240" width="800" height="106" rx="2"/>
 <text class="t-tiny" x="124" y="262">Production</text>
@@ -107,8 +107,10 @@ lede:
 <text class="t-sub" x="124" y="338">Generation calls the champion skill version and records exactly which version produced each draft.</text>
 <path class="flow" d="M500,346 L500,374" marker-end="url(#ahco)"/>
 <rect class="box" x="100" y="376" width="800" height="138" rx="2"/>
-<text class="t-tiny" x="124" y="398">Output, one click</text>
-<text class="t-title" x="124" y="420">Payload for owned pages, four ad platforms through native publish functions</text>
+<rect class="pill" x="124" y="384" width="28" height="28" rx="2"/>
+<image class="logo-mono" href="/logos/payload.svg" x="128" y="388" width="20" height="20"><title>Payload</title></image>
+<text class="t-tiny" x="168" y="398">Output, one click</text>
+<text class="t-title" x="168" y="420">Payload for owned pages, four ad platforms through native publish functions</text>
 <g class="t-pill" text-anchor="middle">
 <rect class="pill" x="124" y="430" width="180" height="26" rx="2"/><text x="214" y="447">Payload CMS</text>
 <rect class="pill" x="314" y="430" width="180" height="26" rx="2"/><text x="404" y="447">Meta</text>
@@ -126,7 +128,7 @@ lede:
 <text class="t-tiny" x="916" y="372">human-approved</text>
 </svg>
 </div>
-<figcaption>The dashed line is the part that makes this a loop rather than a pipeline. A weekly job drafts an improved skill version from what actually performed, but it only ever files a proposal — a person approves the promotion, and the golden-brief judge has to agree it's better first.</figcaption>
+<figcaption>The dashed line is the part that makes this a loop rather than a pipeline. A weekly job drafts an improved skill version from what actually performed, but it only ever files a proposal — a person approves the promotion, and it has to clear the benchmark-brief eval first.</figcaption>
 </figure>
 </div>
 </div>
@@ -140,7 +142,7 @@ lede:
 <ol class="stack">
 <li><div>
 <h3>Lovable proved the shape, then became the constraint</h3>
-<p>The initial build was assembled in Lovable, an AI app builder, which is a fast way to get a real multi-tenant app — auth, a database, dozens of edge functions — in front of a team. It got the architecture right early: Brand DNA, skills, campaigns, and the Supabase schema underneath all trace back to that first pass. What didn't hold up was iterating on it at the pace a skills-versioning and evaluation system needs. Lovable bills by usage, and every prompt-driven change to a backend this size is a paid generation, not a local edit.</p>
+<p>The initial build was assembled in Lovable, an AI app builder, which is a fast way to get a real app — auth, a database, dozens of edge functions — in front of a team. It got the architecture right early: Brand DNA, skills, campaigns, and the Supabase schema underneath all trace back to that first pass. What didn't hold up was iterating on it at the pace a skills-versioning and evaluation system needs. Lovable bills by usage, and every prompt-driven change to a backend this size is a paid generation, not a local edit.</p>
 </div></li>
 <li><div>
 <h3>Moving into Cursor made the codebase mine again</h3>
@@ -167,10 +169,10 @@ lede:
 </div></li>
 <li><div>
 <h3>Champion and shadow, not one live version</h3>
-<p>Each skill carries a champion version, the one generation actually uses, and a shadow version, a candidate being evaluated. A new version has to clear the golden-brief judge before it's promoted, so an improvement is a comparison against a frozen benchmark rather than a feeling that the new copy reads better.</p>
+<p>Each skill carries a champion version, the one generation actually uses, and a shadow version, a candidate being evaluated. A new version has to clear the benchmark-brief eval before it's promoted, so an improvement is a comparison against a frozen benchmark rather than a feeling that the new copy reads better.</p>
 </div></li>
 <li><div>
-<h3>Golden briefs are frozen on purpose</h3>
+<h3>Benchmark briefs are frozen on purpose</h3>
 <p>The benchmark inputs used to grade a skill version are curated once and then locked. If the test set could drift alongside every skill change, a version could look improved simply because the bar it was measured against moved with it.</p>
 </div></li>
 <li><div>
@@ -179,7 +181,7 @@ lede:
 </div></li>
 <li><div>
 <h3>The loop proposes. A person approves</h3>
-<p>The weekly digest job drafts an improved skill version and files it as a proposal — it doesn't self-promote. Every version currently live got there because someone read the golden-brief scores and the real traffic and decided it was actually better, not because a cron job decided for them.</p>
+<p>The weekly digest job drafts an improved skill version and files it as a proposal — it doesn't self-promote. Every version currently live got there because someone read the benchmark-brief scores and the real traffic and decided it was actually better, not because a cron job decided for them.</p>
 </div></li>
 </ol>
 </div>
@@ -193,8 +195,8 @@ lede:
 <p class="big">I designed the architecture and the skills system, and I'm the one building it — in Cursor, not a no-code tool.</p>
 <ol class="stack">
 <li><div>
-<h3>Designed the multi-tenant data model</h3>
-<p>Projects as the tenant boundary, Brand DNA and skills scoped underneath it, row-level security on every table keyed to project membership. That structure is what lets campaigns, skills, and performance data all live in one place without one team's content ever being queryable by another's.</p>
+<h3>Designed the project-scoped data model</h3>
+<p>Projects as the isolation boundary, Brand DNA and skills scoped underneath it, row-level security on every table keyed to project membership. That structure is what lets campaigns, skills, and performance data all live in one place without one team's content ever being queryable by another's.</p>
 </div></li>
 <li><div>
 <h3>Built the skills and evaluation system</h3>
@@ -211,24 +213,6 @@ lede:
 <li><div>
 <h3>Wired the ad-platform integrations</h3>
 <p>Discovery and publish functions for Meta, Google Ads, TikTok, and LinkedIn, each with its own account or campaign picker and its own publish shape, sharing one UTM-generation utility so attribution stays consistent across all four.</p>
-</div></li>
-</ol>
-</div>
-</div>
-</section>
-
-<section>
-<div class="wrap grid">
-<div class="sec-head"><span class="num">08</span><h2>What's next</h2></div>
-<div class="body">
-<ol class="stack">
-<li><div>
-<h3>Team and approval workflow</h3>
-<p>Today the app is built for a solo marketer's loop: draft, review, publish. Making it a team's system means invite and role management, a reviewer assigned per piece, threaded comments, and an audit trail of who approved what — the single biggest blocker to using this beyond one person.</p>
-</div></li>
-<li><div>
-<h3>One view across every campaign</h3>
-<p>Content currently lives inside whichever campaign created it. Past a handful of campaigns, "show me everything we shipped to LinkedIn last month" means clicking through each one by hand. A searchable, filterable content index is the fix, and it's next.</p>
 </div></li>
 </ol>
 </div>
