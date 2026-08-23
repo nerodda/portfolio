@@ -1,7 +1,7 @@
 ---
 name: ContentOps
 context: production
-status: TODO
+status: live
 year: TODO
 tier: registry
 summary: Brand-aware content generation, a channel pipeline, and a feedback loop from performance.

@@ -1,6 +1,8 @@
 /** Maps a `stack` entry (frontmatter) to its logo asset. Tools without an entry render without a logo. */
 export const TOOL_LOGOS: Record<string, string> = {
   'Relevance AI': '/logos/relevanceai.png',
+  Notion: '/logos/notion.svg',
+  WordPress: '/logos/wordpress.svg',
   Slack: '/logos/slack.png',
   Zapier: '/logos/zapier.png',
   Make: '/logos/make.png',

@@ -15,7 +15,7 @@ interface Props {
 }
 
 const { system, prev, next, Content } = Astro.props;
-const { name, status, year, summary, outcome, lede, stack, heroImage, heroVideo, ogImage } = system.data;
+const { name, year, summary, outcome, lede, stack, heroImage, heroVideo, ogImage } = system.data;
 const ledeParagraphs = lede ?? [summary];
 const stackLogos = stack.filter((tool) => tool in TOOL_LOGOS);
 const metaDescription = isOutcomePending(outcome) ? summary : outcome;
@@ -59,7 +59,6 @@ const systemJsonLd = {
       )}
       <div class="wrap hero-inner">
         <div class="eyebrow">
-          <span>{status}</span>
           <span>{year}</span>
         </div>
         <h1>{name}</h1>
