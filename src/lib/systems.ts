@@ -6,30 +6,45 @@ export async function getAllSystems(): Promise<System[]> {
   return getCollection('systems');
 }
 
+const MONTHS = [
+  'january', 'february', 'march', 'april', 'may', 'june',
+  'july', 'august', 'september', 'october', 'november', 'december',
+];
+
 /**
- * Pulls a comparable year out of frontmatter: a plain number, or a
- * descriptive string like "April 2025" (via its first four-digit run).
- * Returns null for anything unresolved (`TODO`, no digits).
+ * Pulls a comparable year+month out of frontmatter: a plain number, or a
+ * descriptive string like "April 2025" (month name plus a four-digit year).
+ * A bare year (or no recognized month name) leaves month null. Returns null
+ * for anything unresolved (`TODO`, no digits).
  */
-function extractYear(year: number | string): number | null {
-  if (typeof year === 'number') return year;
-  const match = year.match(/\d{4}/);
-  return match ? Number(match[0]) : null;
+function extractYearMonth(year: number | string): { year: number; month: number | null } | null {
+  if (typeof year === 'number') return { year, month: null };
+  const yearMatch = year.match(/\d{4}/);
+  if (!yearMatch) return null;
+  const monthMatch = year.toLowerCase().match(new RegExp(MONTHS.join('|')));
+  const month = monthMatch ? MONTHS.indexOf(monthMatch[0]) : null;
+  return { year: Number(yearMatch[0]), month };
 }
 
 /**
- * Newest first. Entries with an unresolved (`TODO`) year sort to the end —
- * we don't know how recent they are, so they shouldn't outrank dated work.
- * `order` breaks ties (including ties between two unresolved years).
+ * Newest first, by month then year. Entries with an unresolved (`TODO`) date
+ * sort to the end — we don't know how recent they are, so they shouldn't
+ * outrank dated work. `order` only breaks ties left over after date
+ * comparison (same year+month, or both dates unresolved, or one missing a
+ * month within the same year).
  */
 function byYearDesc(a: System, b: System): number {
-  const ay = extractYear(a.data.year);
-  const by = extractYear(b.data.year);
-  if (ay !== null && by !== null) {
-    return by - ay || a.data.order - b.data.order;
+  const ad = extractYearMonth(a.data.year);
+  const bd = extractYearMonth(b.data.year);
+  if (ad !== null && bd !== null) {
+    if (ad.year !== bd.year) return bd.year - ad.year;
+    if (ad.month !== null && bd.month !== null && ad.month !== bd.month) {
+      return bd.month - ad.month;
+    }
+    return a.data.order - b.data.order;
   }
-  if (ay !== null) return -1;
-  if (by !== null) return 1;
+  if (ad !== null) return -1;
+  if (bd !== null) return 1;
   return a.data.order - b.data.order;
 }
 
