@@ -209,6 +209,10 @@ lede:
 <h3>Connected it to the tools either side</h3>
 <p>Notion as the trigger, Zapier carrying the request, and the WordPress REST API at the far end, so the pipeline runs from planning to published without a manual copy-paste anywhere in it.</p>
 </div></li>
+<li><div>
+<h3>Explored feeding it from other data sources</h3>
+<p>Two research spikes tested whether the same workflow could originate content beyond keyword research: pulling Google Maps reviews to seed geo-dependent articles for individual locations, and scraping job boards to seed job-related overview articles. Both confirmed the pipeline's shape — research first, one linear draft — generalizes past SEO keywords into other article categories.</p>
+</div></li>
 </ol>
 </div>
 </div>
