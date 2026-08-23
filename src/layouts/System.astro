@@ -15,18 +15,37 @@ interface Props {
 }
 
 const { system, prev, next, Content } = Astro.props;
-const { name, year, summary, outcome, lede, stack, heroImage, heroVideo, ogImage } = system.data;
+const { name, year, summary, outcome, lede, stack, flow, heroImage, heroVideo, ogImage } = system.data;
 const ledeParagraphs = lede ?? [summary];
 const stackLogos = stack.filter((tool) => tool in TOOL_LOGOS);
 const metaDescription = isOutcomePending(outcome) ? summary : outcome;
+
+const pageURL = new URL(Astro.url.pathname, Astro.site).toString();
+const imagePath = ogImage ?? heroImage;
+const numericYear = typeof year === 'number' ? String(year) : year.match(/\d{4}/)?.[0];
 
 const systemJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'CreativeWork',
   name,
+  headline: name,
   description: metaDescription,
-  author: { '@type': 'Person', name: 'Olga Neroda' },
-  ...(typeof year === 'number' ? { dateCreated: String(year) } : {}),
+  url: pageURL,
+  mainEntityOfPage: pageURL,
+  ...(imagePath ? { image: new URL(imagePath, Astro.site).toString() } : {}),
+  author: { '@type': 'Person', name: 'Olga Neroda', url: new URL('/about', Astro.site).toString() },
+  genre: 'Case study',
+  inLanguage: 'en',
+  keywords: stack.join(', '),
+  ...(numericYear ? { dateCreated: numericYear } : {}),
+};
+
+const howToJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: `How ${name} works`,
+  description: metaDescription,
+  step: flow.map((label, i) => ({ '@type': 'HowToStep', position: i + 1, name: label })),
 };
 ---
 
@@ -35,7 +54,7 @@ const systemJsonLd = {
   description={metaDescription}
   ogType="article"
   image={ogImage ?? heroImage}
-  jsonLd={systemJsonLd}
+  jsonLd={[systemJsonLd, howToJsonLd]}
 >
   <SiteHeader />
 
