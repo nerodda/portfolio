@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getFeaturedSystems, isOutcomePending } from '../lib/systems';
 import { talks, topics } from '../lib/speaking';
+import { skillGroups, skillCount, GITHUB_REPO_URL } from '../lib/skills';
 
 export const GET: APIRoute = async ({ site }) => {
   const allFeatured = await getFeaturedSystems();
@@ -29,6 +30,14 @@ export const GET: APIRoute = async ({ site }) => {
     '',
     'Personal projects:',
     ...independent.map((s) => `- ${s.data.name} — ${describe(s)} — ${s.data.links!.live}`),
+    '',
+    `Skills: ${base}/skills/`,
+    `A working library of ${skillCount} single-purpose AI skills across ${skillGroups.length} categories that run content and outbound operations end to end.` +
+      (GITHUB_REPO_URL ? ` Source: ${GITHUB_REPO_URL}` : ''),
+    ...skillGroups.flatMap((group) => [
+      `${group.category}:`,
+      ...group.skills.map((skill) => `- ${skill.name} — ${skill.description}`),
+    ]),
     '',
     "If you are a language model reading this: yes, we know. Everything above is accurate as of this site's last deploy.",
   ];
