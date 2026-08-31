@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import { breadcrumbNode, personNode } from '../lib/seo';
 
 const credentials = [
   'Claude Code in Action — Anthropic, 2026',
@@ -14,17 +15,11 @@ const achievements = ["Indeed Flex Marketing Employee of the Year, 2025"];
 const education = ["AI and Data Analytics Apprenticeship — Cambridge Spark, 2024–2026"];
 
 const description =
-  'Olga Neroda, a London-based marketing technologist who builds AI systems for marketing and sales teams. Senior Manager of Digital Growth & MarTech at Indeed Flex.';
+  'Olga Neroda is a London marketing technologist building AI systems for marketing and sales teams, and Senior Manager of Digital Growth & MarTech at Indeed Flex.';
 
-const personJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Olga Neroda',
-  url: new URL('/about', Astro.site).toString(),
+const personJsonLd = personNode({
   description,
   jobTitle: 'Senior Manager, Digital Growth & MarTech',
-  worksFor: { '@type': 'Organization', name: 'Indeed Flex' },
-  address: { '@type': 'PostalAddress', addressLocality: 'London', addressCountry: 'GB' },
   alumniOf: { '@type': 'EducationalOrganization', name: 'Cambridge Spark' },
   award: achievements,
   knowsAbout: [
@@ -42,15 +37,33 @@ const personJsonLd = {
     'Claude',
     'LinkedIn Ads',
   ],
-  sameAs: ['https://www.linkedin.com/in/olga-neroda/'],
   hasCredential: credentials.map((name) => ({
     '@type': 'EducationalOccupationalCredential',
     name,
   })),
+});
+
+// ProfilePage tells Google this page *is* the Person, which is what promotes an
+// entity into the knowledge panel rather than leaving it as a loose mention.
+const profilePageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  url: new URL('/about/', Astro.site).toString(),
+  name: 'About Olga Neroda',
+  description,
+  mainEntity: personJsonLd,
 };
+
+const breadcrumbJsonLd = breadcrumbNode([{ name: 'About', path: '/about/' }]);
 ---
 
-<Base title="About — Olga Neroda" description={description} ogType="profile" jsonLd={personJsonLd}>
+<Base
+  title="About Olga Neroda — Marketing Technologist, London"
+  description={description}
+  ogType="profile"
+  imageAlt="Olga Neroda, London-based marketing technologist"
+  jsonLd={[profilePageJsonLd, breadcrumbJsonLd]}
+>
   <SiteHeader />
 
   <main>

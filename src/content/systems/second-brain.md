@@ -136,13 +136,13 @@ lede:
 </figure>
 <figure>
 <div class="diagram pastel-b">
-<img src="/images/second-brain-cursor-hub.png" alt="Diagram from the internal rollout deck showing Cursor at the center, connected to Slack, Snowflake, Tableau, Salesforce, Outreach, Headless CMS and Kaia." loading="lazy" />
+<img src="/images/second-brain-cursor-hub.png" width="2877" height="1620" alt="Diagram from the internal rollout deck showing Cursor at the center, connected to Slack, Snowflake, Tableau, Salesforce, Outreach, Headless CMS and Kaia." loading="lazy" />
 </div>
 <figcaption>From the internal rollout deck: Cursor as the brain interface. Every connected system feeds it, and every team self-serves from it in one place.</figcaption>
 </figure>
 <figure>
 <div class="diagram pastel-c">
-<img src="/images/second-brain-context-structure.png" alt="The context/ knowledge architecture from the internal rollout deck, showing folders for brand, personas, market, product, proof, competition, selling, sops, and the registry trust spine." loading="lazy" />
+<img src="/images/second-brain-context-structure.png" width="2877" height="1620" alt="The context/ knowledge architecture from the internal rollout deck, showing folders for brand, personas, market, product, proof, competition, selling, sops, and the registry trust spine." loading="lazy" />
 </div>
 <figcaption>The context/ folder structure the assistant navigates instead of searching: brand, personas, market and product on one side, proof, competition, selling and sops on the other, all anchored by a registry that tracks claims, conflicts, gaps and sources.</figcaption>
 </figure>

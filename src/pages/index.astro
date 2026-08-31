@@ -4,24 +4,56 @@ import SiteHeader from '../components/SiteHeader.astro';
 import RegistryGroup from '../components/RegistryGroup.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { getSystemsByContext } from '../lib/systems';
+import { isOutcomePending } from '../lib/systems';
+import { SITE_URL, personNode, personRef, webSiteNode } from '../lib/seo';
 
 const production = await getSystemsByContext('production');
 const independent = await getSystemsByContext('independent');
 
-const personJsonLd = {
+const description =
+  'Olga Neroda is a London marketing technologist building AI systems for revenue and marketing teams — production pipelines, case studies and independent builds.';
+
+const personJsonLd = personNode({
+  description,
+  knowsAbout: [
+    'AI systems for marketing and sales',
+    'Marketing automation',
+    'Demand generation',
+    'MarTech',
+    'Revenue operations',
+  ],
+});
+
+// The registry is the homepage's actual content. Expressing it as an ItemList
+// tells crawlers these are the site's primary entities, not incidental links.
+const registryJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Olga Neroda',
-  url: Astro.site?.toString(),
-  jobTitle: 'Marketing Technologist',
-  description: 'AI systems for revenue and marketing teams — production pipelines, case studies, and independent builds.',
+  '@type': 'ItemList',
+  name: 'Systems built by Olga Neroda',
+  url: `${SITE_URL}/`,
+  itemListOrder: 'https://schema.org/ItemListOrderDescending',
+  itemListElement: [...production, ...independent].map((system, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'CreativeWork',
+      name: system.data.name,
+      description: isOutcomePending(system.data.outcome) ? system.data.summary : system.data.outcome,
+      url:
+        system.data.tier === 'featured'
+          ? `${SITE_URL}/systems/${system.id}/`
+          : system.data.links?.live,
+      creator: personRef,
+    },
+  })),
 };
 ---
 
 <Base
-  title="Olga Neroda"
-  description="AI systems for revenue and marketing teams — production pipelines, case studies, and independent builds."
-  jsonLd={personJsonLd}
+  title="Olga Neroda — Marketing Technologist, AI Systems"
+  description={description}
+  imageAlt="Olga Neroda — marketing technologist building AI systems for revenue and marketing teams"
+  jsonLd={[webSiteNode(), personJsonLd, registryJsonLd]}
 >
   <SiteHeader />
 

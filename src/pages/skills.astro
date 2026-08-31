@@ -3,12 +3,12 @@ import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { skillGroups, skillCount, GITHUB_REPO_URL } from '../lib/skills';
+import { breadcrumbNode, personRef } from '../lib/seo';
 
 const description =
   `A browsable, searchable library of ${skillCount} AI skills across ${skillGroups.length} categories — LinkedIn, YouTube, SEO, and outbound — for running content and lead-gen ops.`;
 
-const pageURL = new URL('/skills', Astro.site).toString();
-const authorURL = new URL('/about', Astro.site).toString();
+const pageURL = new URL('/skills/', Astro.site).toString();
 
 const skillsJsonLd = {
   '@context': 'https://schema.org',
@@ -17,7 +17,7 @@ const skillsJsonLd = {
   url: pageURL,
   description,
   ...(GITHUB_REPO_URL ? { sameAs: GITHUB_REPO_URL } : {}),
-  author: { '@type': 'Person', name: 'Olga Neroda', url: authorURL },
+  author: personRef,
   hasDefinedTerm: skillGroups.flatMap((group) =>
     group.skills.map((skill) => ({
       '@type': 'DefinedTerm',
@@ -29,37 +29,30 @@ const skillsJsonLd = {
   ),
 };
 
-const personJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Olga Neroda',
-  url: pageURL,
-  jobTitle: 'Marketing Technologist',
-  knowsAbout: skillGroups.map((g) => g.category),
-  sameAs: [
-    'https://www.linkedin.com/in/olga-neroda/',
-    'https://github.com/nerodda',
-    ...(GITHUB_REPO_URL ? [GITHUB_REPO_URL] : []),
-  ],
-};
+const breadcrumbJsonLd = breadcrumbNode([{ name: 'Skills', path: '/skills/' }]);
 
 const jsonLd = GITHUB_REPO_URL
   ? [
       skillsJsonLd,
-      personJsonLd,
+      breadcrumbJsonLd,
       {
         '@context': 'https://schema.org',
         '@type': 'SoftwareSourceCode',
         name: 'Skills library',
         description,
         codeRepository: GITHUB_REPO_URL,
-        author: { '@type': 'Person', name: 'Olga Neroda', url: authorURL },
+        author: personRef,
       },
     ]
-  : [skillsJsonLd, personJsonLd];
+  : [skillsJsonLd, breadcrumbJsonLd];
 ---
 
-<Base title="Skills — Olga Neroda" description={description} jsonLd={jsonLd}>
+<Base
+  title={`AI Skills Library — ${skillCount} Skills for Content & Outbound`}
+  description={description}
+  imageAlt="Olga Neroda's AI skills library"
+  jsonLd={jsonLd}
+>
   <SiteHeader />
 
   <main>

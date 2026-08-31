@@ -1,12 +1,10 @@
 ---
 import System from '../../layouts/System.astro';
-import { getFeaturedSystems } from '../../lib/systems';
+import { getCaseStudySystems } from '../../lib/systems';
 import { render } from 'astro:content';
 
 export async function getStaticPaths() {
-  // Personal projects link straight to their live homepage (with a hover preview)
-  // instead of an internal case study page — only production work gets one here.
-  const featured = (await getFeaturedSystems()).filter((entry) => entry.data.context === 'production');
+  const featured = await getCaseStudySystems();
 
   return featured.map((entry, i) => ({
     params: { slug: entry.id },

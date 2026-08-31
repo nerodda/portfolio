@@ -5,6 +5,7 @@ import SiteFooter from '../components/SiteFooter.astro';
 import type { System } from '../lib/systems';
 import { isOutcomePending } from '../lib/systems';
 import { MONO_DARK_LOGOS, TOOL_LOGOS } from '../lib/toolLogos';
+import { breadcrumbNode, metaDescription, personRef } from '../lib/seo';
 
 interface Props {
   system: System;
@@ -18,7 +19,12 @@ const { system, prev, next, Content } = Astro.props;
 const { name, year, summary, outcome, lede, stack, flow, heroImage, heroVideo, ogImage } = system.data;
 const ledeParagraphs = lede ?? [summary];
 const stackLogos = stack.filter((tool) => tool in TOOL_LOGOS);
-const metaDescription = isOutcomePending(outcome) ? summary : outcome;
+// `outcome` alone is a headline fragment — as short as 40 characters and often
+// missing the subject ("30+ sellers researching from one Slack channel"). Paired
+// with `summary` it reads as a description and fills the SERP snippet.
+const description = isOutcomePending(outcome)
+  ? metaDescription(summary)
+  : metaDescription(summary, outcome);
 
 const pageURL = new URL(Astro.url.pathname, Astro.site).toString();
 const imagePath = ogImage ?? heroImage;
@@ -29,11 +35,12 @@ const systemJsonLd = {
   '@type': 'CreativeWork',
   name,
   headline: name,
-  description: metaDescription,
+  description,
   url: pageURL,
   mainEntityOfPage: pageURL,
   ...(imagePath ? { image: new URL(imagePath, Astro.site).toString() } : {}),
-  author: { '@type': 'Person', name: 'Olga Neroda', url: new URL('/about', Astro.site).toString() },
+  author: personRef,
+  creator: personRef,
   genre: 'Case study',
   inLanguage: 'en',
   keywords: stack.join(', '),
@@ -44,17 +51,23 @@ const howToJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
   name: `How ${name} works`,
-  description: metaDescription,
+  description,
   step: flow.map((label, i) => ({ '@type': 'HowToStep', position: i + 1, name: label })),
 };
+
+const breadcrumbJsonLd = breadcrumbNode([
+  { name: 'Systems', path: '/' },
+  { name, path: new URL(Astro.url.pathname, Astro.site).pathname },
+]);
 ---
 
 <Base
   title={`${name} — Olga Neroda`}
-  description={metaDescription}
+  description={description}
   ogType="article"
   image={ogImage ?? heroImage}
-  jsonLd={[systemJsonLd, howToJsonLd]}
+  imageAlt={`${name} — case study by Olga Neroda`}
+  jsonLd={[systemJsonLd, howToJsonLd, breadcrumbJsonLd]}
 >
   <SiteHeader />
 
@@ -68,7 +81,7 @@ const howToJsonLd = {
           muted
           loop
           playsinline
-          preload="auto"
+          preload="metadata"
           poster={heroImage}
           aria-hidden="true"
         >

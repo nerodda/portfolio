@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { getCaseStudySystems } from '../lib/systems';
+
+const systems = (await getCaseStudySystems()).slice(0, 4);
+---
+
+<Base
+  title="Page not found — Olga Neroda"
+  description="That page does not exist. Browse the systems registry, the skills library, or the about page instead."
+  noindex
+>
+  <SiteHeader />
+
+  <main>
+    <div class="wrap hero">
+      <div class="eyebrow"><span>404</span></div>
+      <h1>Page not found</h1>
+      <div class="lede">
+        <p>That URL does not exist here. These do.</p>
+      </div>
+    </div>
+
+    <section>
+      <div class="wrap grid">
+        <div class="sec-head"><h2>Go somewhere else</h2></div>
+        <div class="body">
+          <ul class="links">
+            <li><a href="/">Systems registry</a></li>
+            <li><a href="/skills/">Skills library</a></li>
+            <li><a href="/speaking/">Speaking</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+
+          <p class="label">Recent case studies</p>
+          <ul class="links">
+            {systems.map((system) => (
+              <li><a href={`/systems/${system.id}/`}>{system.data.name}</a></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .links {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px;
+  }
+
+  .links li + li {
+    margin-top: 8px;
+  }
+
+  .label {
+    color: var(--muted);
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+</style>

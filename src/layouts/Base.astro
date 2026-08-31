@@ -6,13 +6,29 @@ interface Props {
   description: string;
   ogType?: 'website' | 'article' | 'profile';
   image?: string;
+  /** Alt text for the social preview image. Falls back to the page description. */
+  imageAlt?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** Keep a page out of the index (error pages). Everything else is indexable. */
+  noindex?: boolean;
 }
 
-const { title, description, ogType = 'website', image = '/og-image.png', jsonLd } = Astro.props;
+const {
+  title,
+  description,
+  ogType = 'website',
+  image = '/og-image.png',
+  imageAlt,
+  jsonLd,
+  noindex = false,
+} = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const imageURL = new URL(image, Astro.site);
 const jsonLdEntries = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+// Every social card on this site is rendered at the OG standard size. Declaring
+// it lets crawlers reserve the large-card slot before the image is fetched.
+const OG_IMAGE_WIDTH = 1200;
+const OG_IMAGE_HEIGHT = 630;
 ---
 
 <html lang="en">
@@ -21,8 +37,25 @@ const jsonLdEntries = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+    <!-- The latin subset covers all body copy; preloading it removes a round trip from LCP. -->
+    <link
+      rel="preload"
+      href="/fonts/inter/inter-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content="Olga Neroda" />
+    {noindex ? (
+      <meta name="robots" content="noindex, follow" />
+    ) : (
+      <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    )}
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1c1c1c" />
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="Olga Neroda" />
     <meta property="og:locale" content="en_US" />
@@ -30,12 +63,16 @@ const jsonLdEntries = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={imageURL} />
+    <meta property="og:image:width" content={String(OG_IMAGE_WIDTH)} />
+    <meta property="og:image:height" content={String(OG_IMAGE_HEIGHT)} />
+    <meta property="og:image:alt" content={imageAlt ?? description} />
     {ogType === 'profile' && <meta property="profile:first_name" content="Olga" />}
     {ogType === 'profile' && <meta property="profile:last_name" content="Neroda" />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageURL} />
+    <meta name="twitter:image:alt" content={imageAlt ?? description} />
     <meta name="generator" content={Astro.generator} />
     {jsonLdEntries.map((entry) => (
       <script type="application/ld+json" set:html={JSON.stringify(entry)} is:inline />

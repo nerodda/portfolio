@@ -3,23 +3,16 @@ import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { talks, topics } from '../lib/speaking';
+import { breadcrumbNode, personNode, personRef } from '../lib/seo';
 
 const description =
-  'Olga Neroda is a London-based marketing technologist available for conference and meetup talks on AI systems for revenue and marketing teams — agent architecture, MarTech, and build-vs-no-code tradeoffs. Open to CFPs, in person or remote.';
+  'Olga Neroda speaks on AI systems for revenue and marketing teams — agent architecture, MarTech and build-vs-no-code tradeoffs. Open to CFPs, in person or remote.';
 
-const pageURL = new URL('/speaking', Astro.site).toString();
+const pageURL = new URL('/speaking/', Astro.site).toString();
 
-const personJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Olga Neroda',
-  url: pageURL,
-  description,
-  jobTitle: 'Marketing Technologist',
-  address: { '@type': 'PostalAddress', addressLocality: 'London', addressCountry: 'GB' },
-  knowsAbout: topics,
-  sameAs: ['https://www.linkedin.com/in/olga-neroda/'],
-};
+const personJsonLd = personNode({ description, knowsAbout: topics });
+
+const breadcrumbJsonLd = breadcrumbNode([{ name: 'Speaking', path: '/speaking/' }]);
 
 const talksJsonLd = {
   '@context': 'https://schema.org',
@@ -35,13 +28,18 @@ const talksJsonLd = {
       description: talk.abstract,
       genre: 'Conference talk',
       keywords: talk.draws_on.join(', '),
-      author: { '@type': 'Person', name: 'Olga Neroda', url: new URL('/about', Astro.site).toString() },
+      author: personRef,
     },
   })),
 };
 ---
 
-<Base title="Speaking — Olga Neroda" description={description} jsonLd={[personJsonLd, talksJsonLd]}>
+<Base
+  title="Speaking — AI Systems for Revenue Teams | Olga Neroda"
+  description={description}
+  imageAlt="Olga Neroda — speaker on AI systems for revenue and marketing teams"
+  jsonLd={[personJsonLd, talksJsonLd, breadcrumbJsonLd]}
+>
   <SiteHeader />
 
   <main>

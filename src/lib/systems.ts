@@ -58,6 +58,16 @@ export async function getFeaturedSystems(): Promise<System[]> {
   return all.filter((s) => s.data.tier === 'featured').sort(byYearDesc);
 }
 
+/**
+ * Systems that get an internal case-study page at `/systems/<id>/`. Personal
+ * projects link straight to their live homepage instead, so featured alone is
+ * not enough — linking to one of those internally produces a 404.
+ */
+export async function getCaseStudySystems(): Promise<System[]> {
+  const featured = await getFeaturedSystems();
+  return featured.filter((s) => s.data.context === 'production');
+}
+
 /** Whether an outcome is still a placeholder — display should fall back to an arrow, not the literal string. */
 export function isOutcomePending(outcome: string): boolean {
   return outcome === 'TODO';
