@@ -4,11 +4,18 @@ context: production
 status: live
 year: June 2026
 tier: featured
-summary: Compiles scattered source docs into a cited wiki that AI coding tools read from directly.
+summary: Compiles scattered docs into a cited MCP knowledge base that AI tools read from.
 outcome: 56 sellers across two regions, 10 hours of research saved each week.
 ogImage: /images/og/second-brain.png
 stack: [Model Context Protocol, Cursor, Claude Code, OpenAI, Relevance AI, Google Drive, Outreach, Salesforce, Slack, Obsidian]
 flow: [Drive corpus, Ingestion, Index, Answer & generate]
+topics:
+  - Model Context Protocol
+  - AI knowledge base
+  - AI agent guardrails
+  - Retrieval and citation
+  - Sales enablement AI
+  - AI governance
 feedback: false
 order: 6
 lede:
@@ -71,6 +78,7 @@ lede:
 <div class="wrap grid">
 <div class="sec-head"><span class="num">04</span><h2>Architecture</h2></div>
 <div class="body">
+<p class="big">Two MCP servers in front of one knowledge base. One reads, one runs governed research, and neither of them can write.</p>
 <figure>
 <p class="scroll-hint">Scroll to see the full diagram</p>
 <div class="diagram">
@@ -176,7 +184,7 @@ lede:
 </div></li>
 <li><div>
 <h3>Rules the model cannot talk itself out of</h3>
-<p>Every rule above started life as an instruction. Answer from the knowledge base. Cite the page. Use the governed research path, not a raw one. Instructions are advice. A capable model follows them, a weaker one skips them, and nobody finds out until the output is already in front of a client.</p>
+<p>Every rule above started life as an instruction. Answer from the knowledge base. Cite the page. Use the governed research path, not a raw one. Instructions are advice, and a guardrail that is only advice is not a guardrail. A capable model follows them, a weaker one skips them, and nobody finds out until the output is already in front of a client.</p>
 <p>So the rules that can be enforced by tool identity now are. A check runs in front of every tool call and blocks the ungoverned research API outright, because that case is unambiguous: our own servers have their own names, so there is nothing to misread. Rival enrichment tools are pointed at the governed path instead of blocked, because that check never sees the question and cannot know whether a given call is about our account or someone else&rsquo;s.</p>
 <p>That line is the decision. Hard enforce only what can be enforced without guessing, and leave the rest as instruction rather than break legitimate work in order to look strict.</p>
 </div></li>

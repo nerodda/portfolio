@@ -16,7 +16,7 @@ interface Props {
 }
 
 const { system, prev, next, Content } = Astro.props;
-const { name, year, summary, outcome, lede, stack, flow, heroImage, heroVideo, ogImage } = system.data;
+const { name, year, summary, outcome, lede, stack, topics, flow, heroImage, heroVideo, ogImage } = system.data;
 const ledeParagraphs = lede ?? [summary];
 const stackLogos = stack.filter((tool) => tool in TOOL_LOGOS);
 // `outcome` alone is a headline fragment — as short as 40 characters and often
@@ -43,7 +43,11 @@ const systemJsonLd = {
   creator: personRef,
   genre: 'Case study',
   inLanguage: 'en',
-  keywords: stack.join(', '),
+  // `keywords` carries the tools; `about` carries the subject matter. Search
+  // engines and language models use the latter to work out what the page is
+  // *for*, which a list of vendor names does not tell them.
+  keywords: [...new Set([...stack, ...(topics ?? [])])].join(', '),
+  ...(topics?.length ? { about: topics.map((topic) => ({ '@type': 'Thing', name: topic })) } : {}),
   ...(numericYear ? { dateCreated: numericYear } : {}),
 };
 
