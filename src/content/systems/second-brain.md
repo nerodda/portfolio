@@ -209,7 +209,7 @@ lede:
 <li><div>
 <h3>Designing the running cost down</h3>
 <p>A system that reprocesses everything nightly with a language model has a bill that grows with the knowledge base. So the sync filters on last updated time and only touches records that actually changed. Pipeline data is written deterministically with no model call at all. A cheap cache check runs before a new company folder is created, so the same account does not get filed twice under two spellings.</p>
-<p>The bill is the test of whether that worked. Both regions, 56 people, three months: 208 dollars of model spend across roughly nine thousand calls. Six hundred and thirty four million input tokens went through it and three quarters of those were served from cache rather than paid for at full rate.</p>
+<p>The bill is the test of whether that worked. Six hundred and thirty four million input tokens have gone through the pipeline across roughly nine thousand model calls, and three quarters of those tokens were served from cache rather than paid for at full rate.</p>
 </div></li>
 <li><div>
 <h3>Shipping updates with no marketplace to ship through</h3>
@@ -231,7 +231,6 @@ lede:
 <div class="metric"><span class="fig">2</span><span class="cap">regions running from one server, with content access scoped by token</span></div>
 <div class="metric"><span class="fig">16</span><span class="cap">skills on one knowledge layer, from cited answers to editable client decks</span></div>
 <div class="metric"><span class="fig">56</span><span class="cap">sellers onboarded across the two regions, around 15 of them on a typical working day</span></div>
-<div class="metric"><span class="fig">$208</span><span class="cap">of model spend to run both regions since July, measured rather than budgeted</span></div>
 <div class="metric"><span class="fig">10 hrs</span><span class="cap">of research time saved per seller each week</span></div>
 <div class="metric"><span class="fig">40 hrs</span><span class="cap">of designer time saved per week</span></div>
 </div>
