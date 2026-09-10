@@ -59,8 +59,9 @@ lede:
 <div class="wrap grid">
 <div class="sec-head"><span class="num">03</span><h2>What was built</h2></div>
 <div class="body">
-<p class="big">One plugin, 16 skills, built on one knowledge layer.</p>
-<p>It runs as a plugin inside the tools sellers already have open, so there is no new application to log into. Sixteen skills sit on top of the same knowledge layer: cited question and answer, live enrichment, a value selling methodology engine, a voice layer that makes the output read like the seller who sends it rather than like an AI, and a branded asset generator.</p>
+<p class="big">One knowledge layer, with 16 skills on top of it. The layer is the part that matters.</p>
+<p>The asset here is not the assistant. It is what sits underneath: every account, call, email and piece of positioning the company owns, written down in one place with its source attached. That gets more complete every month, and it would survive being pointed at a different model, a different editor, or whatever replaces both in two years.</p>
+<p>The skills are the replaceable half. Sixteen of them read the same layer, and they run inside the tools sellers already have open so there is no new application to log into: cited question and answer, live enrichment, a value selling methodology engine, a voice layer that makes output read like the seller who sends it rather than like an AI, and a branded asset generator.</p>
 <p>The generator covers decks, one pagers, tenders and RFP responses, ebooks, email headers, business cards and motion. The interesting part is that it refuses to ship a bad one. A build fails on dead space rather than leaving it to the eye, a photograph is cropped against the faces in it rather than its center, and the brand fonts travel inside the file so PowerPoint cannot quietly substitute its own.</p>
 </div>
 </div>
@@ -210,6 +211,7 @@ lede:
 <h3>Designing the running cost down</h3>
 <p>A system that reprocesses everything nightly with a language model has a bill that grows with the knowledge base. So the sync filters on last updated time and only touches records that actually changed. Pipeline data is written deterministically with no model call at all. A cheap cache check runs before a new company folder is created, so the same account does not get filed twice under two spellings.</p>
 <p>The bill is the test of whether that worked. Six hundred and thirty four million input tokens have gone through the pipeline across roughly nine thousand model calls, and three quarters of those tokens were served from cache rather than paid for at full rate.</p>
+<p>The advice going around is to burn tokens rather than headcount, and for work that produces something new I agree with it. This is the other half of the same argument. Reprocessing a record that has not changed since last night produces nothing, and a pipeline that does it anyway spends its budget on waste instead of on the questions people are actually asking. Be cheap where the work is mechanical, so there is room to be generous where the work is thinking.</p>
 </div></li>
 <li><div>
 <h3>Shipping a fix without asking fifty people to reinstall</h3>
@@ -272,7 +274,34 @@ lede:
 
 <section>
 <div class="wrap grid">
-<div class="sec-head"><span class="num">09</span><h2>Inside the knowledge graph</h2></div>
+<div class="sec-head"><span class="num">09</span><h2>Where this is going</h2></div>
+<div class="body">
+<p class="big">Today the system tells you what it does not know. Next it should go and find out.</p>
+<p>Here is what happens now. A seller asks about a company we have never worked with. The assistant says there is no page for it and names the source that would have to be added. That is the right answer and it is the reason people trust the thing. Then nothing happens. The gap sits there until a person notices, and the next seller who asks that question gets the same empty answer.</p>
+<p>The system should close that gap by itself, and three of the four parts it would need already exist. Every question is logged, so it knows which ones failed. Enrichment can already research a company on request. The backend already owns every write, so there is one safe route for a new page to arrive. What is missing is the part that connects them.</p>
+<ol class="stack">
+<li><div>
+<h3>Read the questions that failed</h3>
+<p>Every unanswered question is already recorded and nobody reads the list. It is the most useful thing this system produces, because it says in the sales team&rsquo;s own words what they needed and did not get.</p>
+</div></li>
+<li><div>
+<h3>Decide which kind of gap it is</h3>
+<p>There are three, and each has a different fix. No page for the company, so research it and file it. A page that exists but is out of date, so rebuild it from the latest calls and pipeline. Or a question the wiki was never built to answer, which is the one that should come to me rather than be guessed at.</p>
+</div></li>
+<li><div>
+<h3>Ask the question again the next morning</h3>
+<p>If it comes back with a cited answer, the gap is closed. If it does not, it goes back in the queue rather than being marked done. Without that check there is no loop, only a to do list that fills up.</p>
+</div></li>
+</ol>
+<p>None of this changes what a seller does. They ask questions the same way they do now, and over months fewer of those come back empty, without anyone having to file a request for the page they needed.</p>
+<p>There is a line I would not cross to get it. This loop can research a company, refresh a stale page and rebuild one from newer data. It cannot decide what is true about a client. Everything it produces still arrives through the backend with its source attached, and the assistant still has no way to write. A system that repairs itself is worth building. A system that can quietly change what the sales team believes is not.</p>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap grid">
+<div class="sec-head"><span class="num">10</span><h2>Inside the knowledge graph</h2></div>
 <div class="body">
 <figure>
 <div class="diagram pastel-b">
