@@ -5,7 +5,7 @@ status: live
 year: June 2026
 tier: featured
 summary: Compiles scattered source docs into a cited wiki that AI coding tools read from directly.
-outcome: 50 sellers across two regions, 10 hours of research saved each week.
+outcome: 56 sellers across two regions, 10 hours of research saved each week.
 ogImage: /images/og/second-brain.png
 stack: [Model Context Protocol, Cursor, Claude Code, OpenAI, Relevance AI, Google Drive, Outreach, Salesforce, Slack, Obsidian]
 flow: [Drive corpus, Ingestion, Index, Answer & generate]
@@ -22,7 +22,7 @@ lede:
 <dl class="facts">
 <div><dt>Role</dt><dd>AI Martech Manager. I owned the product, the roadmap, the architecture decisions, and teams onboarding.</dd></div>
 <div><dt>Timeframe</dt><dd>June 2026 to present. Shipped and in daily use by the US and UK sales team.</dd></div>
-<div><dt>Team</dt><dd>An engineer from an external development partner and a brand designer. I was the only product and domain owner.</dd></div><div><dt>Built with</dt><dd>Model Context Protocol, Cursor or Claude plugin architecture, Relevance AI, Google Drive, Outreach, Salesforce.</dd></div>
+<div><dt>Team</dt><dd>An engineer from an external development partner and a brand designer. I was the only product and domain owner.</dd></div><div><dt>Built with</dt><dd>Model Context Protocol, Cursor and Claude plugin architecture, Relevance AI, OpenAI, Google Drive, Outreach, Salesforce, Slack.</dd></div>
 </dl>
 </div>
 </div>
@@ -48,7 +48,7 @@ lede:
 </div></li>
 <li><div>
 <h3>Every deck and one-pager built by hand</h3>
-<p>A sales deck took hours in Figma or PowerPoint, a one-pager took most of an afternoon, and fonts, colours and spacing drifted off-brand from asset to asset. One team was the bottleneck for every request, and every new asset re-solved problems already solved before.</p>
+<p>A sales deck took hours in Figma or PowerPoint, a one-pager took most of an afternoon, and fonts, colors and spacing drifted off-brand from asset to asset. One team was the bottleneck for every request, and every new asset re-solved problems already solved before.</p>
 </div></li>
 </ol>
 </div>
@@ -59,8 +59,9 @@ lede:
 <div class="wrap grid">
 <div class="sec-head"><span class="num">03</span><h2>What was built</h2></div>
 <div class="body">
-<p class="big">One plugin, 15+ skills, built on one knowledge layer.</p>
-<p>It runs as a plugin inside the tools sellers already have open, so there is no new application to log into. 15+ skills sit on top of the same knowledge layer: cited question and answer, live enrichment, a value selling methodology engine, and a branded asset generator that produces editable client decks and one pagers.</p>
+<p class="big">One plugin, 16 skills, built on one knowledge layer.</p>
+<p>It runs as a plugin inside the tools sellers already have open, so there is no new application to log into. Sixteen skills sit on top of the same knowledge layer: cited question and answer, live enrichment, a value selling methodology engine, a voice layer that makes the output read like the seller who sends it rather than like an AI, and a branded asset generator.</p>
+<p>The generator covers decks, one pagers, tenders and RFP responses, ebooks, email headers, business cards and motion. The interesting part is that it refuses to ship a bad one. A build fails on dead space rather than leaving it to the eye, a photograph is cropped against the faces in it rather than its center, and the brand fonts travel inside the file so PowerPoint cannot quietly substitute its own.</p>
 </div>
 </div>
 </section>
@@ -83,14 +84,15 @@ lede:
 <path class="flow" d="M500,58 L500,96" marker-end="url(#ah)"></path>
 <rect class="box" x="100" y="98" width="800" height="118" rx="2"></rect>
 <text class="t-tiny" x="124" y="122">Interface</text>
+<text class="t-tiny" x="876" y="122" text-anchor="end">16 skills, 6 shown</text>
 <text class="t-title" x="124" y="146">Second Brain plugin, running inside Cursor or Claude</text>
 <g class="t-pill" text-anchor="middle">
 <rect class="pill" x="124" y="162" width="116" height="30" rx="2"></rect><text x="182" y="181">ask-wiki</text>
 <rect class="pill" x="248" y="162" width="108" height="30" rx="2"></rect><text x="302" y="181">enrich</text>
 <rect class="pill" x="364" y="162" width="136" height="30" rx="2"></rect><text x="432" y="181">value-selling</text>
 <rect class="pill" x="508" y="162" width="124" height="30" rx="2"></rect><text x="570" y="181">brand-deck</text>
-<rect class="pill" x="640" y="162" width="132" height="30" rx="2"></rect><text x="706" y="181">brand-assets</text>
-<rect class="pill" x="780" y="162" width="96" height="30" rx="2"></rect><text x="828" y="181">help</text>
+<rect class="pill" x="640" y="162" width="104" height="30" rx="2"></rect><text x="692" y="181">voice</text>
+<rect class="pill" x="752" y="162" width="116" height="30" rx="2"></rect><text x="810" y="181">feedback</text>
 </g>
 <path class="flow" d="M500,216 L500,242"></path>
 <path class="flow" d="M270,242 L730,242"></path>
@@ -154,7 +156,7 @@ lede:
 <div class="wrap grid">
 <div class="sec-head"><span class="num">05</span><h2>Design decisions</h2></div>
 <div class="body">
-<p class="big">Four calls that decide whether a system like this gets used or quietly abandoned.</p>
+<p class="big">Five calls that decide whether a system like this gets used or quietly abandoned.</p>
 <ol class="stack">
 <li><div>
 <h3>Navigate, do not search</h3>
@@ -172,6 +174,12 @@ lede:
 <p>The cost is real: users cannot tell the system to remember something, and that surprises people. The benefit is that a shared source of truth used by a whole sales team cannot be corrupted by one confused chat session. For a system whose only asset is trust, that trade is worth making.</p>
 </div></li>
 <li><div>
+<h3>Rules the model cannot talk itself out of</h3>
+<p>Every rule above started life as an instruction. Answer from the knowledge base. Cite the page. Use the governed research path, not a raw one. Instructions are advice. A capable model follows them, a weaker one skips them, and nobody finds out until the output is already in front of a client.</p>
+<p>So the rules that can be enforced by tool identity now are. A check runs in front of every tool call and blocks the ungoverned research API outright, because that case is unambiguous: our own servers have their own names, so there is nothing to misread. Rival enrichment tools are pointed at the governed path instead of blocked, because that check never sees the question and cannot know whether a given call is about our account or someone else&rsquo;s.</p>
+<p>That line is the decision. Hard enforce only what can be enforced without guessing, and leave the rest as instruction rather than break legitimate work in order to look strict.</p>
+</div></li>
+<li><div>
 <h3>Research once, then reuse</h3>
 <p>A live research run does two things. It answers the person waiting, clearly labeled as fresh and not yet filed. It also queues the result for ingestion, so the same question next month is a cited page instead of another paid research run.</p>
 <p>Every filed result carries a date stamp, so a seller can see at a glance how stale it is and rerun the research themselves if the account has moved on.</p>
@@ -186,7 +194,7 @@ lede:
 <div class="wrap grid">
 <div class="sec-head"><span class="num">06</span><h2>How I delivered it</h2></div>
 <div class="body">
-<p>I ran this as the product owner with a two person external engineering team on a fixed hour contract and an internal brand designer. I set the roadmap, made the data and architecture calls, and ran the rollout. Three decisions were mine and worth showing.</p>
+<p>I ran this as the product owner with an engineer from an external development partner on a fixed hour contract and an internal brand designer. I set the roadmap, made the data and architecture calls, and ran the rollout. Four decisions were mine and worth showing.</p>
 <ol class="stack">
 <li><div>
 <h3>Two connections to one system, because neither was enough</h3>
@@ -201,6 +209,14 @@ lede:
 <li><div>
 <h3>Designing the running cost down</h3>
 <p>A system that reprocesses everything nightly with a language model has a bill that grows with the knowledge base. So the sync filters on last updated time and only touches records that actually changed. Pipeline data is written deterministically with no model call at all. A cheap cache check runs before a new company folder is created, so the same account does not get filed twice under two spellings.</p>
+<p>The bill is the test of whether that worked. Six hundred and thirty four million input tokens have gone through the pipeline across roughly nine thousand model calls, and three quarters of those tokens were served from cache rather than paid for at full rate.</p>
+</div></li>
+<li><div>
+<h3>Shipping updates with no marketplace to ship through</h3>
+<p>There was no internal listing to publish to, so every install was a zip file and a manual step. That is fine for ten people and untenable for fifty. Every fix meant asking the whole sales team to reinstall, and the ones who did not were quietly running a version I had stopped supporting.</p>
+<p>So the bundle updates itself. It checks its own release channel about once an hour, verifies the download against a checksum, refuses anything older than what is already installed, and swaps it in atomically. Credentials never cross the wire: the release ships without them and each install puts its own back in locally. Nothing changes mid conversation, and the new version is picked up on the next window reload.</p>
+<p>It took three releases to get right and two of those made it worse. The first self updater broke its own configuration check, so any install that arrived by update stopped looking for the next one. It updated once, then went quiet. That is the failure you find last, because from the outside everything looks like it is working.</p>
+<p>I am still paying for it. Thirty seven of the fifty six installs are sitting on a version that cannot update itself, and every one of them has to be reinstalled by hand once. Their usage up to that point matched everyone else&rsquo;s, so these are not people who had already drifted away. It is the clearest argument I have for the marketplace listing. Self update solved delivery. It could not undo the release that broke it.</p>
 </div></li>
 </ol>
 </div>
@@ -213,8 +229,8 @@ lede:
 <div class="body">
 <div class="metrics">
 <div class="metric"><span class="fig">2</span><span class="cap">regions running from one server, with content access scoped by token</span></div>
-<div class="metric"><span class="fig">15+</span><span class="cap">skills on one knowledge layer, from cited answers to editable client decks</span></div>
-<div class="metric"><span class="fig">50</span><span class="cap">sellers onboarded</span></div>
+<div class="metric"><span class="fig">16</span><span class="cap">skills on one knowledge layer, from cited answers to editable client decks</span></div>
+<div class="metric"><span class="fig">56</span><span class="cap">sellers onboarded across the two regions, around 15 of them on a typical working day</span></div>
 <div class="metric"><span class="fig">10 hrs</span><span class="cap">of research time saved per seller each week</span></div>
 <div class="metric"><span class="fig">40 hrs</span><span class="cap">of designer time saved per week</span></div>
 </div>
@@ -244,8 +260,16 @@ lede:
 <span class="what">UK expansion<span>Requested by UK leadership after a demo. Delivered as token scoped regional roots on the existing server.</span></span>
 </li>
 <li>
+<span class="when">September 2026</span>
+<span class="what">Self updating distribution<span>The bundle checks its own release channel, verifies the download and swaps itself in. Ends the reinstall request to fifty people every time something is fixed.</span></span>
+</li>
+<li>
+<span class="when">September 2026</span>
+<span class="what">Measurement, and a feedback channel inside the tool<span>Adoption is recorded rather than estimated. The first ten days of September carried 2,100 questions from 47 people, against 518 across the whole of August. Reporting a problem became a command that attaches the tail of the conversation and the tool calls behind it, so a bug no longer has to be reconstructed from memory.</span></span>
+</li>
+<li>
 <span class="when">In progress</span>
-<span class="what">Internal AI marketplace listing<span>Moves distribution from a manual install to a governed internal listing. Currently working through how authentication should be handled for a wider audience.</span></span>
+<span class="what">Internal AI marketplace listing<span>Self update solved delivery. The listing moves distribution itself from a manual install to a governed internal one. The open question is how authentication should be handled for a wider audience.</span></span>
 </li>
 </ul>
 </div>
