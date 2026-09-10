@@ -212,8 +212,8 @@ lede:
 <p>The bill is the test of whether that worked. Six hundred and thirty four million input tokens have gone through the pipeline across roughly nine thousand model calls, and three quarters of those tokens were served from cache rather than paid for at full rate.</p>
 </div></li>
 <li><div>
-<h3>Shipping updates with no marketplace to ship through</h3>
-<p>There was no internal listing to publish to, so every install was a zip file and a manual step. That is fine for ten people and untenable for fifty. Every fix meant asking the whole sales team to reinstall, and the ones who did not were quietly running a version I had stopped supporting.</p>
+<h3>Shipping a fix without asking fifty people to reinstall</h3>
+<p>There was no channel to publish to, so every install was a zip file and a manual step. That is fine for ten people and untenable for fifty. Every fix meant asking the whole sales team to reinstall, and the ones who did not were quietly running a version I had stopped supporting.</p>
 <p>So the bundle updates itself. It checks its own release channel about once an hour, verifies the download against a checksum, refuses anything older than what is already installed, and swaps it in atomically. Credentials never cross the wire: the release ships without them and each install puts its own back in locally. Nothing changes mid conversation, and the new version is picked up on the next window reload.</p>
 </div></li>
 </ol>
