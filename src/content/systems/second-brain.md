@@ -228,7 +228,7 @@ lede:
 <div class="metrics">
 <div class="metric"><span class="fig">2</span><span class="cap">regions running from one server, with content access scoped by token</span></div>
 <div class="metric"><span class="fig">16</span><span class="cap">skills on one knowledge layer, from cited answers to editable client decks</span></div>
-<div class="metric"><span class="fig">56</span><span class="cap">sellers onboarded across the two regions, around 15 of them on a typical working day</span></div>
+<div class="metric"><span class="fig">56</span><span class="cap">sellers onboarded across the two regions</span></div>
 <div class="metric"><span class="fig">10 hrs</span><span class="cap">of research time saved per seller each week</span></div>
 <div class="metric"><span class="fig">40 hrs</span><span class="cap">of designer time saved per week</span></div>
 </div>
