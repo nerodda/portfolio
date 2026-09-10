@@ -265,10 +265,6 @@ lede:
 <span class="when">September 2026</span>
 <span class="what">Measurement, and a feedback channel inside the tool<span>Adoption is recorded rather than estimated. The first ten days of September carried 2,100 questions from 47 people, against 518 across the whole of August. Reporting a problem became a command that attaches the tail of the conversation and the tool calls behind it, so a bug no longer has to be reconstructed from memory.</span></span>
 </li>
-<li>
-<span class="when">In progress</span>
-<span class="what">Internal AI marketplace listing<span>Self update solved delivery. The listing moves distribution itself from a manual install to a governed internal one. The open question is how authentication should be handled for a wider audience.</span></span>
-</li>
 </ul>
 </div>
 </div>
