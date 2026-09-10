@@ -5,7 +5,7 @@ status: live
 year: June 2026
 tier: featured
 summary: Compiles scattered source docs into a cited wiki that AI coding tools read from directly.
-outcome: 50 sellers across two regions, 10 hours of research saved each week.
+outcome: 56 sellers across two regions, 10 hours of research saved each week.
 ogImage: /images/og/second-brain.png
 stack: [Model Context Protocol, Cursor, Claude Code, OpenAI, Relevance AI, Google Drive, Outreach, Salesforce, Slack, Obsidian]
 flow: [Drive corpus, Ingestion, Index, Answer & generate]
@@ -209,12 +209,14 @@ lede:
 <li><div>
 <h3>Designing the running cost down</h3>
 <p>A system that reprocesses everything nightly with a language model has a bill that grows with the knowledge base. So the sync filters on last updated time and only touches records that actually changed. Pipeline data is written deterministically with no model call at all. A cheap cache check runs before a new company folder is created, so the same account does not get filed twice under two spellings.</p>
+<p>The bill is the test of whether that worked. Both regions, 56 people, three months: 208 dollars of model spend across roughly nine thousand calls. Six hundred and thirty four million input tokens went through it and three quarters of those were served from cache rather than paid for at full rate.</p>
 </div></li>
 <li><div>
 <h3>Shipping updates with no marketplace to ship through</h3>
 <p>There was no internal listing to publish to, so every install was a zip file and a manual step. That is fine for ten people and untenable for fifty. Every fix meant asking the whole sales team to reinstall, and the ones who did not were quietly running a version I had stopped supporting.</p>
 <p>So the bundle updates itself. It checks its own release channel about once an hour, verifies the download against a checksum, refuses anything older than what is already installed, and swaps it in atomically. Credentials never cross the wire: the release ships without them and each install puts its own back in locally. Nothing changes mid conversation, and the new version is picked up on the next window reload.</p>
-<p>It took three releases to get right and two of those made it worse. The first self updater broke its own configuration check, so any install that arrived by update stopped looking for the next one. It updated once, then went quiet. That is the failure you find last, because from the outside everything looks like it is working. Fifty people reinstalled by hand one final time.</p>
+<p>It took three releases to get right and two of those made it worse. The first self updater broke its own configuration check, so any install that arrived by update stopped looking for the next one. It updated once, then went quiet. That is the failure you find last, because from the outside everything looks like it is working.</p>
+<p>I am still paying for it. Thirty seven of the fifty six installs are sitting on a version that cannot update itself, and every one of them has to be reinstalled by hand once. Their usage up to that point matched everyone else&rsquo;s, so these are not people who had already drifted away. It is the clearest argument I have for the marketplace listing. Self update solved delivery. It could not undo the release that broke it.</p>
 </div></li>
 </ol>
 </div>
@@ -228,7 +230,8 @@ lede:
 <div class="metrics">
 <div class="metric"><span class="fig">2</span><span class="cap">regions running from one server, with content access scoped by token</span></div>
 <div class="metric"><span class="fig">16</span><span class="cap">skills on one knowledge layer, from cited answers to editable client decks</span></div>
-<div class="metric"><span class="fig">50</span><span class="cap">sellers onboarded</span></div>
+<div class="metric"><span class="fig">56</span><span class="cap">sellers onboarded across the two regions, around 15 of them on a typical working day</span></div>
+<div class="metric"><span class="fig">$208</span><span class="cap">of model spend to run both regions since July, measured rather than budgeted</span></div>
 <div class="metric"><span class="fig">10 hrs</span><span class="cap">of research time saved per seller each week</span></div>
 <div class="metric"><span class="fig">40 hrs</span><span class="cap">of designer time saved per week</span></div>
 </div>
@@ -263,7 +266,7 @@ lede:
 </li>
 <li>
 <span class="when">September 2026</span>
-<span class="what">Measurement, and a feedback channel inside the tool<span>Adoption is now recorded rather than estimated. Reporting a problem became a command that attaches the tail of the conversation and the tool calls behind it, so a bug no longer has to be reconstructed from memory.</span></span>
+<span class="what">Measurement, and a feedback channel inside the tool<span>Adoption is recorded rather than estimated. The first ten days of September carried 2,100 questions from 47 people, against 518 across the whole of August. Reporting a problem became a command that attaches the tail of the conversation and the tool calls behind it, so a bug no longer has to be reconstructed from memory.</span></span>
 </li>
 <li>
 <span class="when">In progress</span>
