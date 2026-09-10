@@ -215,8 +215,6 @@ lede:
 <h3>Shipping updates with no marketplace to ship through</h3>
 <p>There was no internal listing to publish to, so every install was a zip file and a manual step. That is fine for ten people and untenable for fifty. Every fix meant asking the whole sales team to reinstall, and the ones who did not were quietly running a version I had stopped supporting.</p>
 <p>So the bundle updates itself. It checks its own release channel about once an hour, verifies the download against a checksum, refuses anything older than what is already installed, and swaps it in atomically. Credentials never cross the wire: the release ships without them and each install puts its own back in locally. Nothing changes mid conversation, and the new version is picked up on the next window reload.</p>
-<p>It took three releases to get right and two of those made it worse. The first self updater broke its own configuration check, so any install that arrived by update stopped looking for the next one. It updated once, then went quiet. That is the failure you find last, because from the outside everything looks like it is working.</p>
-<p>I am still paying for it. Thirty seven of the fifty six installs are sitting on a version that cannot update itself, and every one of them has to be reinstalled by hand once. Their usage up to that point matched everyone else&rsquo;s, so these are not people who had already drifted away. It is the clearest argument I have for the marketplace listing. Self update solved delivery. It could not undo the release that broke it.</p>
 </div></li>
 </ol>
 </div>
