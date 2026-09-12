@@ -72,8 +72,17 @@ const breadcrumbJsonLd = breadcrumbNode([{ name: 'About', path: '/about/' }]);
   <SiteHeader />
 
   <main>
-    <div class="wrap hero">
+    <div class="wrap hero about-hero">
       <h1>About</h1>
+      <img
+        class="portrait"
+        src="/images/portrait.jpg"
+        alt="Olga Neroda"
+        width="800"
+        height="800"
+        fetchpriority="high"
+        decoding="async"
+      />
     </div>
 
     <section>
@@ -114,12 +123,89 @@ const breadcrumbJsonLd = breadcrumbNode([{ name: 'About', path: '/about/' }]);
         </div>
       </div>
     </section>
+
+    <section>
+      <div class="wrap grid">
+        <div class="sec-head">
+          <h2>Away from work</h2>
+        </div>
+        <div class="body">
+          <div class="photos">
+            <figure>
+              <img src="/images/surf-beach.jpg" alt="Carrying a longboard up the beach, cliffs behind" width="1144" height="1252" loading="lazy" decoding="async" />
+            </figure>
+            <figure>
+              <img src="/images/diving.jpg" alt="Scuba diving over a reef" width="1280" height="1050" loading="lazy" decoding="async" />
+            </figure>
+            <figure>
+              <img class="crop-top" src="/images/surf-school.jpg" alt="Coming out of the surf carrying a board" width="1032" height="1280" loading="lazy" decoding="async" />
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <SiteFooter />
 </Base>
 
 <style>
+  .about-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 48px;
+  }
+
+  /* Intrinsic width/height above keep the hero from reflowing as it loads; the
+     source is 800px square, so the displayed size is capped short of that to
+     stay sharp on a 2x screen. */
+  .portrait {
+    width: clamp(200px, 26vw, 340px);
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* Wrapping each shot in <figure> opts this column out of the 44em measure
+     via the existing `.body:has(figure)` rule, so the strip runs full width. */
+  .photos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  /* One ratio across three different source crops — two portrait, one
+     landscape — so the row reads as a set rather than a ragged edge. */
+  .photos img {
+    width: 100%;
+    /* height:auto is load-bearing — the width/height attributes are a
+       presentational hint that would otherwise pin the height and leave
+       aspect-ratio with nothing to compute. */
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+  }
+
+  /* This frame is the tallest of the three, so a centred square crop takes the
+     top of the head off. Anchor it to the top instead. */
+  .photos img.crop-top {
+    object-position: center top;
+  }
+
+  @media (max-width: 640px) {
+    .photos {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
+
   .bio-text p {
     font-size: 1.0625rem;
     line-height: 1.6;
