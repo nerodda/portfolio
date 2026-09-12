@@ -12,7 +12,7 @@ const isActive = (href: string) =>
       <span class="initial">NERODA</span>
     </a>
 
-    <button class="burger" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-extras" aria-label="Toggle menu">
+    <button class="burger" id="menu-toggle" type="button" aria-expanded="false" aria-controls="info-shell" aria-label="Toggle menu">
       <span class="burger-bar"></span>
       <span class="burger-bar"></span>
     </button>
@@ -20,12 +20,6 @@ const isActive = (href: string) =>
 
   <div class="info-shell" id="info-shell">
     <div class="wrap info-row">
-      <div class="identity" id="mobile-extras">
-        <p class="role-line">Marketing Technologist</p>
-        <p class="role-line">AI Systems</p>
-        <p class="role-line">Digital Growth</p>
-      </div>
-
       <nav class="site-nav">
         <a href="/" aria-current={isActive('/') ? 'page' : undefined}>Systems</a>
         <a href="/skills/" aria-current={isActive('/skills/') ? 'page' : undefined}>Skills</a>
@@ -137,21 +131,15 @@ const isActive = (href: string) =>
   .info-row {
     display: flex;
     flex-wrap: wrap;
+    /* Nav and the external links are the whole row now, so push them apart
+       rather than leaving them clustered where the identity block used to
+       hold the left third. */
+    justify-content: space-between;
     gap: 16px 32px;
     align-items: flex-start;
     padding-top: 20px;
     padding-bottom: 20px;
     border-top: 1px solid var(--line);
-  }
-
-  .identity {
-    flex: 1 1 200px;
-  }
-
-  .role-line {
-    font-size: var(--t-chrome);
-    color: var(--muted);
-    line-height: 1.5;
   }
 
   .site-nav {
@@ -269,17 +257,24 @@ const isActive = (href: string) =>
       display: flex;
     }
 
-    .identity,
-    .utility {
-      display: none;
+    /* Behind the burger the whole time, not just once scrolled — so the header
+       is one line at every position and the toggle means exactly one thing. */
+    .info-shell {
+      position: absolute;
+      top: calc(100% + 1px);
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      grid-template-rows: minmax(0, 0fr);
     }
 
-    .site-header.menu-open .identity {
-      display: block;
+    .info-shell .info-row {
+      border-top: none;
     }
 
-    .site-header.menu-open .utility {
-      display: flex;
+    .site-header.menu-open .info-shell {
+      grid-template-rows: minmax(0, 1fr);
+      border-bottom: 1px solid var(--line);
     }
   }
 </style>
@@ -305,8 +300,9 @@ const isActive = (href: string) =>
     });
     sizer.observe(header);
 
-    // Everything except wide-and-touch, which has neither hover nor a burger.
-    const canCollapse = matchMedia('(max-width: 640px), (hover: hover) and (min-width: 641px)');
+    // Desktop only. Below 640px the burger already keeps the row closed at
+    // every scroll position, so there is nothing for the scroll to collapse.
+    const canCollapse = matchMedia('(hover: hover) and (min-width: 641px)');
     const stillMotion = matchMedia('(prefers-reduced-motion: reduce)');
 
     // Collapsing takes the row's height out of the document, and browsers with
