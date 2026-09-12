@@ -197,39 +197,60 @@ const isActive = (href: string) =>
   }
 
   /* ---------- collapse on scroll ---------- */
-  /* Pointer-only: below 640px the burger already owns this row. */
+  /* The mechanics are unconditional; the script decides when .collapsed goes
+     on, and skips the one case with no way back — wide viewports without
+     hover, where the burger is hidden and there is nothing to reveal with. */
+  .info-shell {
+    transition: grid-template-rows 0.32s var(--easing);
+  }
+
+  .info-shell.collapsed {
+    grid-template-rows: minmax(0, 0fr);
+  }
+
+  /* Once the collapse has finished the row leaves the flow, so reopening it
+     drops a panel over the page instead of pushing it down. */
+  .info-shell.settled {
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 0;
+    right: 0;
+    background: var(--bg);
+  }
+
+  /* The header's own bottom rule already sits above the panel. */
+  .info-shell.settled .info-row {
+    border-top: none;
+  }
+
+  /* Keyboard reveal, at every width. */
+  .site-header:focus-within .info-shell {
+    grid-template-rows: minmax(0, 1fr);
+  }
+
+  .site-header:focus-within .info-shell.settled {
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* Pointer reveal. */
   @media (hover: hover) and (min-width: 641px) {
-    .info-shell {
-      transition: grid-template-rows 0.32s var(--easing);
+    .site-header:hover .info-shell {
+      grid-template-rows: minmax(0, 1fr);
     }
 
-    .info-shell.collapsed {
-      grid-template-rows: minmax(0, 0fr);
-    }
-
-    /* Once the collapse has finished the row leaves the flow, so reopening it
-       on hover drops a panel over the page instead of pushing it down. */
-    .info-shell.settled {
-      position: absolute;
-      top: calc(100% + 1px);
-      left: 0;
-      right: 0;
-      background: var(--bg);
-    }
-
-    /* The header's own bottom rule already sits above the panel. */
-    .info-shell.settled .info-row {
-      border-top: none;
-    }
-
-    .site-header:hover .info-shell.settled,
-    .site-header:focus-within .info-shell.settled {
+    .site-header:hover .info-shell.settled {
       border-bottom: 1px solid var(--line);
     }
+  }
 
-    .site-header:hover .info-shell,
-    .site-header:focus-within .info-shell {
+  /* Touch reveal: no hover to lean on, so the burger is the way back. */
+  @media (max-width: 640px) {
+    .site-header.menu-open .info-shell {
       grid-template-rows: minmax(0, 1fr);
+    }
+
+    .site-header.menu-open .info-shell.settled {
+      border-bottom: 1px solid var(--line);
     }
   }
 
@@ -284,7 +305,8 @@ const isActive = (href: string) =>
     });
     sizer.observe(header);
 
-    const canCollapse = matchMedia('(hover: hover) and (min-width: 641px)');
+    // Everything except wide-and-touch, which has neither hover nor a burger.
+    const canCollapse = matchMedia('(max-width: 640px), (hover: hover) and (min-width: 641px)');
     const stillMotion = matchMedia('(prefers-reduced-motion: reduce)');
 
     // Collapsing takes the row's height out of the document, and browsers with
@@ -309,12 +331,15 @@ const isActive = (href: string) =>
     addEventListener('resize', remeasure, { passive: true });
     document.fonts?.ready.then(remeasure);
 
-    // Only drop the row out of the flow once it has finished collapsing — at
-    // zero height the switch is invisible, and it is what lets the hover
-    // reveal overlay the page rather than shove it down. Never while hovered:
-    // a collapse interrupted by the pointer must stay in the flow.
+    // Only drop the row out of the flow once it has actually reached zero
+    // height — there the switch is invisible, and it is what lets the reveal
+    // overlay the page rather than shove it down. Measuring beats asking
+    // :hover, which says nothing on touch and can stick there after a tap;
+    // a collapse interrupted by any reveal is simply not at zero yet.
     function settle() {
-      if (collapsed && !header.matches(':hover')) shell.classList.add('settled');
+      if (collapsed && shell.getBoundingClientRect().height < 1) {
+        shell.classList.add('settled');
+      }
     }
 
     function setCollapsed(next: boolean) {
