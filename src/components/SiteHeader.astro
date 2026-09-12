@@ -18,23 +18,25 @@ const isActive = (href: string) =>
     </button>
   </div>
 
-  <div class="wrap info-row">
-    <div class="identity" id="mobile-extras">
-      <p class="role-line">Marketing Technologist</p>
-      <p class="role-line">AI Systems</p>
-      <p class="role-line">Digital Growth</p>
-    </div>
+  <div class="info-shell" id="info-shell">
+    <div class="wrap info-row">
+      <div class="identity" id="mobile-extras">
+        <p class="role-line">Marketing Technologist</p>
+        <p class="role-line">AI Systems</p>
+        <p class="role-line">Digital Growth</p>
+      </div>
 
-    <nav class="site-nav">
-      <a href="/" aria-current={isActive('/') ? 'page' : undefined}>Systems</a>
-      <a href="/skills/" aria-current={isActive('/skills/') ? 'page' : undefined}>Skills</a>
-      <a href="/speaking/" aria-current={isActive('/speaking/') ? 'page' : undefined}>Speaking</a>
-      <a href="/about/" aria-current={isActive('/about/') ? 'page' : undefined}>About</a>
-    </nav>
+      <nav class="site-nav">
+        <a href="/" aria-current={isActive('/') ? 'page' : undefined}>Systems</a>
+        <a href="/skills/" aria-current={isActive('/skills/') ? 'page' : undefined}>Skills</a>
+        <a href="/speaking/" aria-current={isActive('/speaking/') ? 'page' : undefined}>Speaking</a>
+        <a href="/about/" aria-current={isActive('/about/') ? 'page' : undefined}>About</a>
+      </nav>
 
-    <div class="utility">
-      <a href="https://github.com/nerodda">GitHub</a>
-      <a href="https://www.linkedin.com/in/olga-neroda/">LinkedIn</a>
+      <div class="utility">
+        <a href="https://github.com/nerodda">GitHub</a>
+        <a href="https://www.linkedin.com/in/olga-neroda/">LinkedIn</a>
+      </div>
     </div>
   </div>
 </header>
@@ -45,22 +47,42 @@ const isActive = (href: string) =>
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    padding-top: 16px;
+    /* Equal on both sides because .initial is trimmed to its glyphs below, so
+       these are the distances the eye actually reads — matching .info-row's
+       20px keeps one spacing value through the whole header. */
+    padding-block: 20px;
   }
 
   .initials {
     display: flex;
     flex-wrap: wrap;
-    gap: 0 clamp(10px, 2.5vw, 28px);
+    /* Row gap is explicit now: trimmed boxes carry no leading of their own, so
+       a wrapped wordmark would otherwise sit letter-on-letter. */
+    gap: 0.14em clamp(10px, 2.5vw, 28px);
     text-decoration: none;
     color: var(--text);
   }
 
+  /* Trim the line box down to the glyphs — cap height to baseline — so the
+     padding above and below is the space actually seen, not half-leading left
+     over from the line box. Was line-height 0.9, which put 21px over the caps
+     and 5.6px under the baseline. */
   .initial {
     font-size: clamp(1.75rem, 6vw, 4rem);
-    line-height: 0.9;
+    line-height: 1;
     font-weight: 700;
     letter-spacing: -0.02em;
+    text-box: trim-both cap alphabetic;
+  }
+
+  /* Firefox has no text-box yet. Same trim, from Inter's own metrics at
+     line-height 1: units/em 2048, ascent 1984, descent 494, cap height 1490.
+     (1984 - 1490) / 2048 = 0.241em over the caps, 494 / 2048 = 0.241em under
+     the baseline, less the -0.105em half-leading on each side. */
+  @supports not (text-box: trim-both cap alphabetic) {
+    .initial {
+      margin-block: -0.136em;
+    }
   }
 
   .burger {
@@ -93,6 +115,25 @@ const isActive = (href: string) =>
     transform: translateY(-3px) rotate(-45deg);
   }
 
+  /* The secondary row lives in a grid shell so its height can animate to and
+     from auto. The 1fr track is content-sized while the shell height is auto. */
+  /* minmax(0, …) rather than a bare fr: the row's own 20px padding sets the
+     track's automatic minimum, so a plain 0fr floors at 40px and leaves a band
+     of half-cropped nav text over the page — with a hover trap inside it. */
+  .info-shell {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr);
+    overflow: hidden;
+  }
+
+  /* .wrap's `margin: 0 auto` would make a grid item shrink-to-fit and centre;
+     an explicit width keeps the row full-bleed and leaves the auto margins to
+     do their real job — centring the wrap above 1440px. */
+  .info-shell > .info-row {
+    min-height: 0;
+    width: 100%;
+  }
+
   .info-row {
     display: flex;
     flex-wrap: wrap;
@@ -108,7 +149,7 @@ const isActive = (href: string) =>
   }
 
   .role-line {
-    font-size: 0.8125rem;
+    font-size: var(--t-chrome);
     color: var(--muted);
     line-height: 1.5;
   }
@@ -121,17 +162,20 @@ const isActive = (href: string) =>
   }
 
   .site-nav a {
-    font-size: 0.9375rem;
+    font-size: var(--t-chrome);
     text-decoration: none;
-    color: var(--text);
-  }
-
-  .site-nav a:hover {
     color: var(--muted);
   }
 
+  .site-nav a:hover {
+    color: var(--text);
+  }
+
+  /* The one exception to the row's single style: 600 read as a different face
+     next to 400, so emphasis comes from weight 500 plus full contrast. */
   .site-nav a[aria-current='page'] {
-    font-weight: 600;
+    font-weight: 500;
+    color: var(--text);
   }
 
   .utility {
@@ -143,13 +187,56 @@ const isActive = (href: string) =>
   }
 
   .utility a {
-    font-size: 0.9375rem;
+    font-size: var(--t-chrome);
     text-decoration: none;
     color: var(--muted);
   }
 
   .utility a:hover {
     color: var(--text);
+  }
+
+  /* ---------- collapse on scroll ---------- */
+  /* Pointer-only: below 640px the burger already owns this row. */
+  @media (hover: hover) and (min-width: 641px) {
+    .info-shell {
+      transition: grid-template-rows 0.32s var(--easing);
+    }
+
+    .info-shell.collapsed {
+      grid-template-rows: minmax(0, 0fr);
+    }
+
+    /* Once the collapse has finished the row leaves the flow, so reopening it
+       on hover drops a panel over the page instead of pushing it down. */
+    .info-shell.settled {
+      position: absolute;
+      top: calc(100% + 1px);
+      left: 0;
+      right: 0;
+      background: var(--bg);
+    }
+
+    /* The header's own bottom rule already sits above the panel. */
+    .info-shell.settled .info-row {
+      border-top: none;
+    }
+
+    .site-header:hover .info-shell.settled,
+    .site-header:focus-within .info-shell.settled {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .site-header:hover .info-shell,
+    .site-header:focus-within .info-shell {
+      grid-template-rows: minmax(0, 1fr);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .info-shell {
+      transition: none;
+    }
   }
 
   @media (max-width: 640px) {
@@ -178,10 +265,92 @@ const isActive = (href: string) =>
 
 <script>
   const header = document.querySelector<HTMLElement>('.site-header');
+  const shell = document.getElementById('info-shell');
   const burger = document.getElementById('menu-toggle');
 
   burger?.addEventListener('click', () => {
     const isOpen = header?.classList.toggle('menu-open') ?? false;
     burger.setAttribute('aria-expanded', String(isOpen));
   });
+
+  if (header && shell) initCollapse(header, shell);
+
+  function initCollapse(header: HTMLElement, shell: HTMLElement) {
+    // Publish the live header height so sticky section labels and anchor jumps
+    // track the header as it collapses.
+    const root = document.documentElement;
+    const sizer = new ResizeObserver(() => {
+      root.style.setProperty('--header-h', `${Math.round(header.offsetHeight)}px`);
+    });
+    sizer.observe(header);
+
+    const canCollapse = matchMedia('(hover: hover) and (min-width: 641px)');
+    const stillMotion = matchMedia('(prefers-reduced-motion: reduce)');
+
+    // Collapsing takes the row's height out of the document, and browsers with
+    // scroll anchoring answer by moving scrollY by that same amount. So the two
+    // thresholds have to sit further apart than the row is tall — otherwise the
+    // collapse kicks the page back across its own trigger and oscillates. Hence
+    // the gap is derived from the row, not hardcoded.
+    const EXPAND_AT = 40;
+    const MARGIN = 80;
+    let openShellH = shell.offsetHeight;
+    const collapseAt = () => openShellH + MARGIN;
+
+    let collapsed = false;
+    let queued = false;
+
+    // The row only changes height when the viewport re-wraps it, so re-measure
+    // there rather than from the ResizeObserver, which would also catch every
+    // frame of the collapse animation.
+    function remeasure() {
+      if (!collapsed) openShellH = shell.offsetHeight || openShellH;
+    }
+    addEventListener('resize', remeasure, { passive: true });
+    document.fonts?.ready.then(remeasure);
+
+    // Only drop the row out of the flow once it has finished collapsing — at
+    // zero height the switch is invisible, and it is what lets the hover
+    // reveal overlay the page rather than shove it down. Never while hovered:
+    // a collapse interrupted by the pointer must stay in the flow.
+    function settle() {
+      if (collapsed && !header.matches(':hover')) shell.classList.add('settled');
+    }
+
+    function setCollapsed(next: boolean) {
+      if (next === collapsed) return;
+      collapsed = next;
+      if (!next) shell.classList.remove('settled');
+      shell.classList.toggle('collapsed', next);
+      if (next && stillMotion.matches) settle();
+    }
+
+    function sync() {
+      queued = false;
+      if (!canCollapse.matches) {
+        setCollapsed(false);
+        return;
+      }
+      const y = window.scrollY;
+      if (!collapsed && y > collapseAt()) setCollapsed(true);
+      else if (collapsed && y < EXPAND_AT) setCollapsed(false);
+    }
+
+    shell.addEventListener('transitionend', (e) => {
+      if (e.target === shell && e.propertyName === 'grid-template-rows') settle();
+    });
+
+    addEventListener(
+      'scroll',
+      () => {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(sync);
+      },
+      { passive: true },
+    );
+
+    canCollapse.addEventListener('change', sync);
+    sync();
+  }
 </script>
