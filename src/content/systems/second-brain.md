@@ -19,7 +19,7 @@ topics:
 feedback: false
 order: 6
 lede:
-  - Digital system used to store, organize, and retrieve sales team related information, notes, and learnings.
+  - A digital system that stores, organizes and retrieves the sales team's information, notes and learnings.
 ---
 
 <section>
@@ -27,8 +27,8 @@ lede:
 <div class="sec-head"><span class="num">01</span><h2>At a glance</h2></div>
 <div class="body">
 <dl class="facts">
-<div><dt>Role</dt><dd>AI Martech Manager. I owned the product, the roadmap, the architecture decisions, and teams onboarding.</dd></div>
-<div><dt>Timeframe</dt><dd>June 2026 to present. Shipped and in daily use by the US and UK sales team.</dd></div>
+<div><dt>Role</dt><dd>AI Martech Manager. I owned the product, the roadmap, the architecture decisions and the team onboarding.</dd></div>
+<div><dt>Timeframe</dt><dd>June 2026 to present. Shipped, and in daily use by the US and UK sales teams.</dd></div>
 <div><dt>Team</dt><dd>An engineer from an external development partner and a brand designer. I was the only product and domain owner.</dd></div><div><dt>Built with</dt><dd>Model Context Protocol, Cursor and Claude plugin architecture, Relevance AI, OpenAI, Google Drive, Outreach, Salesforce, Slack.</dd></div>
 </dl>
 </div>
@@ -55,7 +55,7 @@ lede:
 </div></li>
 <li><div>
 <h3>Every deck and one-pager built by hand</h3>
-<p>A sales deck took hours in Figma or PowerPoint, a one-pager took most of an afternoon, and fonts, colors and spacing drifted off-brand from asset to asset. One team was the bottleneck for every request, and every new asset re-solved problems already solved before.</p>
+<p>A sales deck took hours in Figma or PowerPoint, a one-pager took most of an afternoon, and fonts, colors and spacing drifted off-brand from asset to asset. One team was the bottleneck for every request, and every new asset re-solved problems that had already been solved.</p>
 </div></li>
 </ol>
 </div>
@@ -69,7 +69,7 @@ lede:
 <p class="big">One knowledge layer, with 16 skills on top of it. The layer is the part that matters.</p>
 <p>The asset here is not the assistant. It is what sits underneath: every account, call, email and piece of positioning the company owns, written down in one place with its source attached. That gets more complete every month, and it would survive being pointed at a different model, a different editor, or whatever replaces both in two years.</p>
 <p>The skills are the replaceable half. Sixteen of them read the same layer, and they run inside the tools sellers already have open so there is no new application to log into: cited question and answer, live enrichment, a value selling methodology engine, a voice layer that makes output read like the seller who sends it rather than like an AI, and a branded asset generator.</p>
-<p>The generator covers decks, one pagers, tenders and RFP responses, ebooks, email headers, business cards and motion. The interesting part is that it refuses to ship a bad one. A build fails on dead space rather than leaving it to the eye, a photograph is cropped against the faces in it rather than its center, and the brand fonts travel inside the file so PowerPoint cannot quietly substitute its own.</p>
+<p>The generator covers decks, one pagers, tenders and RFP responses, ebooks, email headers, business cards and motion. It refuses to ship a bad one. A build fails on dead space rather than leaving it to the eye, a photograph is cropped against the faces in it rather than its center, and the brand fonts travel inside the file so PowerPoint cannot quietly substitute its own.</p>
 <p>A separate admin plugin handles analytics, feedback and suggestions for skill improvements.</p>
 </div>
 </div>
@@ -193,7 +193,7 @@ lede:
 <h3>Research once, then reuse</h3>
 <p>A live research run does two things. It answers the person waiting, clearly labeled as fresh and not yet filed. It also queues the result for ingestion, so the same question next month is a cited page instead of another paid research run.</p>
 <p>Every filed result carries a date stamp, so a seller can see at a glance how stale it is and rerun the research themselves if the account has moved on.</p>
-<p>This is what turns the tool from an expensive lookup into an asset that gets more valuable the more the team uses it.</p>
+<p>That turns the tool from an expensive lookup into an asset that gets more valuable the more the team uses it.</p>
 </div></li>
 </ol>
 </div>
@@ -204,7 +204,7 @@ lede:
 <div class="wrap grid">
 <div class="sec-head"><span class="num">06</span><h2>How I delivered it</h2></div>
 <div class="body">
-<p>I ran this as the product owner with an engineer from an external development partner on a fixed hour contract and an internal brand designer. I set the roadmap, made the data and architecture calls, and ran the rollout. Four decisions were mine and worth showing.</p>
+<p>I ran this as the product owner with an engineer from an external development partner on a fixed hour contract and an internal brand designer. I set the roadmap, made the data and architecture calls, and ran the rollout. Four decisions were mine.</p>
 <ol class="stack">
 <li><div>
 <h3>Two connections to one system, because neither was enough</h3>
