@@ -1,0 +1,159 @@
+/* ---------- liquid glass ---------- */
+/* The refraction itself is a backdrop-filter set from liquid-glass.js. What
+   follows is the surface sitting on top of it: tint, specular sheen, rim light.
+
+   All of it hangs off .lg-glass, which the script adds only once it knows the
+   browser supports backdrop-filter and the visitor has not asked for reduced
+   transparency. Without the class the header keeps the opaque background set
+   above, so there is no state in which nav text ends up over page text. */
+
+.site-header.lg-glass {
+  /* Tint is mixed from the theme's own background rather than a fixed white,
+     so the dark theme gets smoked glass instead of a pale grey bar. Where
+     color-mix is unsupported the declaration is dropped and the opaque
+     background above survives, which is the correct fallback anyway. */
+  --lg-tint: 62%;
+  background: color-mix(in srgb, var(--bg) var(--lg-tint), transparent);
+  border-bottom-color: color-mix(in srgb, var(--text) 12%, transparent);
+}
+
+/* The dark theme has the harder job: a light screenshot passing under a dark
+   bar drops contrast much faster than a dark panel under a light one, so it
+   carries more tint even though that costs some of the refraction. */
+:root[data-theme='dark'] .site-header.lg-glass {
+  --lg-tint: 64%;
+}
+
+.site-header.lg-glass::before,
+.site-header.lg-glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* Above the header's translucent background, below its text. The header is
+     already a stacking context, being sticky with a z-index, so a negative
+     index stays inside it and no child has to be lifted to clear these. */
+  z-index: -1;
+}
+
+/* Specular sweep across the face. Deliberately faint: this is an editorial
+   page, and a full gloss reads as chrome borrowed from someone else's product.
+   Over white it is invisible, and it only resolves as the pastel diagram and
+   interface panels pass underneath, which is the intended behavior. */
+.site-header.lg-glass::before {
+  background: linear-gradient(
+    100deg,
+    rgb(255 255 255 / 0.2) 0%,
+    rgb(255 255 255 / 0.04) 24%,
+    transparent 46%,
+    transparent 72%,
+    rgb(255 255 255 / 0.09) 100%
+  );
+}
+
+/* Rim light where the glass meets the page, carried by the middle of the edge
+   so it reads as a lit edge rather than a second border. */
+.site-header.lg-glass::after {
+  top: auto;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgb(255 255 255 / 0.5) 20%,
+    rgb(255 255 255 / 0.5) 80%,
+    transparent
+  );
+}
+
+/* White on black is a much louder highlight than white on white, so the dark
+   theme takes the same surface at roughly half strength. */
+:root[data-theme='dark'] .site-header.lg-glass::before {
+  opacity: 0.5;
+}
+
+:root[data-theme='dark'] .site-header.lg-glass::after {
+  opacity: 0.4;
+}
+
+/* The secondary row drops out of the flow as a panel over the page, so it takes
+   a hint of the same treatment or the header reads as glass on a solid slab.
+   Only a hint, though: the nav and utility links are 14px in --muted, and that
+   grey needs a near-white backing to clear 4.5:1 when a dark diagram happens to
+   be scrolling underneath. The bar above can afford 62% because the only thing
+   on it is the wordmark, which is large enough to be held to 3:1. */
+.site-header.lg-glass .info-shell.settled {
+  background: color-mix(in srgb, var(--bg) 95%, transparent);
+  backdrop-filter: blur(7px) saturate(1.4);
+  -webkit-backdrop-filter: blur(7px) saturate(1.4);
+}
+
+/* Below 640px the row is a panel behind the burger at every scroll position,
+   rather than only once collapsed. */
+@media (max-width: 640px) {
+  .site-header.lg-glass .info-shell {
+    background: color-mix(in srgb, var(--bg) 95%, transparent);
+    backdrop-filter: blur(7px) saturate(1.4);
+    -webkit-backdrop-filter: blur(7px) saturate(1.4);
+  }
+}
+
+/* ---------- glass tiles ---------- */
+/* The wash the tiles refract. It reuses the same --blobs token the diagram
+   panels already carry, so this adds a surface, not a new color. Both classes
+   come from the script, which means a browser without backdrop-filter never
+   gets the wash either, and the tiles keep their solid backgrounds. */
+.lg-wash {
+  position: relative;
+  /* Contain the wash: the tiles are static, so without a stacking context here
+     a negative index would escape and paint behind the page itself. */
+  isolation: isolate;
+}
+
+.lg-wash::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--blobs), var(--card);
+}
+
+/* The card grid has no frame of its own, so the wash reads as a panel only if
+   it runs past the cards rather than stopping flush with them. Bleeding upward
+   would put it under the group label, hence the matching margin: the label
+   keeps its 12px of clear space above the wash rather than sitting in it. */
+.rows.cards.lg-wash {
+  margin-top: 20px;
+}
+
+.rows.cards.lg-wash::before {
+  inset: -20px;
+}
+
+/* Tinted harder than the header, and for the opposite reason: the header only
+   carries the wordmark, while these tiles carry 15px captions in --muted. That
+   grey needs the wash held back to roughly a third of its strength to stay at
+   4.5:1 against it. */
+.metric.lg-glass,
+.rows.cards > .row.lg-glass {
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  /* Rim as an inset shadow rather than the header's pseudo-elements: .row
+     already spends both of its own on the preview thumbnail. */
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.45),
+    inset 0 0 0 1px rgb(255 255 255 / 0.16);
+}
+
+:root[data-theme='dark'] .metric.lg-glass,
+:root[data-theme='dark'] .rows.cards > .row.lg-glass {
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.16),
+    inset 0 0 0 1px rgb(255 255 255 / 0.08);
+}
+
+/* Hover already swaps in --card, which is opaque and would drop the glass for
+   as long as the pointer is there. Keep the tint and just lift it. */
+.rows.cards > a.row.linked.lg-glass:hover,
+.rows.cards > a.row.linked.lg-glass:focus-visible {
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+}
