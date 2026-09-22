@@ -70,6 +70,7 @@ lede:
 <p>The asset here is not the assistant. It is what sits underneath: every account, call, email and piece of positioning the company owns, written down in one place with its source attached. That gets more complete every month, and it would survive being pointed at a different model, a different editor, or whatever replaces both in two years.</p>
 <p>The skills are the replaceable half. Sixteen of them read the same layer, and they run inside the tools sellers already have open so there is no new application to log into: cited question and answer, live enrichment, a value selling methodology engine, a voice layer that makes output read like the seller who sends it rather than like an AI, and a branded asset generator.</p>
 <p>The generator covers decks, one pagers, tenders and RFP responses, ebooks, email headers, business cards and motion. The interesting part is that it refuses to ship a bad one. A build fails on dead space rather than leaving it to the eye, a photograph is cropped against the faces in it rather than its center, and the brand fonts travel inside the file so PowerPoint cannot quietly substitute its own.</p>
+<p>A separate admin plugin handles analytics, feedback and suggestions for skill improvements.</p>
 </div>
 </div>
 </section>
