@@ -631,6 +631,28 @@ p.scroll-hint {
   stroke-dasharray: 4 4;
 }
 
+.diagram .flow.strong {
+  stroke: var(--text);
+  stroke-width: 1.5;
+}
+
+.diagram .t-stage {
+  font-size: 17px;
+}
+
+.diagram .ink {
+  fill: var(--text);
+  stroke: var(--text);
+}
+
+.diagram text.on-ink {
+  fill: var(--bg);
+}
+
+.diagram .knock {
+  fill: var(--bg);
+}
+
 figcaption {
   margin-top: 14px;
   font-size: 0.875rem;

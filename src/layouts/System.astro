@@ -18,6 +18,20 @@ interface Props {
 const { system, prev, next, Content } = Astro.props;
 const { name, year, summary, outcome, lede, stack, topics, flow, heroImage, heroVideo, ogImage } = system.data;
 const ledeParagraphs = lede ?? [summary];
+
+function ledeParts(paragraph: string) {
+  const parts: { text: string; href?: string }[] = [];
+  const link = /\[([^\]]+)\]\(([^)\s]+)\)/g;
+  let last = 0;
+  let match: RegExpExecArray | null;
+  while ((match = link.exec(paragraph))) {
+    parts.push({ text: paragraph.slice(last, match.index) }, { text: match[1], href: match[2] });
+    last = link.lastIndex;
+  }
+  parts.push({ text: paragraph.slice(last) });
+  return parts;
+}
+
 const stackLogos = stack.filter((tool) => tool in TOOL_LOGOS);
 // `outcome` alone is a headline fragment — as short as 40 characters and often
 // missing the subject ("30+ sellers researching from one Slack channel"). Paired
@@ -99,7 +113,9 @@ const breadcrumbJsonLd = breadcrumbNode([
         </div>
         <h1>{name}</h1>
         <div class="lede">
-          {ledeParagraphs.map((p) => <p>{p}</p>)}
+          {ledeParagraphs.map((p) => (
+            <p>{ledeParts(p).map(({ text, href }) => (href ? <a href={href}>{text}</a> : text))}</p>
+          ))}
         </div>
         {stackLogos.length > 0 && (
           <div class="stack-logos">
@@ -182,6 +198,23 @@ const breadcrumbJsonLd = breadcrumbNode([
 
   .hero.has-image .lede {
     color: rgba(255, 255, 255, 0.9);
+  }
+
+  .lede a {
+    border-bottom: 1px solid var(--line-strong);
+    text-decoration: none;
+  }
+
+  .lede a:hover {
+    border-color: var(--text);
+  }
+
+  .hero.has-image .lede a {
+    border-color: rgba(255, 255, 255, 0.45);
+  }
+
+  .hero.has-image .lede a:hover {
+    border-color: #fff;
   }
 
   .hero.has-image .stack-logo {

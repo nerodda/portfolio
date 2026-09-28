@@ -30,6 +30,9 @@ export const TOOL_LOGOS: Record<string, string> = {
   Swift: '/logos/swift.svg',
   ElevenLabs: '/logos/elevenlabs.svg',
   Zod: '/logos/zod.svg',
+  'Meta Ads': '/logos/meta.svg',
+  'Google Tag Manager': '/logos/googletagmanager.svg',
+  HubSpot: '/logos/hubspot.svg',
 };
 
 /** Logos that render as solid black on a transparent background — invisible on dark tiles unless inverted. */

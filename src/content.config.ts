@@ -11,7 +11,7 @@ const systems = defineCollection({
       year: z.union([z.number(), z.string(), z.literal('TODO')]),
       tier: z.enum(['featured', 'registry']),
       summary: z.string().max(90),
-      /** Optional richer hero lede. Falls back to `summary` when absent. */
+      /** Optional richer hero lede. Falls back to `summary` when absent. Plain text apart from `[label](/path/)` links. */
       lede: z.array(z.string()).min(1).max(3).optional(),
       /** Optional full-bleed background image for the hero, e.g. `/images/foo.jpg`. */
       heroImage: z.string().optional(),
