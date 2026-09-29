@@ -293,7 +293,7 @@ lede:
 </div></li>
 <li><div>
 <h3>Found why the page sent nothing</h3>
-<p>The shared tag setup picks each platform&rsquo;s ID from a lookup table, keyed on the exact hostname. When nothing matches, it falls back to a placeholder. The new subdomain matched nothing. One new row in each of six lookups fixed Meta, GA4, Google Ads, Microsoft Ads, LinkedIn and Criteo at once.</p>
+<p>The shared Google Tag Manager tag setup picks each platform&rsquo;s ID from a lookup table, keyed on the exact hostname. When nothing matches, it falls back to a placeholder. The new subdomain matched nothing. One new row in each of six lookups fixed Meta, GA4, Google Ads, Microsoft Ads, LinkedIn and Criteo at once.</p>
 </div></li>
 <li><div>
 <h3>Wired the events</h3>
