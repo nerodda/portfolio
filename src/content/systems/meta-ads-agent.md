@@ -4,7 +4,7 @@ context: production
 status: prototype
 year: September 2026
 tier: featured
-summary: An AI agent working directly in Meta ads, on measurement checked in the browser.
+summary: An AI agent in Meta ads, with tracking fixed first and campaigns kept in the Second Brain.
 outcome: From no agent access to a B2B landing page tracked end to end in three days
 ogImage: /images/og/meta-ads-agent.png
 stack: [Model Context Protocol, Cursor, Meta Ads, Google Tag Manager, HubSpot, Apollo]
@@ -19,7 +19,7 @@ topics:
 feedback: false
 order: 10
 lede:
-  - "Meta now lets an AI agent work directly inside an ad account, through its own MCP server. We set one up for B2B marketing. The agent works from Cursor and can read and change our Meta ads. Employer campaigns get their own ad account, and visits and form fills on the landing page reach Meta intact."
+  - "Meta now lets an AI agent work directly inside an ad account, through its own MCP server. We set one up for B2B marketing. The agent works from Cursor and can read and change our Meta ads. B2B campaigns get their own ad account, and visits and form fills on the landing page reach Meta intact."
   - "Most of the work was not the agent. It was the tracking underneath it. An agent optimizes on whatever the tracking reports. If the tracking is broken, it makes wrong decisions faster."
   - "Every campaign also gets its own folder in our [Second Brain](/systems/second-brain/), with one file per stage from brief to learnings. The next brief starts from the last campaign's learnings, so each run picks up where the previous one ended."
 ---
@@ -30,9 +30,9 @@ lede:
 <div class="body">
 <dl class="facts">
 <div><dt>Role</dt><dd>AI Martech Manager. I owned it end to end, from the Meta developer app to the tag changes and ad launching, with an AI agent in Cursor doing most of the job.</dd></div>
-<div><dt>Timeframe</dt><dd>One week in September 2026. It took three days to connect the agent and fix the tracking. By the end of the week, the first campaign was staged, with audiences built and creative made. The launch config waits on the decisions that belong to people.</dd></div>
+<div><dt>Timeframe</dt><dd>One week in September 2026. It took three days to connect the agent and fix the tracking. By the end of the week, the first campaign was staged, with audiences built and creative made. It has since launched.</dd></div>
 <div><dt>Surface</dt><dd>Cursor, connected to Meta&rsquo;s official ads MCP server. No custom integration code.</dd></div>
-<div><dt>Guardrails</dt><dd>Meta&rsquo;s own rules, set per ad account in Business Suite, design skills and project&rsquo;s briefs.</dd></div>
+<div><dt>Guardrails</dt><dd>Meta&rsquo;s own rules, set per ad account in Business Suite, design skills and campaign briefs.</dd></div>
 <div><dt>Measured with</dt><dd>Google Tag Manager, the Meta pixel, and the HubSpot form on the landing page.</dd></div>
 <div><dt>Recorded in</dt><dd>A campaign space of its own in the Second Brain. One folder per campaign, one file per stage, every figure cited to its source.</dd></div>
 </dl>
@@ -46,7 +46,7 @@ lede:
 <div class="body">
 <p class="big">Three pieces, built in this order.</p>
 <p><strong>Access.</strong> An agent in Cursor, connected directly to Meta ads through Meta&rsquo;s official MCP server. It can list accounts and read campaigns, audiences and pixel data. It can also create and edit campaigns, ad sets and ads when a person asks it to.</p>
-<p><strong>Measurement.</strong> The landing page moved onto a company subdomain, and the real HubSpot form replaced its mock one. It started with no tracking at all. We installed every pixel and tag from scratch, for Meta and five other ad and analytics platforms. Meta receives four events, which roll up to two top-level numbers: page visits and form submissions.</p>
+<p><strong>Measurement.</strong> The landing page moved onto a company subdomain, and the real HubSpot form replaced its mock one. The page started with no tracking at all. We installed every pixel and tag on the page from scratch, for Meta and five other ad and analytics platforms. Meta receives four events, which roll up to two top-level numbers: page visits and form submissions.</p>
 <p><strong>Memory.</strong> A campaign space in the Second Brain. We record every campaign there from brief to learnings, and the next brief starts from those learnings.</p>
 </div>
 </div>
@@ -244,20 +244,20 @@ lede:
 <div class="wrap grid">
 <div class="sec-head"><span class="num">05</span><h2>The first campaign</h2></div>
 <div class="body">
-<p class="big">The first campaign is ready, apart from the decisions that need a person.</p>
+<p class="big">The first campaign has launched.</p>
 <ol class="stack">
 <li><div>
 <h3>A brief that tests before it builds</h3>
-<p>The test runs in two phases: low-cost statics first to find which proof lands, then full production on the winner.</p>
+<p>The test runs in two phases: low-cost statics first to find which angle lands, then full production on the winner.</p>
 </div></li>
 <li><div>
 <h3>Four audiences, built by the agent</h3>
 <p>A customer list of UK decision makers at the target companies, taken from the team&rsquo;s own sheets and filled out through Apollo. A 1% lookalike of that list. Visitors to the landing page in the last 30 days, for retargeting. And an exclusion of anyone who became a lead in the last 180 days, so no budget goes on people who have already asked.</p>
-<p>We built the control audience differently, from the ICP and the interest settings Meta makes available.</p>
+<p>Alongside them, we built a control audience to compare against, from the ideal customer profile (ICP) and the interest settings Meta makes available.</p>
 </div></li>
 <li><div>
 <h3>Creative built by Cursor with design skills</h3>
-<p>We built the creative in Cursor with our brand skills, which carry the fonts, colors, layouts and photo rules. It covers single image and carousel: six statics across three angles, each in 4:5, 1:1 and 9:16, a six-card carousel, and a storyboard for a 15-second video.</p>
+<p>We built the creative in Cursor with our design skills, which carry the fonts, colors, layouts and photo rules. It covers single image and carousel: six statics, two hooks for each of three angles, each in 4:5, 1:1 and 9:16. A six-card carousel and a storyboard for a 15-second video are ready for the second phase.</p>
 </div></li>
 <li><div>
 <h3>A landing page ready for paid traffic</h3>
@@ -265,8 +265,8 @@ lede:
 </div></li>
 <li><div>
 <h3>The launch is a config file</h3>
-<p>The campaign lives in a launch config for the agent to run. It sets a leads objective that optimizes for the standard lead event, plus a location radius. Each hook gets its own ad set, with its own budget and its own readout. Every ad carries a tag naming the creative it came from.</p>
-<p>The decisions that belong to people stay as placeholders: the legal category, the Page the ads run from, the dates and the budget. Until someone fills them in, there is nothing to launch. One hook is marked not to ship until Legal clears its claim.</p>
+<p>The campaign is defined in a launch config. It sets a leads objective that optimizes for the standard lead event, plus a location radius. Each hook gets its own ad set, with its own budget and its own readout. Every ad carries a tag naming the creative it came from.</p>
+<p>The decisions that belong to people were left as placeholders: the legal category (whether Meta&rsquo;s employment ad rules apply), the Page the ads run from, the dates and the budget. Once people made those calls, the campaign launched. One hook was marked not to ship without Legal clearing its claim.</p>
 </div></li>
 </ol>
 </div>
@@ -288,7 +288,7 @@ lede:
 <p>I created the account in the business portfolio and confirmed the agent could see it. Meta allowed all seven action types by default. Anyone about to hand an agent a live budget should check this first.</p>
 </div></li>
 <li><div>
-<h3>Audited the pixels</h3>
+<h3>Audited the pixel</h3>
 <p>I reviewed the pixel to make sure it fires all the events we need to track.</p>
 </div></li>
 <li><div>
@@ -315,7 +315,7 @@ lede:
 <div class="metrics">
 <div class="metric"><span class="fig">3 days</span><span class="cap">from no agent access to a B2B landing page tracked end to end</span></div>
 <div class="metric"><span class="fig">5</span><span class="cap">stages in every campaign&rsquo;s loop, from brief to learnings</span></div>
-<div class="metric"><span class="fig">18</span><span class="cap">ads in the first campaign: six statics, three ratios each</span></div>
+<div class="metric"><span class="fig">18</span><span class="cap">static ads in the first campaign: six designs, three ratios each</span></div>
 <div class="metric"><span class="fig">4</span><span class="cap">audiences built by the agent, from customer list to exclusion</span></div>
 <div class="metric"><span class="fig">1,000+</span><span class="cap">decision makers in the customer list, from 300+ target companies</span></div>
 </div>
