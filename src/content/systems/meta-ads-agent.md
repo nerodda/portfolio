@@ -252,7 +252,7 @@ lede:
 </div></li>
 <li><div>
 <h3>Four audiences, built by the agent</h3>
-<p>A customer list of UK decision makers at the target companies, taken from the team&rsquo;s own sheets and filled out through Apollo. A 1% lookalike of that list. Visitors to the landing page in the last 30 days, for retargeting. And an exclusion of anyone who became a lead in the last 180 days, so no budget goes on people who have already asked.</p>
+<p>A customer list of decision makers at the target companies, taken from the team&rsquo;s own sheets and filled out through Apollo. A 1% lookalike of that list. Visitors to the landing page in the last 30 days, for retargeting. And an exclusion of anyone who became a lead in the last 180 days, so no budget goes on people who have already asked.</p>
 <p>Alongside them, we built a control audience to compare against, from the ideal customer profile (ICP) and the interest settings Meta makes available.</p>
 </div></li>
 <li><div>
