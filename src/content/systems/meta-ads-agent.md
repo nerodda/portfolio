@@ -5,7 +5,7 @@ status: prototype
 year: September 2026
 tier: featured
 summary: Meta ads automation with an AI agent, through Meta's official ads MCP server.
-outcome: From no agent access to a B2B landing page tracked end to end in three days
+outcome: From Meta account setup and creative building to campaign analytics and A/B testing
 ogImage: /images/og/meta-ads-agent.png
 stack: [Model Context Protocol, Cursor, Meta Ads, Google Tag Manager, HubSpot, Apollo]
 flow: [Brief in the Second Brain, Agent in Cursor, Meta ads MCP server, Tracked landing page, Cited performance, Learnings start the next brief]
