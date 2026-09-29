@@ -4,12 +4,16 @@ context: production
 status: prototype
 year: September 2026
 tier: featured
-summary: An AI agent in Meta ads, with tracking fixed first and campaigns kept in the Second Brain.
+summary: Meta ads automation with an AI agent, through Meta's official ads MCP server.
 outcome: From no agent access to a B2B landing page tracked end to end in three days
 ogImage: /images/og/meta-ads-agent.png
 stack: [Model Context Protocol, Cursor, Meta Ads, Google Tag Manager, HubSpot, Apollo]
 flow: [Brief in the Second Brain, Agent in Cursor, Meta ads MCP server, Tracked landing page, Cited performance, Learnings start the next brief]
 topics:
+  - Meta ads automation
+  - Meta ads MCP server
+  - Automated Meta campaigns
+  - B2B Meta ads
   - AI agents for paid media
   - Model Context Protocol
   - AI agent guardrails
@@ -19,7 +23,7 @@ topics:
 feedback: false
 order: 10
 lede:
-  - "Meta now lets an AI agent work directly inside an ad account, through its own MCP server. We set one up for B2B marketing. The agent works from Cursor and can read and change our Meta ads. B2B campaigns get their own ad account, and visits and form fills on the landing page reach Meta intact."
+  - "Meta now lets an AI agent work directly inside an ad account, through the Meta ads MCP server. We set one up to automate our B2B Meta ads. The agent works from Cursor and can read and change our campaigns. B2B campaigns get their own ad account, and visits and form fills on the landing page reach Meta intact."
   - "Most of the work was not the agent. It was the tracking underneath it. An agent optimizes on whatever the tracking reports. If the tracking is broken, it makes wrong decisions faster."
   - "Every campaign also gets its own folder in our [Second Brain](/systems/second-brain/), with one file per stage from brief to learnings. The next brief starts from the last campaign's learnings, so each run picks up where the previous one ended."
 ---
@@ -45,7 +49,7 @@ lede:
 <div class="sec-head"><span class="num">02</span><h2>What was built</h2></div>
 <div class="body">
 <p class="big">Three pieces, built in this order.</p>
-<p><strong>Access.</strong> An agent in Cursor, connected directly to Meta ads through Meta&rsquo;s official MCP server. It can list accounts and read campaigns, audiences and pixel data. It can also create and edit campaigns, ad sets and ads when a person asks it to.</p>
+<p><strong>Access.</strong> An agent in Cursor, connected directly to our Facebook and Instagram ads through the official Meta ads MCP server. It can list accounts and read campaigns, audiences and pixel data. It can also create and edit campaigns, ad sets and ads when a person asks it to.</p>
 <p><strong>Measurement.</strong> The landing page launched on a company subdomain, and it started with no tracking at all. We installed every pixel and tag on the page from scratch. Meta receives four events, which roll up to two top-level numbers: page visits and form submissions.</p>
 <p><strong>Memory.</strong> A campaign space in the Second Brain. We record every campaign there from brief to learnings, and the next brief starts from those learnings.</p>
 </div>
@@ -280,8 +284,8 @@ lede:
 <p>The work, step by step.</p>
 <ol class="stack">
 <li><div>
-<h3>Connected Cursor to Meta</h3>
-<p>First I checked that the business portfolio had the ads MCP integration at all. Meta was rolling it out account by account. Then I registered as a Meta developer, created the app, added the ads MCP use case and allowed Cursor&rsquo;s web callback.</p>
+<h3>Connected Cursor to the Meta ads MCP server</h3>
+<p>First I checked that the business portfolio had the ads MCP integration at all. Meta was rolling it out account by account. It works out of the box with Claude and ChatGPT, but not Cursor. So I registered as a Meta developer, created the app, added the ads MCP use case and allowed Cursor&rsquo;s web callback.</p>
 </div></li>
 <li><div>
 <h3>Stood up the B2B account</h3>
