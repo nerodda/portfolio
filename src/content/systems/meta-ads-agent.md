@@ -257,7 +257,7 @@ lede:
 </div></li>
 <li><div>
 <h3>Creative built by Cursor with design skills</h3>
-<p>We built the creative in Cursor with our design skills, which carry the fonts, colors, layouts and photo rules. It covers single image and carousel: six statics, two hooks for each of three angles, each in 4:5, 1:1 and 9:16. A six-card carousel and a storyboard for a 15-second video are ready for the second phase.</p>
+<p>We built the creative in Cursor with brand skills created by our designer. They carry the fonts, colors, layouts and photo rules. The creative covers single image and carousel: six statics, two hooks for each of three angles, each in 4:5, 1:1 and 9:16. A six-card carousel and a storyboard for a 15-second video are ready for the second phase.</p>
 </div></li>
 <li><div>
 <h3>A landing page ready for paid traffic</h3>
