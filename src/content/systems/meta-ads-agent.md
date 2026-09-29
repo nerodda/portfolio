@@ -126,7 +126,7 @@ lede:
 <div class="sec-head"><span class="num">04</span><h2>Where the campaign lives</h2></div>
 <div class="body">
 <p class="big">Campaign work needed one place to live.</p>
-<p>It used to sit in loose exports and slide decks. What one campaign learned never made it into the next. A seller opening an account couldn&rsquo;t see that marketing had already reached it. So we set up a space for campaigns in the <a href="/systems/second-brain/">Second Brain</a>, with its own rules.</p>
+<p>It used to sit in loose exports and slide decks. What one campaign learned never made it into the next. So we set up a space for campaigns in the <a href="/systems/second-brain/">Second Brain</a>, with its own rules.</p>
 <figure>
 <p class="scroll-hint">Scroll to see the full diagram</p>
 <div class="diagram pastel-b">
