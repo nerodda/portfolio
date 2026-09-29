@@ -46,7 +46,7 @@ lede:
 <div class="body">
 <p class="big">Three pieces, built in this order.</p>
 <p><strong>Access.</strong> An agent in Cursor, connected directly to Meta ads through Meta&rsquo;s official MCP server. It can list accounts and read campaigns, audiences and pixel data. It can also create and edit campaigns, ad sets and ads when a person asks it to.</p>
-<p><strong>Measurement.</strong> The landing page moved onto a company subdomain, and the real HubSpot form replaced its mock one. The page started with no tracking at all. We installed every pixel and tag on the page from scratch, for Meta and five other ad and analytics platforms. Meta receives four events, which roll up to two top-level numbers: page visits and form submissions.</p>
+<p><strong>Measurement.</strong> The landing page launched on a company subdomain, and it started with no tracking at all. We installed every pixel and tag on the page from scratch. Meta receives four events, which roll up to two top-level numbers: page visits and form submissions.</p>
 <p><strong>Memory.</strong> A campaign space in the Second Brain. We record every campaign there from brief to learnings, and the next brief starts from those learnings.</p>
 </div>
 </div>
