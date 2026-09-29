@@ -266,7 +266,7 @@ lede:
 <li><div>
 <h3>The launch is a config file</h3>
 <p>The campaign is defined in a launch config. It sets a leads objective that optimizes for the standard lead event, plus a location radius. Each hook gets its own ad set, with its own budget and its own readout. Every ad carries a tag naming the creative it came from.</p>
-<p>The decisions that belong to people were left as placeholders: the legal category (whether Meta&rsquo;s employment ad rules apply), the Page the ads run from, the dates and the budget. Once people made those calls, the campaign launched. One hook was marked not to ship without Legal clearing its claim.</p>
+<p>The decisions that belong to people were left as placeholders: the legal category (whether Meta&rsquo;s employment ad rules apply), the Page the ads run from, the dates and the budget. Once people made those calls, the campaign launched.</p>
 </div></li>
 </ol>
 </div>
