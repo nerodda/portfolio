@@ -24,6 +24,12 @@ export default defineConfig({
   // canonical form has a trailing slash. Enforcing it here keeps dev and
   // production agreeing, and keeps internal links off a redirect hop.
   trailingSlash: 'always',
+  // Case studies live under /systems/<slug>/, so people and crawlers trim the
+  // URL back to /systems/. The homepage is the systems index; there is no
+  // separate listing page to land on.
+  redirects: {
+    '/systems': '/',
+  },
   integrations: [
     sitemap({
       // Google ignores `changefreq` and `priority` but uses `lastmod` while it

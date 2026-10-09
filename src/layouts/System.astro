@@ -70,10 +70,7 @@ const systemJsonLd = {
   ...(numericYear ? { dateCreated: numericYear } : {}),
 };
 
-const breadcrumbJsonLd = breadcrumbNode([
-  { name: 'Systems', path: '/' },
-  { name, path: new URL(Astro.url.pathname, Astro.site).pathname },
-]);
+const breadcrumbJsonLd = breadcrumbNode([{ name, path: new URL(Astro.url.pathname, Astro.site).pathname }]);
 ---
 
 <Base
