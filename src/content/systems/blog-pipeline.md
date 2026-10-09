@@ -5,6 +5,8 @@ status: live
 year: February 2025
 tier: featured
 summary: Generates SEO-optimized blog articles from keywords and drafts them into WordPress.
+seoTitle: "AI Blog Pipeline: SEO Articles Without a Writer | Olga Neroda"
+seoDescription: "An AI workflow that turns a keyword into an SEO-checked article drafted in WordPress, with no writer, SEO specialist, or publisher in the loop."
 outcome: SEO articles produced without a writer, SEO specialist, or publisher in the loop.
 stack: [Relevance AI, OpenAI, Semrush, Notion, Zapier, WordPress, Grammarly]
 flow: [Keyword research, Search intent, Outline, Draft, WordPress]

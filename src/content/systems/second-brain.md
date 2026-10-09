@@ -5,6 +5,8 @@ status: live
 year: June 2026
 tier: featured
 summary: Compiles scattered docs into a cited MCP knowledge base that AI tools read from.
+seoTitle: "Sales Second Brain: MCP Knowledge Base for Sellers | Olga Neroda"
+seoDescription: "How I built a cited MCP knowledge base that AI tools read from. 56 sellers across two regions use it, saving 10 hours of research each week."
 outcome: 56 sellers across two regions, 10 hours of research saved each week.
 ogImage: /images/og/second-brain.png
 stack: [Model Context Protocol, Cursor, Claude Code, OpenAI, Relevance AI, Google Drive, Outreach, Salesforce, Slack, Obsidian]

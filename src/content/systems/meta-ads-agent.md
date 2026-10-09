@@ -5,6 +5,8 @@ status: prototype
 year: September 2026
 tier: featured
 summary: Meta ads automation with an AI agent, through Meta's official ads MCP server.
+seoTitle: "Meta Ads Automation with an AI Agent and MCP | Olga Neroda"
+seoDescription: "Meta ads automation with an AI agent through Meta's official ads MCP server, from account setup and creative building to analytics and A/B testing."
 outcome: From Meta account setup and creative building to campaign analytics and A/B testing
 ogImage: /images/og/meta-ads-agent.png
 stack: [Model Context Protocol, Cursor, Meta Ads, Google Tag Manager, HubSpot, Apollo]

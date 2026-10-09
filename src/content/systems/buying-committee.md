@@ -5,6 +5,8 @@ status: live
 year: April 2025
 tier: featured
 summary: A Slack request returns a scored, sourced buying committee, pushed to CRM.
+seoTitle: "AI Buying-Committee Enrichment from Slack | Olga Neroda"
+seoDescription: "A seller asks in Slack and gets back a scored, sourced buying committee, ready to push to the CRM. How the research agent serves 30+ sellers."
 outcome: 30+ sellers researching from one Slack channel
 ogImage: /images/og/buying-committee.png
 stack: [Relevance AI, OpenAI, Slack, Zapier, Make, Apollo, Apify, Salesforce, Google Sheets]

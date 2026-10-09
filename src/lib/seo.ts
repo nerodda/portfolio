@@ -34,10 +34,10 @@ export function personNode(extra: Record<string, unknown> = {}) {
     name: PERSON_NAME,
     url: `${SITE_URL}/about/`,
     mainEntityOfPage: `${SITE_URL}/about/`,
-    jobTitle: 'Marketing Technologist',
+    jobTitle: 'Senior Manager, Digital Growth & MarTech',
     worksFor: { '@type': 'Organization', name: 'Indeed Flex' },
     address: { '@type': 'PostalAddress', addressLocality: 'London', addressCountry: 'GB' },
-    image: `${SITE_URL}/og-image.png`,
+    image: `${SITE_URL}/images/portrait.jpg`,
     sameAs: SAME_AS,
     ...extra,
   };
@@ -81,12 +81,16 @@ export function breadcrumbNode(trail: { name: string; path: string }[]) {
  * with the summary rather than shipped alone.
  */
 export function metaDescription(...parts: (string | undefined | null)[]): string {
-  const text = parts
+  const sentences = parts
     .filter((p): p is string => !!p && p !== 'TODO')
     .map((p) => p.trim().replace(/\s+/g, ' '))
-    .map((p) => (/[.!?]$/.test(p) ? p : `${p}.`))
-    .join(' ');
-  if (text.length <= 160) return text;
-  const cut = text.slice(0, 157);
+    .map((p) => (/[.!?]$/.test(p) ? p : `${p}.`));
+  // Drop trailing parts before cutting mid-sentence: a complete shorter
+  // description beats one that ends in an ellipsis.
+  for (let n = sentences.length; n > 0; n--) {
+    const text = sentences.slice(0, n).join(' ');
+    if (text.length <= 160) return text;
+  }
+  const cut = (sentences[0] ?? '').slice(0, 157);
   return `${cut.slice(0, cut.lastIndexOf(' '))}…`;
 }

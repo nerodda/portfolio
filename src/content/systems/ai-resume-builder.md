@@ -5,6 +5,8 @@ status: live
 year: March 2026
 tier: featured
 summary: Builds a tailored CV from a job post, a LinkedIn profile, or an existing resume.
+seoTitle: "AI Resume Builder: From Solo MVP to Production | Olga Neroda"
+seoDescription: "A free AI resume builder that tailors an ATS-ready CV from a job post, LinkedIn profile, or existing resume. How a solo MVP became a production rebuild."
 outcome: Live and public, free to any job seeker, no account or login required.
 ogImage: /images/og/ai-resume-builder.png
 stack: [Next.js, OpenAI API, Apify]

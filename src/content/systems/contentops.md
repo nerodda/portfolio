@@ -5,6 +5,8 @@ status: prototype
 year: May 2026
 tier: featured
 summary: Brand-aware content generation, a channel pipeline, and a feedback loop from performance.
+seoTitle: "ContentOps: AI Marketing Content Platform | Olga Neroda"
+seoDescription: "An AI marketing content platform: brand voice structured once, content generated per channel, and performance fed back into the next draft."
 outcome: AI marketing content platform — 500+ pages shipped, 20+ skills versioned, built in Cursor.
 ogImage: /images/og/contentops.png
 stack: [Cursor, Supabase, TypeScript, Payload, OpenAI, Meta, Google Ads, TikTok, LinkedIn]

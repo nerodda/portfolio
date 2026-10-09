@@ -59,13 +59,17 @@ export async function getFeaturedSystems(): Promise<System[]> {
 }
 
 /**
- * Systems that get an internal case-study page at `/systems/<id>/`. Personal
- * projects link straight to their live homepage instead, so featured alone is
- * not enough — linking to one of those internally produces a 404.
+ * Whether a system gets an internal case-study page at `/systems/<id>/`.
+ * Personal projects link straight to their live homepage instead, so featured
+ * alone is not enough — linking to one of those internally produces a 404.
  */
+export function hasCaseStudy(system: System): boolean {
+  return system.data.tier === 'featured' && system.data.context === 'production';
+}
+
 export async function getCaseStudySystems(): Promise<System[]> {
   const featured = await getFeaturedSystems();
-  return featured.filter((s) => s.data.context === 'production');
+  return featured.filter(hasCaseStudy);
 }
 
 /** Whether an outcome is still a placeholder — display should fall back to an arrow, not the literal string. */

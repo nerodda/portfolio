@@ -11,6 +11,10 @@ const systems = defineCollection({
       year: z.union([z.number(), z.string(), z.literal('TODO')]),
       tier: z.enum(['featured', 'registry']),
       summary: z.string().max(90),
+      /** Optional search-facing `<title>`. Falls back to `${name} — Olga Neroda`, which only matches people who already know the project name. */
+      seoTitle: z.string().max(70).optional(),
+      /** Optional hand-written meta description. Falls back to `summary` + `outcome`, which can run past 160 characters. */
+      seoDescription: z.string().min(110).max(160).optional(),
       /** Optional richer hero lede. Falls back to `summary` when absent. Plain text apart from `[label](/path/)` links. */
       lede: z.array(z.string()).min(1).max(3).optional(),
       /** Optional full-bleed background image for the hero, e.g. `/images/foo.jpg`. */
