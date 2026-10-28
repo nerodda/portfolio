@@ -293,10 +293,6 @@ lede:
 <p>The carousel was the best ad in the account. It cost about 14% less per landing page view than the best single-image ad set, and its click-through rate was about 43% higher. It ran on Feeds only while the statics ran everywhere, so placement is part of that win.</p>
 </div></li>
 <li><div>
-<h3>Audience: customer list vs job-title targeting</h3>
-<p>The same tech concepts ran to the customer list and to an audience built from ICP job titles and employers. The ICP audience gave a 19% to 35% lower click-through rate, even with the imagery that won everywhere else. The customer list, filled out through Apollo, was the stronger audience for traffic.</p>
-</div></li>
-<li><div>
 <h3>Placements: Advantage+ vs Feeds</h3>
 <p>On Advantage+ placements, Meta sent 95% of the early traffic spend to Reels and Stories. That is cheap reach. On the lead campaign, though, every unusable lead came from Reels and Stories. The Facebook and Instagram feeds took about a fifth of the lead spend and produced no leads at all, good or bad.</p>
 </div></li>
