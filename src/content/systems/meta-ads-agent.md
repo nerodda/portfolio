@@ -440,10 +440,6 @@ lede:
 <p>When the first leads came back unusable, the agent read the ad set setup through the MCP server and found the causes: the placements, the lookalike and the form settings. It drafted the stricter form in Ads Manager through the browser and left publishing to a person, because a published form can&rsquo;t be edited.</p>
 </div></li>
 <li><div>
-<h3>Hit the edges of the MCP server</h3>
-<p>The Meta ads MCP server can&rsquo;t build lead-form creatives. Meta also rejected lead ads published through it with a terms error, even after the terms were accepted. So the agent staged the ads and a person clicked Publish in Ads Manager. Plan for that last step.</p>
-</div></li>
-<li><div>
 <h3>Kept the record current</h3>
 <p>Every readout, test and form change went into the campaign&rsquo;s folder in the Second Brain the same day, with its date and source. The tests on this page come from that record.</p>
 </div></li>
