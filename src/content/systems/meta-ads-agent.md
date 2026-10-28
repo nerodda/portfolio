@@ -286,7 +286,7 @@ lede:
 <ol class="stack">
 <li><div>
 <h3>Imagery: generated brand images vs stock photography</h3>
-<p>Every static came in two versions. One used imagery generated with the designer&rsquo;s brand skills, the other used stock photography. On the people angle and the same audience, stock cost about a third more per landing page view and got about 12% fewer clicks per impression. Wherever one concept ran in both versions to the same audience, the generated version won.</p>
+<p>Every static came in two versions. One used imagery generated with the designer&rsquo;s brand skills, the other used stock photography. On the same audience, stock cost about a third more per landing page view and got about 12% fewer clicks per impression. Wherever one concept ran in both versions to the same audience, the generated version won.</p>
 </div></li>
 <li><div>
 <h3>Format: carousel vs single image</h3>
