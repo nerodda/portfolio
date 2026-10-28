@@ -62,7 +62,12 @@ const registryJsonLd = {
     <section class="registry" aria-labelledby="registry-heading">
       <div class="wrap">
         <h2 id="registry-heading" class="visually-hidden">Systems</h2>
-        <RegistryGroup label="RECENT PROJECTS" systems={production} startIndex={0} />
+        <RegistryGroup
+          label="RECENT PROJECTS"
+          systems={production}
+          startIndex={0}
+          filters={['Marketing', 'AI', 'Sales Enablement']}
+        />
         <RegistryGroup label="PERSONAL PROJECTS" systems={independent} startIndex={production.length} cards />
       </div>
     </section>

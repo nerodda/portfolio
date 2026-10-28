@@ -10,6 +10,7 @@ seoDescription: "A free AI resume builder that tailors an ATS-ready CV from a jo
 outcome: Live and public, free to any job seeker, no account or login required.
 ogImage: /images/og/ai-resume-builder.png
 stack: [Next.js, OpenAI API, Apify]
+categories: [AI]
 flow: [Job post, LinkedIn, or CV, AI tailoring, ATS-ready draft, Download]
 feedback: false
 order: 7

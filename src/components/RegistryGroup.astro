@@ -8,13 +8,29 @@ interface Props {
   startIndex: number;
   /** Card layout for groups whose rows do more than click-through (e.g. hover-to-preview). */
   cards?: boolean;
+  /** Filter tabs shown above the rows, matched against each entry's `categories`. */
+  filters?: string[];
 }
 
-const { label, systems, startIndex, cards = false } = Astro.props;
+const { label, systems, startIndex, cards = false, filters = [] } = Astro.props;
 ---
 
-<div class="group">
-  <p class="group-label">{label} · {systems.length}</p>
+<div class="group" data-filter-group={filters.length > 0 ? '' : undefined}>
+  <p class="group-label">{label} · <span class="group-count">{systems.length}</span></p>
+  {filters.length > 0 && (
+    <div class="filters" role="group" aria-label={`Filter ${label.toLowerCase()}`}>
+      {['All', ...filters].map((filter) => (
+        <button
+          type="button"
+          class="filter"
+          data-filter={filter === 'All' ? '' : filter}
+          aria-pressed={filter === 'All' ? 'true' : 'false'}
+        >
+          {filter}
+        </button>
+      ))}
+    </div>
+  )}
   <div class:list={['rows', { cards }]}>
     {systems.map((system, i) => (
       <RegistryRow system={system} index={startIndex + i} />
@@ -22,8 +38,30 @@ const { label, systems, startIndex, cards = false } = Astro.props;
   </div>
 </div>
 
+<script>
+  document.querySelectorAll<HTMLElement>('[data-filter-group]').forEach((group) => {
+    const buttons = group.querySelectorAll<HTMLButtonElement>('.filter');
+    const rows = group.querySelectorAll<HTMLElement>('.rows > [data-categories]');
+    const count = group.querySelector('.group-count');
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter ?? '';
+        let shown = 0;
+        rows.forEach((row) => {
+          const match = !filter || (row.dataset.categories ?? '').split('|').includes(filter);
+          row.hidden = !match;
+          if (match) shown += 1;
+        });
+        buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+        if (count) count.textContent = String(shown);
+      });
+    });
+  });
+</script>
+
 <style>
-  .group + .group {
+  .group ~ .group {
     margin-top: 64px;
   }
 
@@ -35,12 +73,51 @@ const { label, systems, startIndex, cards = false } = Astro.props;
     margin-bottom: 12px;
   }
 
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .filter {
+    font: inherit;
+    font-size: var(--t-label);
+    letter-spacing: var(--t-label-track);
+    text-transform: uppercase;
+    color: var(--muted);
+    background: none;
+    border: 1px solid var(--line-strong);
+    border-radius: 2px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition:
+      color 0.2s var(--easing),
+      border-color 0.2s var(--easing),
+      background-color 0.2s var(--easing);
+  }
+
+  .filter:hover {
+    color: var(--text);
+    border-color: var(--text);
+  }
+
+  .filter[aria-pressed='true'] {
+    color: var(--bg);
+    background: var(--text);
+    border-color: var(--text);
+  }
+
   .rows {
     border-top: 1px solid var(--line);
   }
 
   .rows > :global(.row) {
     border-bottom: 1px solid var(--line);
+  }
+
+  .rows > :global([hidden]) {
+    display: none;
   }
 
   .rows.cards {

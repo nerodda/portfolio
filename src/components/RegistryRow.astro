@@ -26,6 +26,7 @@ const linkProps = isLinked
 <Tag
   class:list={['row', { linked: isLinked, retired: status === 'retired', card: isPersonal }]}
   style={`--i: ${index}`}
+  data-categories={(system.data.categories ?? []).join('|')}
   {...linkProps}
 >
   <span class="name">{name}</span>

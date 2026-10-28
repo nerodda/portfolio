@@ -32,6 +32,8 @@ const systems = defineCollection({
       stack: z.array(z.string()),
       /** Subject matter, as opposed to `stack` (tools). Emitted as schema.org `about`. */
       topics: z.array(z.string()).optional(),
+      /** Homepage filter tabs this entry appears under. */
+      categories: z.array(z.enum(['Marketing', 'AI', 'Sales Enablement'])).optional(),
       flow: z.array(z.string()).min(3).max(6),
       feedback: z.boolean().default(false),
       order: z.number(),

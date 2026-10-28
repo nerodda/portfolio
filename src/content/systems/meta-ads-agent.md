@@ -10,6 +10,7 @@ seoDescription: "Meta ads automation with an AI agent through Meta's official ad
 outcome: From Meta account setup and creative building to campaign analytics and A/B testing
 ogImage: /images/og/meta-ads-agent.png
 stack: [Model Context Protocol, Cursor, Meta Ads, Google Tag Manager, HubSpot, Apollo]
+categories: [Marketing, AI]
 flow: [Brief in the Second Brain, Agent in Cursor, Meta ads MCP server, Tracked landing page, Cited performance, Learnings start the next brief]
 topics:
   - Meta ads automation

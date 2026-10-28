@@ -10,6 +10,7 @@ seoDescription: "A zero-touch pipeline that pulls weekly metrics, drafts comment
 outcome: Replaces a manual weekly deck build with a zero-touch pipeline, delivered every Monday.
 ogImage: /images/og/client-reporting.png
 stack: [Vercel, Anthropic API, Model Context Protocol, Redash, Snowflake, Google Slides API, Gmail API]
+categories: [Sales Enablement]
 flow: [Metrics pull, Analysis, Commentary, Report]
 feedback: false
 order: 8

@@ -9,6 +9,7 @@ seoTitle: "AI Blog Pipeline: SEO Articles Without a Writer | Olga Neroda"
 seoDescription: "An AI workflow that turns a keyword into an SEO-checked article drafted in WordPress, with no writer, SEO specialist, or publisher in the loop."
 outcome: SEO articles produced without a writer, SEO specialist, or publisher in the loop.
 stack: [Relevance AI, OpenAI, Semrush, Notion, Zapier, WordPress, Grammarly]
+categories: [Marketing]
 flow: [Keyword research, Search intent, Outline, Draft, WordPress]
 feedback: false
 order: 2

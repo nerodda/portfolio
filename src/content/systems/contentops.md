@@ -10,6 +10,7 @@ seoDescription: "An AI marketing content platform: brand voice structured once, 
 outcome: AI marketing content platform — 500+ pages shipped, 20+ skills versioned, built in Cursor.
 ogImage: /images/og/contentops.png
 stack: [Cursor, Supabase, TypeScript, Payload, OpenAI, Meta, Google Ads, TikTok, LinkedIn]
+categories: [Marketing]
 flow: [Brand DNA, Skills, Campaign, Publish, Performance]
 feedback: true
 order: 9

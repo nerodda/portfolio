@@ -10,6 +10,7 @@ seoDescription: "A seller asks in Slack and gets back a scored, sourced buying c
 outcome: 30+ sellers researching from one Slack channel
 ogImage: /images/og/buying-committee.png
 stack: [Relevance AI, OpenAI, Slack, Zapier, Make, Apollo, Apify, Salesforce, Google Sheets]
+categories: [Sales Enablement]
 flow: [Slack request, Route, Research ladder, Rank & score, Shared sheet, Salesforce]
 feedback: false
 order: 5

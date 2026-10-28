@@ -10,6 +10,7 @@ seoDescription: "How I built a cited MCP knowledge base that AI tools read from.
 outcome: 56 sellers across two regions, 10 hours of research saved each week.
 ogImage: /images/og/second-brain.png
 stack: [Model Context Protocol, Cursor, Claude Code, OpenAI, Relevance AI, Google Drive, Outreach, Salesforce, Slack, Obsidian]
+categories: [Sales Enablement, AI]
 flow: [Drive corpus, Ingestion, Index, Answer & generate]
 topics:
   - Model Context Protocol
