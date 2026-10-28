@@ -299,7 +299,6 @@ lede:
 <li><div>
 <h3>Lookalike vs customer list only</h3>
 <p>The first lead ad set paired the customer list with a 1% lookalike. Its seed list was below the size Meta suggests, so in practice the lookalike was close to a broad UK audience. We paused it and ran the customer list alone. That swapped one problem for another. The list was so small that the ad set spent less than 1% of its daily budget.</p>
-<p>A third ad set now targets ICP job titles and employers, with the customer list excluded so the two don&rsquo;t overlap. Its results aren&rsquo;t in yet.</p>
 </div></li>
 </ol>
 </div>
