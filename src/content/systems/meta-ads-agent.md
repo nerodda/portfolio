@@ -416,7 +416,7 @@ lede:
 <p>First I checked that the business portfolio had the ads MCP integration at all. Meta was rolling it out account by account. It works out of the box with Claude and ChatGPT, but not Cursor. So I registered as a Meta developer, created the app, added the ads MCP use case and allowed Cursor&rsquo;s web callback.</p>
 </div></li>
 <li><div>
-<h3>Stood up the B2B account</h3>
+<h3>Stood up the new ad account</h3>
 <p>I created the account in the business portfolio and confirmed the agent could see it. Meta allowed all seven action types by default. Anyone about to hand an agent a live budget should check this first.</p>
 </div></li>
 <li><div>
