@@ -36,7 +36,7 @@ lede:
 <div class="body">
 <dl class="facts">
 <div><dt>Role</dt><dd>AI Martech Manager. I owned it end to end, from the Meta developer app to the tag changes and ad launching, with an AI agent in Cursor doing most of the job.</dd></div>
-<div><dt>Timeframe</dt><dd>One week in September 2026. It took three days to connect the agent and fix the tracking. By the end of the week, the first campaign was staged, with audiences built and creative made. It has since launched.</dd></div>
+<div><dt>Timeframe</dt><dd>One week in September 2026. It took three days to connect the agent and fix the tracking. By the end of the week, the first campaign was staged, with audiences built and creative made. It launched in October as a traffic campaign, and a lead campaign followed.</dd></div>
 <div><dt>Surface</dt><dd>Cursor, connected to Meta&rsquo;s official ads MCP server. No custom integration code.</dd></div>
 <div><dt>Guardrails</dt><dd>Meta&rsquo;s own rules, set per ad account in Business Suite, design skills and campaign briefs.</dd></div>
 <div><dt>Measured with</dt><dd>Google Tag Manager, the Meta pixel, and the HubSpot form on the landing page.</dd></div>
@@ -254,7 +254,7 @@ lede:
 <ol class="stack">
 <li><div>
 <h3>A brief that tests before it builds</h3>
-<p>The test runs in two phases: low-cost statics first to find which angle lands, then full production on the winner.</p>
+<p>The test runs in two phases. The first sends low-cost traffic to the landing page and reads which angle, image and format land. The second asks for the lead, with full production on what won.</p>
 </div></li>
 <li><div>
 <h3>Four audiences, built by the agent</h3>
@@ -281,7 +281,145 @@ lede:
 
 <section>
 <div class="wrap grid">
-<div class="sec-head"><span class="num">06</span><h2>How it came together</h2></div>
+<div class="sec-head"><span class="num">06</span><h2>What we tested</h2></div>
+<div class="body">
+<p class="big">Every variable got its own read.</p>
+<p>None of these ran in Meta&rsquo;s split-test tool. Each variant got its own ad set or its own ads. The agent read them back through the MCP server and compared like with like: same audience, same angle, same window. Meta spreads spend unevenly across ad sets, so treat each result as a strong steer, not a controlled experiment. Every figure here is relative. The real numbers stay in the campaign&rsquo;s own record.</p>
+<ol class="stack">
+<li><div>
+<h3>Proof angle: people, service or tech</h3>
+<p>Three angles sat behind one value prop: the people who turn up, the service around them, and the tech that matches them. Service led for the first ten days. Over the full run, people came out cheapest, and service cost about 11% more per landing page view on the same audience.</p>
+<p>Tech cost about 48% more than people and got about 38% fewer clicks per impression. It also ran to a different audience, so part of that gap is the audience, not the angle.</p>
+</div></li>
+<li><div>
+<h3>Imagery: generated brand images vs stock photography</h3>
+<p>Every static came in two versions. One used imagery generated with the designer&rsquo;s brand skills, the other used stock photography. On the people angle and the same audience, stock cost about a third more per landing page view and got about 12% fewer clicks per impression. Wherever one concept ran in both versions to the same audience, the generated version won.</p>
+</div></li>
+<li><div>
+<h3>Format: carousel vs single image</h3>
+<p>The carousel was the best ad in the account. It cost about 14% less per landing page view than the best single-image ad set, and its click-through rate was about 43% higher. It ran on Feeds only while the statics ran everywhere, so placement is part of that win.</p>
+</div></li>
+<li><div>
+<h3>Audience: customer list vs job-title targeting</h3>
+<p>The same tech concepts ran to the customer list and to an audience built from ICP job titles and employers. The ICP audience gave a 19% to 35% lower click-through rate, even with the imagery that won everywhere else. The customer list, filled out through Apollo, was the stronger audience for traffic.</p>
+</div></li>
+<li><div>
+<h3>Placements: Advantage+ vs Feeds</h3>
+<p>On Advantage+ placements, Meta sent 95% of the early traffic spend to Reels and Stories. That is cheap reach. On the lead campaign, though, every unusable lead came from Reels and Stories. The Facebook and Instagram feeds took about a fifth of the lead spend and produced no leads at all, good or bad.</p>
+</div></li>
+<li><div>
+<h3>Lookalike vs customer list only</h3>
+<p>The first lead ad set paired the customer list with a 1% lookalike. Its seed list was below the size Meta suggests, so in practice the lookalike was close to a broad UK audience. We paused it and ran the customer list alone. That swapped one problem for another. The list was so small that the ad set spent less than 1% of its daily budget.</p>
+<p>A third ad set now targets ICP job titles and employers, with the customer list excluded so the two don&rsquo;t overlap. Its results aren&rsquo;t in yet.</p>
+</div></li>
+</ol>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap grid">
+<div class="sec-head"><span class="num">07</span><h2>Landing page vs instant form</h2></div>
+<div class="body">
+<p class="big">The ads worked. The ask didn&rsquo;t, in two opposite ways.</p>
+<p>The same ads ran through two journeys. One sent people to the landing page. The other kept them inside Meta with an instant form. Both failed at first, for opposite reasons.</p>
+<figure>
+<p class="scroll-hint">Scroll to see the full diagram</p>
+<div class="diagram pastel-b">
+<svg viewBox="0 0 1000 556" role="img" aria-label="Two journeys from the same ads. Journey A sends the visitor to the landing page and its HubSpot form: about 90% of link clicks load the page, but 0% of visits became a form fill, so Meta had nothing to learn from. Journey B opens a prefilled instant form inside Meta: leads arrive fast and cheap, but 100% of the first leads were unusable. Both lead to the fix, a second instant form with friction on purpose: a jobseeker screen first, a typed company name and a validated work email.">
+<defs>
+<marker id="ahj" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="var(--line-strong)"/>
+</marker>
+</defs>
+<rect class="box" x="60" y="8" width="420" height="76" rx="2"/>
+<text class="t-tiny" x="84" y="32">Journey A</text>
+<text class="t-title" x="84" y="54">Ad to the landing page</text>
+<text class="t-sub" x="84" y="72">Phase 1. Optimized for landing page views.</text>
+<rect class="box" x="520" y="8" width="420" height="76" rx="2"/>
+<text class="t-tiny" x="544" y="32">Journey B</text>
+<text class="t-title" x="544" y="54">Ad to an instant form</text>
+<text class="t-sub" x="544" y="72">Phase 2. Optimized for leads, in a new campaign.</text>
+<path class="flow" d="M270,84 L270,114" marker-end="url(#ahj)"/>
+<path class="flow" d="M730,84 L730,114" marker-end="url(#ahj)"/>
+<rect class="box" x="60" y="116" width="420" height="76" rx="2"/>
+<text class="t-tiny" x="84" y="140">Visit</text>
+<text class="t-title" x="84" y="162">The visitor lands on the page</text>
+<text class="t-sub" x="84" y="180">Around 90% of link clicks load the page.</text>
+<rect class="box" x="520" y="116" width="420" height="76" rx="2"/>
+<rect class="pill" x="544" y="140" width="28" height="28" rx="2"/>
+<image href="/logos/meta.svg" x="548" y="144" width="20" height="20"><title>Meta</title></image>
+<text class="t-tiny" x="588" y="140">Form</text>
+<text class="t-title" x="588" y="162">The form opens inside Meta</text>
+<text class="t-sub" x="588" y="180">Details prefilled from the profile. No page load.</text>
+<path class="flow" d="M270,192 L270,222" marker-end="url(#ahj)"/>
+<path class="flow" d="M730,192 L730,222" marker-end="url(#ahj)"/>
+<rect class="box" x="60" y="224" width="420" height="76" rx="2"/>
+<rect class="pill" x="84" y="248" width="28" height="28" rx="2"/>
+<image href="/logos/hubspot.svg" x="88" y="252" width="20" height="20"><title>HubSpot</title></image>
+<text class="t-tiny" x="128" y="248">Form</text>
+<text class="t-title" x="128" y="270">A HubSpot form on the page</text>
+<text class="t-sub" x="128" y="288">Required fields and consent, mostly on mobile.</text>
+<rect class="box" x="520" y="224" width="420" height="76" rx="2"/>
+<text class="t-tiny" x="544" y="248">Submit</text>
+<text class="t-title" x="544" y="270">Submit in a few taps</text>
+<text class="t-sub" x="544" y="288">No screening, no email check, flexible delivery on.</text>
+<path class="flow" d="M270,300 L270,330" marker-end="url(#ahj)"/>
+<path class="flow" d="M730,300 L730,330" marker-end="url(#ahj)"/>
+<rect class="box" x="60" y="332" width="420" height="76" rx="2"/>
+<text class="t-tiny" x="84" y="356">Result</text>
+<text class="t-title" x="84" y="378">0% of visits became a form fill</text>
+<text class="t-sub" x="84" y="396">Real, cheap visitors. Nothing for Meta to learn from.</text>
+<rect class="box" x="520" y="332" width="420" height="76" rx="2"/>
+<text class="t-tiny" x="544" y="356">Result</text>
+<text class="t-title" x="544" y="378">100% of the first leads unusable</text>
+<text class="t-sub" x="544" y="396">Fast and cheap, but jobseekers and dead emails.</text>
+<path class="flow" d="M270,408 L270,434"/>
+<path class="flow" d="M730,408 L730,434"/>
+<path class="flow" d="M270,434 L730,434"/>
+<path class="flow" d="M500,434 L500,462" marker-end="url(#ahj)"/>
+<rect class="box ink" x="60" y="464" width="880" height="84" rx="2"/>
+<text class="t-tiny on-ink" x="84" y="490">The fix</text>
+<text class="t-title on-ink" x="84" y="514">Friction on purpose: a second instant form</text>
+<text class="t-sub on-ink" x="84" y="534">A jobseeker screen first, a typed company name, and a work email validated twice.</text>
+</svg>
+</div>
+<figcaption>Same ads, two journeys. The landing page had too much friction and gave Meta no lead events to learn from. The first instant form had too little, and taught Meta the wrong buyer.</figcaption>
+</figure>
+<ol class="stack">
+<li><div>
+<h3>Journey A: the landing page</h3>
+<p>Phase 1 sent people to the landing page and optimized for page views. Around 90% of link clicks loaded the page, so the visitors were real. But 0% of them filled in the form. It had too many required fields, a checkbox that grayed out the button until it was ticked, and consent copy with an old company name, on a mostly mobile audience. We cut the fields, but with no lead events coming in, Meta had nothing to optimize leads against.</p>
+</div></li>
+<li><div>
+<h3>A new campaign for leads</h3>
+<p>Meta won&rsquo;t change a published campaign&rsquo;s objective, so moving from traffic to leads meant a new campaign. Phase 2 ran video ads with a Meta instant form that syncs to HubSpot, so people sign up without leaving Facebook or Instagram. The traffic campaign kept running alongside it.</p>
+</div></li>
+<li><div>
+<h3>Journey B: the instant form</h3>
+<p>Leads arrived within days, and cheaply. 100% of them were unusable: people looking for work, and email addresses that didn&rsquo;t work. The ads show waiters and sommeliers, so to hospitality workers they can read as job ads. Meta optimizes for whoever submits, so it went looking for more of the same.</p>
+</div></li>
+<li><div>
+<h3>Why the junk got through</h3>
+<p>The form was already on Meta&rsquo;s higher intent setting, with a review screen, so that alone didn&rsquo;t stop it. Flexible form delivery was on, which lets Meta drop questions to get more submissions. Work email validation was off. And details came prefilled from the Facebook profile, which often holds an old personal address.</p>
+</div></li>
+<li><div>
+<h3>The fix: friction on purpose</h3>
+<p>The second form opens with a screening question. Anyone looking for work gets a link to the app and never becomes a lead. Then come business type, timing, and a company name typed by hand. Work email is validated on the form and again by the ad&rsquo;s own quality filter, and flexible delivery is off.</p>
+<p>It costs volume, and that is the point. A cheap instant form lead is not a lead.</p>
+</div></li>
+<li><div>
+<h3>What we judge it on now</h3>
+<p>Lead quality in HubSpot, read within the first few leads, not Meta&rsquo;s cost per lead. If quality stays poor, the next lever is Feeds-only placements. The step after that is sending lead stages from HubSpot back to Meta, so it optimizes for qualified leads instead of raw form fills.</p>
+</div></li>
+</ol>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap grid">
+<div class="sec-head"><span class="num">08</span><h2>How it came together</h2></div>
 <div class="body">
 <p>The work, step by step.</p>
 <ol class="stack">
@@ -309,6 +447,18 @@ lede:
 <h3>Gave campaigns a home</h3>
 <p>We set up the campaign space in the Second Brain and wrote its rules down. One folder per campaign, with a file per stage. Every figure cited and dated. Every targeted account linked both ways. Meta&rsquo;s placement specs kept on one dated reference page.</p>
 </div></li>
+<li><div>
+<h3>Diagnosed the bad leads</h3>
+<p>When the first leads came back unusable, the agent read the ad set setup through the MCP server and found the causes: the placements, the lookalike and the form settings. It drafted the stricter form in Ads Manager through the browser and left publishing to a person, because a published form can&rsquo;t be edited.</p>
+</div></li>
+<li><div>
+<h3>Hit the edges of the MCP server</h3>
+<p>The Meta ads MCP server can&rsquo;t build lead-form creatives. Meta also rejected lead ads published through it with a terms error, even after the terms were accepted. So the agent staged the ads and a person clicked Publish in Ads Manager. Plan for that last step.</p>
+</div></li>
+<li><div>
+<h3>Kept the record current</h3>
+<p>Every readout, test and form change went into the campaign&rsquo;s folder in the Second Brain the same day, with its date and source. The tests on this page come from that record.</p>
+</div></li>
 </ol>
 </div>
 </div>
@@ -316,7 +466,7 @@ lede:
 
 <section>
 <div class="wrap grid">
-<div class="sec-head"><span class="num">07</span><h2>Where it stands</h2></div>
+<div class="sec-head"><span class="num">09</span><h2>Where it stands</h2></div>
 <div class="body">
 <div class="metrics">
 <div class="metric"><span class="fig">3 days</span><span class="cap">from no agent access to a B2B landing page tracked end to end</span></div>
@@ -324,6 +474,10 @@ lede:
 <div class="metric"><span class="fig">18</span><span class="cap">static ads in the first campaign: six designs, three ratios each</span></div>
 <div class="metric"><span class="fig">4</span><span class="cap">audiences built by the agent, from customer list to exclusion</span></div>
 <div class="metric"><span class="fig">1,000+</span><span class="cap">decision makers in the customer list, from 300+ target companies</span></div>
+<div class="metric"><span class="fig">25%</span><span class="cap">cheaper landing page views from generated brand imagery than stock, same angle and audience</span></div>
+<div class="metric"><span class="fig">22%</span><span class="cap">more landing page views week on week, on 11% more spend</span></div>
+<div class="metric"><span class="fig">0%</span><span class="cap">of landing page visits became a form fill, which moved leads to an instant form</span></div>
+<div class="metric"><span class="fig">100%</span><span class="cap">of the first instant form&rsquo;s leads were unusable, which led to the stricter second form</span></div>
 </div>
 </div>
 </div>
