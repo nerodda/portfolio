@@ -36,7 +36,7 @@ lede:
 <div class="body">
 <dl class="facts">
 <div><dt>Role</dt><dd>AI Martech Manager. I owned it end to end, from the Meta developer app to the tag changes and ad launching, with an AI agent in Cursor doing most of the job.</dd></div>
-<div><dt>Timeframe</dt><dd>One week in September 2026. It took three days to connect the agent and fix the tracking. By the end of the week, the first campaign was staged, with audiences built and creative made. It launched in October as a traffic campaign, and a lead campaign followed.</dd></div>
+<div><dt>Timeframe</dt><dd>It took three days to connect the agent and fix the tracking. By the end of the week, the first campaign was staged, with audiences built and creative made. It launched in October as a traffic campaign, and a lead campaign followed.</dd></div>
 <div><dt>Surface</dt><dd>Cursor, connected to Meta&rsquo;s official ads MCP server. No custom integration code.</dd></div>
 <div><dt>Guardrails</dt><dd>Meta&rsquo;s own rules, set per ad account in Business Suite, design skills and campaign briefs.</dd></div>
 <div><dt>Measured with</dt><dd>Google Tag Manager, the Meta pixel, and the HubSpot form on the landing page.</dd></div>
