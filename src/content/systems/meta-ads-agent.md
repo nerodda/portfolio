@@ -283,8 +283,6 @@ lede:
 <div class="wrap grid">
 <div class="sec-head"><span class="num">06</span><h2>What we tested</h2></div>
 <div class="body">
-<p class="big">Every variable got its own read.</p>
-<p>None of these ran in Meta&rsquo;s split-test tool. Each variant got its own ad set or its own ads. The agent read them back through the MCP server and compared like with like: same audience, same angle, same window. Meta spreads spend unevenly across ad sets, so treat each result as a strong steer, not a controlled experiment. Every figure here is relative. The real numbers stay in the campaign&rsquo;s own record.</p>
 <ol class="stack">
 <li><div>
 <h3>Proof angle: people, service or tech</h3>
