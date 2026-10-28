@@ -459,9 +459,6 @@ lede:
 <div class="metric"><span class="fig">4</span><span class="cap">audiences built by the agent, from customer list to exclusion</span></div>
 <div class="metric"><span class="fig">1,000+</span><span class="cap">decision makers in the customer list, from 300+ target companies</span></div>
 <div class="metric"><span class="fig">25%</span><span class="cap">cheaper landing page views from generated brand imagery than stock, same angle and audience</span></div>
-<div class="metric"><span class="fig">22%</span><span class="cap">more landing page views week on week, on 11% more spend</span></div>
-<div class="metric"><span class="fig">0%</span><span class="cap">of landing page visits became a form fill, which moved leads to an instant form</span></div>
-<div class="metric"><span class="fig">100%</span><span class="cap">of the first instant form&rsquo;s leads were unusable, which led to the stricter second form</span></div>
 </div>
 </div>
 </div>
