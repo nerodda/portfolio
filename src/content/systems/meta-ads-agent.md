@@ -285,11 +285,6 @@ lede:
 <div class="body">
 <ol class="stack">
 <li><div>
-<h3>Proof angle: people, service or tech</h3>
-<p>Three angles sat behind one value prop: the people who turn up, the service around them, and the tech that matches them. Service led for the first ten days. Over the full run, people came out cheapest, and service cost about 11% more per landing page view on the same audience.</p>
-<p>Tech cost about 48% more than people and got about 38% fewer clicks per impression. It also ran to a different audience, so part of that gap is the audience, not the angle.</p>
-</div></li>
-<li><div>
 <h3>Imagery: generated brand images vs stock photography</h3>
 <p>Every static came in two versions. One used imagery generated with the designer&rsquo;s brand skills, the other used stock photography. On the people angle and the same audience, stock cost about a third more per landing page view and got about 12% fewer clicks per impression. Wherever one concept ran in both versions to the same audience, the generated version won.</p>
 </div></li>
