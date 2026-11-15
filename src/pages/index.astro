@@ -55,12 +55,9 @@ const registryJsonLd = {
   <SiteHeader />
 
   <main>
-    <div class="wrap hero">
-      <h1>I build AI systems for revenue and marketing teams.</h1>
-    </div>
-
     <section class="registry" aria-labelledby="registry-heading">
       <div class="wrap">
+        <h1 class="intro">I build AI systems for revenue and marketing teams.</h1>
         <h2 id="registry-heading" class="visually-hidden">Systems</h2>
         <RegistryGroup
           label="RECENT PROJECTS"
@@ -75,3 +72,30 @@ const registryJsonLd = {
 
   <SiteFooter />
 </Base>
+
+<style>
+  /* The projects are the page. The intro is one quiet line above them, not a
+     screen-filling hero, so the first rows land above the fold. */
+  .registry {
+    padding-top: 40px;
+  }
+
+  .intro {
+    max-width: 24em;
+    margin-bottom: 40px;
+    font-size: clamp(1.375rem, 2.4vw, 2rem);
+    line-height: 1.2;
+    letter-spacing: -0.022em;
+    font-weight: 400;
+  }
+
+  @media (min-width: 900px) {
+    .registry {
+      padding-top: 56px;
+    }
+
+    .intro {
+      margin-bottom: 56px;
+    }
+  }
+</style>
